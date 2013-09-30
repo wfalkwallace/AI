@@ -3,8 +3,8 @@
 		((and (null (car p)) (null (car d))) t)
 		((equal (car p)(car d)) (match (cdr p)(cdr d)))
 		(T `NIL)
-		)
 	)
+)
  
  
  
