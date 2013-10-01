@@ -33,7 +33,7 @@
 		( (or (null p) (null d)) NIL) 
 		;check if next patter element is an
 		;association variable 
-		( (is-vbl (car p) ) 
+		( (ias-vbl (cr p) ) 
 			(cond
 				;if it's a bound variable
 				( (boundp (first p) a) 
@@ -120,6 +120,6 @@
 
 ;boundp?
 
-;*?
+;* end-case?
 
 
