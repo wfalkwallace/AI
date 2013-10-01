@@ -44,7 +44,7 @@
 				 		;pattern with the rest of the data 
 				 		;ie. if it's already been bound to
 				 		;this element
-						( (eql (first d) (assoc (first p) a)) (rpm (rest p)(rest d) a) ) 
+						( (eql (first d) (assoc (first p) a)) (rpm (rest p) (rest d) a) ) 
 						;here we know it's been bound
 						;and the bound value isnt this one 
 						;so we fail in the match (current branch)
@@ -54,14 +54,14 @@
 				;if its unbound, we bind it on the 
 				;association list and similarly call
 				;rpm recursively.
-				( T (rpm (rest p)(rest d) (cons (list (first p) (first d)) a)) )
+				( T (rpm (rest p) (rest d) (cons (list (first p) (first d)) a)) )
 			) 
 		)
 		
 		;for non-variable ?-matching
 		( (eq `? (first p))
 			;recurse on the rest of p and d
-			(rpm (rest p)(rest d))
+			(rpm (rest p) (rest d) a)
 		)
 
 		( (eq '* (first p))
@@ -76,7 +76,7 @@
 			(cond
 			 	;check to see if it is equal to the data
 			 	;and recurse over the rest of p and d, if so
-				( (eql (first p)(first d)) (rpm (rest p)(rest d) a) )
+				( (eql (first p) (first d)) (rpm (rest p) (rest d) a) )
 				;if it's not a match, fail
 				(t NIL)
 			)
@@ -88,37 +88,38 @@
 		;This is a little tricky so watch carefully:
 		;I'm repairing a bug left behind in class.
 		(t 
-			(let (newa (rpm (first p)(first d) a) ) 
+			(let (newa (rpm (first p) (first d) a) ) 
 				;pattern match the sublists 
 				(cond 
 					;but it failed, so we fail
 				 	((null newa) NIL) 
 					;we succeeded, but newa could be "t" or
 					;a binding list
-					((listp newa) (rpm (rest p)(rest d) newa) ) 
+					((listp newa) (rpm (rest p) (rest d) newa) ) 
 					;Here newa is "t" so rpm with the association 
 					;list of nil
-					(t (rpm (rest p)(rest d) NIL) )
+					(t (rpm (rest p) (rest d) NIL) )
 				)
 			)
 		)
 	)
 )
 
-; Lastly we have to define our variable definition functions, ie. a means
-;of defining variables so our pattern matcher will know when its encountered 
-;a pattern variable to distinguish it from an ordinary symbol. Well,
-;that's left to you as an exercise. I'll write the defun's just to
-;remind you that they have to be written. PLEASE NOTE that I used 
-;"assoc" in rpm. Look it up. And here's a hint: pattern variables may
-;have a new property associated with their symbol names, or may be collected 
-;together in one master list of pattern variable symbols.....I guess that's
-;more than a hint.
+;And here's a hint: pattern variables may 
+;have a new property associated with their 
+;symbol names, or may be collected 
+;together in one master list of pattern 
+;variable symbols.....I guess that's more 
+;than a hint.
 
 (defun is-vbl (x) 
-	(and (equal (elt x 0) #\?) (>= (length x) 2))
+	(and (equal (elt (symbol-name x) 0) #\?) (>= (length (symbol-name x)) 2))
 )
 
 ;(defun assoc ( x a-list ) ( ... ) )
+
+;boundp?
+
+;*?
 
 
