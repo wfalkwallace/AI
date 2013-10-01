@@ -65,7 +65,7 @@
 		
 		;NOT
 		( (is-not (car p) ) 
-		 	(format t "(is-not(~A): ~A -> ~A)~%" (car d) (concatenate 'string "?" (string (elt (symbol-name (first p)) 1))) (first (rest (assoc (first p) a))) )
+		 	; (format t "(is-not(~A): ~A -> ~A)~%" (car d) (concatenate 'string "?" (string (elt (symbol-name (first p)) 1))) (first (rest (assoc (intern (concatenate 'string "?" (string (elt (symbol-name (first p)) 1)))) a))) )
 			(cond
 				;if it's a bound variable
 				( (bound (intern (concatenate 'string "?" (string (elt (symbol-name (first p)) 1)))) a) 
@@ -77,7 +77,7 @@
 				 		;pattern with the rest of the data 
 				 		;ie. if it's already been bound to
 				 		;this element
-						( (not (eql (first d) (first (rest (assoc (first p) a))))) (rpm (rest p) (rest d) a) ) 
+						( (not (eql (first d) (first (rest (assoc (intern (concatenate 'string "?" (string (elt (symbol-name (first p)) 1)))) a))))) (rpm (rest p) (rest d) a) ) 
 						; (t (format t "(~S -> ~S NOT ~S)~%" (car p) (cdr (assoc (first p) a)) (list (first d)) ))
 						;here we know it's been bound
 						;and the bound value isnt this one 
