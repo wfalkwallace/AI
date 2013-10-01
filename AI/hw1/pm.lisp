@@ -11,7 +11,7 @@
 	)
 )
 
-;simple, user-faceing match
+;simple, user-facing match
 (defun match (p d) 
  	;calls real match with a new/empty assoc list
 	(rpm p d nil)
@@ -29,7 +29,7 @@
 				(T t)
 			) 
 		) 
-		;we've only exhausted one; return failure
+		;we've only exhausted one; fail
 		( (or (null p) (null d)) NIL) 
 		;check if next patter element is an
 		;association variable 
@@ -48,7 +48,7 @@
 						;here we know it's been bound
 						;and the bound value isnt this one 
 						;so we fail in the match (current branch)
-						(T nil) 
+						(T NIL) 
 					) 
 				)
 				;if its unbound, we bind it on the 
@@ -70,40 +70,41 @@
 			(Or (rpm (rest p) d a) (rpm p (rest d) a))
 		)
 
-		;Ok, now that that is done...
-		;Now we check to see if p starts with 
-		;a symbol that is not a variable, nor a 
-		;a Kleene Star.
+		;direct matching stuff
+		;if it's a non-variable or match symbol,
 		( (atom (first p)) 
-			;if so, check to see if it is equal to 
-			;the first element of the data
 			(cond
+			 	;check to see if it is equal to the data
+			 	;and recurse over the rest of p and d, if so
 				( (eql (first p)(first d)) (rpm (rest p)(rest d) a) )
-				(t nil)
+				;if it's not a match, fail
+				(t NIL)
 			)
 		) 
+		
 		;otherwise we failed
-		;Now we know we have a list at the head of p
+		;Now we know we have a list or something 
+		;non-atomic/variable at the head of p
 		;This is a little tricky so watch carefully:
 		;I'm repairing a bug left behind in class.
 		(t 
 			(let (newa (rpm (first p)(first d) a) ) 
 				;pattern match the sublists 
-				(cond ( (null newa) nil) 
+				(cond 
 					;but it failed, so we fail
+				 	((null newa) NIL) 
 					;we succeeded, but newa could be "t" or
-					;a binding list, so....
-					( (listp newa) (rpm (rest p)(rest d) newa) ) 
+					;a binding list
+					((listp newa) (rpm (rest p)(rest d) newa) ) 
 					;Here newa is "t" so rpm with the association 
 					;list of nil
-					(t (rpm (rest p)(rest d) nil) )
+					(t (rpm (rest p)(rest d) NIL) )
 				)
 			)
 		)
 	)
 )
 
-;and that's all folks!
 ; Lastly we have to define our variable definition functions, ie. a means
 ;of defining variables so our pattern matcher will know when its encountered 
 ;a pattern variable to distinguish it from an ordinary symbol. Well,
