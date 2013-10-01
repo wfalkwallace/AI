@@ -34,10 +34,10 @@
 		;check if next patter element is an
 		;association variable 
 		( (is-vbl (car p) ) 
-		 	(format t "is-vbl(~S) -> TRUE" (car p))
+		 	; (format t "(is-vbl(~S) -> TRUE~%)" (car p))
 			(cond
 				;if it's a bound variable
-				( (boundp (first p) a) 
+				( (bound (first p) a) 
 				 	(cond
 				 		;if its bound value is equal to the 
 				 		;first data element, we return the 
@@ -116,6 +116,11 @@
 (defun is-vbl (x) 
 	(and (equal (elt (symbol-name x) 0) #\?) (>= (length (symbol-name x)) 2))
 )
+
+(defun bound ( x a )
+ 	(assoc x a)
+)
+
 
 ;(defun assoc ( x a-list ) ( ... ) )
 
