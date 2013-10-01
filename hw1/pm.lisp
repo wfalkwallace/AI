@@ -36,7 +36,7 @@
 		;check if next patter element is an
 		;association variable 
 		( (is-vbl (car p) ) 
-		 	(format t "(is-vbl(~S) -> TRUE)~%" (car p))
+		 	; (format t "(is-vbl(~S) -> TRUE)~%" (car p))
 			(cond
 				;if it's a bound variable
 				( (bound (first p) a) 
@@ -166,7 +166,7 @@
 				( 
 					(newa (rpm (rest p) d a))
 				) 
-				(format t "p= ~A || restp= ~A || d= ~A || rpm= ~A~%" p (rest p) d (rpm (rest p) d a) )
+				; (format t "p= ~A || restp= ~A || d= ~A || rpm= ~A~%" p (rest p) d (rpm (rest p) d a) )
 			;See if we match 0 elements. 
 			;Note how this is accomplished. We advance
 			;p to the cdr of p in the recursion BUT DO
@@ -174,7 +174,7 @@
 			;if so we return the new association list
 				(cond 
 					(newa newa)
-					(t (format t "newa = ~A" newa))
+					; (t (format t "newa = ~A" newa))
 				;otherwise we try to match one data element
 					(t (rpm p (rest d) a))
 				)
