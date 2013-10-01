@@ -59,34 +59,9 @@
 		;also include ? if you like preceeding this.
 		( (eq '* (first p))
 			;Kleene Star matches 0 or more elements, so...
-			(let ( (newa (rpm (cdr p) d a)) ) 
-				;See if we match 0 elements. 
-				;Note how this is accomplished. We advance
-				;p to the cdr of p in the recursion BUT DO
-				;NOT ADVANCE d.
-				;if so we return the new association list
-				(cond (newa newa)
-					;otherwise we try to match one data element
-					( T (rpm p (rest d) a) )
-				)
-			)
+			;or is serial
+			(Or (rpm (rest p) d a) (rpm p (rest d) a))
 		)
-
-		;Note how this is accomplished. p is NOT
-		;ADVANCED, but d is. In the recursive call
-		;p will still have kleene star as its head
-		;but d will be its cdr. Think about that! 
-		;******************NOTICE**************** 
-		;The entire "let" can be simply replaced!
-		;HOW? Well, here's how:
-
-		; (Or
-
-		; (rpm (rest p) d a)
-
-		; (rpm p (rest d) a) )
-
-		;Neat, huh?
 
 		;Ok, now that that is done...
 		;Now we check to see if p starts with 
