@@ -33,7 +33,8 @@
 		( (or (null p) (null d)) NIL) 
 		;check if next patter element is an
 		;association variable 
-		( (ias-vbl (cr p) ) 
+		( (is-vbl (car p) ) 
+		 	(format t "is-vbl(~S) -> TRUE" (car p))
 			(cond
 				;if it's a bound variable
 				( (boundp (first p) a) 
