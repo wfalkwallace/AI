@@ -11,36 +11,43 @@
 	)
 )
 
- 
+;simple, user-faceing match
 (defun match (p d) 
+ 	;calls real match with a new/empty assoc list
 	(rpm p d nil)
 )
 
 
 (defun rpm (p d a)
 	(Cond
-		;we've exhausted both successfully, return association list or T
+		;we've successfully exhausted p and d, 
+		;return the association list or t
+		;(indicating non-associated match)
 		( (and (null p) (null d)) 
 			(cond 
 				(a a)
 				(T t)
 			) 
 		) 
-		;we've exhausted one and not the other nil, return failure
+		;we've only exhausted one; return failure
 		( (or (null p) (null d)) NIL) 
-		;we've encountered a pattern variable 
+		;check if next patter element is an
+		;association variable 
 		( (is-vbl (car p) ) 
 			(cond
-				;it's a bound variable:
+				;if it's a bound variable
 				( (boundp (first p) a) 
 				 	(cond
 				 		;if its bound value is equal to the 
 				 		;first data element, we return the 
 				 		;real pattern match of the rest of the 
 				 		;pattern with the rest of the data 
+				 		;ie. if it's already been bound to
+				 		;this element
 						( (eql (first d) (assoc (first p) a)) (rpm (rest p)(rest d) a) ) 
-						;here we know its bound value is unequal 
-						;so we fail in the match.
+						;here we know it's been bound
+						;and the bound value isnt this one 
+						;so we fail in the match (current branch)
 						(T nil) 
 					) 
 				)
@@ -51,15 +58,15 @@
 			) 
 		)
 		
+		;for non-variable ?-matching
 		( (eq `? (first p))
-			
+			;recurse on the rest of p and d
+			(rpm (rest p)(rest d))
 		)
 
-		;Ok, here is Kleene Star (for free!) You can 
-		;also include ? if you like preceeding this.
 		( (eq '* (first p))
-			;Kleene Star matches 0 or more elements, so...
-			;or is serial
+			;recurse over both incr p and incr d
+			;or is serial, so incr d first
 			(Or (rpm (rest p) d a) (rpm p (rest d) a))
 		)
 
