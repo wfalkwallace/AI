@@ -65,7 +65,7 @@
 		
 		;NOT
 		( (is-not (car p) ) 
-		 	(format t "(is-not(~S) -> TRUE)~%" (car p))
+		 	(format t "(is-not(~A): ~A -> ~A)~%" (car d) (concatenate 'string "?" (string (elt (symbol-name (first p)) 1))) (first (rest (assoc (first p) a))) )
 			(cond
 				;if it's a bound variable
 				( (bound (intern (concatenate 'string "?" (string (elt (symbol-name (first p)) 1)))) a) 
