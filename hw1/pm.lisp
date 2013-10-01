@@ -133,7 +133,7 @@
 ;more than a hint.
 
 (defun is-vbl (x) 
-	(equal (position #\? (write-to-string x)) 0)
+	(and (equal (elt x 0) #\?) (>= (length x) 2))
 )
 
 ;(defun assoc ( x a-list ) ( ... ) )
