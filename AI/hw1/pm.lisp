@@ -31,10 +31,12 @@
 		) 
 		;we've only exhausted one; fail
 		( (or (null p) (null d)) NIL) 
+		
+		;?X
 		;check if next patter element is an
 		;association variable 
 		( (is-vbl (car p) ) 
-		 	; (format t "(is-vbl(~S) -> TRUE)~%" (car p))
+		 	(format t "(is-vbl(~S) -> TRUE)~%" (car p))
 			(cond
 				;if it's a bound variable
 				( (bound (first p) a) 
@@ -46,7 +48,7 @@
 				 		;pattern with the rest of the data 
 				 		;ie. if it's already been bound to
 				 		;this element
-						( (equal (first d) (first (rest (assoc (first p) a)))) (rpm (rest p) (rest d) a) ) 
+						( (eql (first d) (first (rest (assoc (first p) a)))) (rpm (rest p) (rest d) a) ) 
 						; (t (format t "(~S -> ~S NOT ~S)~%" (car p) (cdr (assoc (first p) a)) (list (first d)) ))
 						;here we know it's been bound
 						;and the bound value isnt this one 
@@ -57,13 +59,41 @@
 				;if its unbound, we bind it on the 
 				;association list and similarly call
 				;rpm recursively.
-				(T (rpm (rest p) (rest d) (cons (list (first p) (first d)) a)) )
-				;;WHAT AM I RETURNING HERE
+				(T (rpm (rest p) (rest d) (cons (list (first p) (first d)) a)))
+			) 
+		)
+		
+		;NOT
+		( (is-exc (car p) ) 
+		 	(format t "(is-exc(~S) -> TRUE)~%" (car p))
+			(cond
+				;if it's a bound variable
+				( (bound (intern (concatenate 'string "?" (string (elt (symbol-name (first p)) 1)))) a) 
+					; (format t "(~S IS bound)~%" (car p))
+				 	(cond
+				 		;if its bound value is equal to the 
+				 		;first data element, we return the 
+				 		;real pattern match of the rest of the 
+				 		;pattern with the rest of the data 
+				 		;ie. if it's already been bound to
+				 		;this element
+						( (not (eql (first d) (first (rest (assoc (first p) a))))) (rpm (rest p) (rest d) a) ) 
+						; (t (format t "(~S -> ~S NOT ~S)~%" (car p) (cdr (assoc (first p) a)) (list (first d)) ))
+						;here we know it's been bound
+						;and the bound value isnt this one 
+						;so we fail in the match (current branch)
+						(T NIL) 
+					) 
+				)
+				;if its unbound, we bind it on the 
+				;association list and similarly call
+				;rpm recursively.
+				(T (rpm (rest p) (rest d) a))
 			) 
 		)
 		
 		;for non-variable ?-matching
-		( (eq `? (first p))
+		( (eq '? (first p))
 			;recurse on the rest of p and d
 			(rpm (rest p) (rest d) a)
 		)
@@ -71,7 +101,27 @@
 		( (eq '* (first p))
 			;recurse over both incr p and incr d
 			;or is serial, so incr d first
-			(Or (rpm (rest p) d a) (rpm p (rest d) a))
+			; (Or (rpm (rest p) d a) (rpm p (rest d) a))
+			
+			;Kleene Star matches 0 or more elements, so...
+			(let 
+				( 
+					(newa (rpm (rest p) d a))
+				) 
+				(format t "p= ~A || restp= ~A || d= ~A || rpm= ~A~%" p (rest p) d (rpm (rest p) d a) )
+			;See if we match 0 elements. 
+			;Note how this is accomplished. We advance
+			;p to the cdr of p in the recursion BUT DO
+			;NOT ADVANCE d.
+			;if so we return the new association list
+				(cond 
+					(newa newa)
+					(t (format t "newa = ~A" newa))
+				;otherwise we try to match one data element
+					(t (rpm p (rest d) a))
+				)
+			)
+			
 		)
 
 		;direct matching stuff
@@ -91,7 +141,7 @@
 		;non-atomic/variable at the head of p
 		;This is a little tricky so watch carefully:
 		;I'm repairing a bug left behind in class.
-		(t 
+		(T 
 			(let (newa (rpm (first p) (first d) a) ) 
 				;pattern match the sublists 
 				(cond 
@@ -118,6 +168,10 @@
 
 (defun is-vbl (x) 
 	(and (equal (elt (symbol-name x) 0) #\?) (>= (length (symbol-name x)) 2))
+)
+
+(defun is-exc (x) 
+	(and (equal (elt (symbol-name x) 0) #\!) (>= (length (symbol-name x)) 2))
 )
 
 (defun bound ( x a )
