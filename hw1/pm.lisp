@@ -34,10 +34,11 @@
 		;check if next patter element is an
 		;association variable 
 		( (is-vbl (car p) ) 
-		 	; (format t "(is-vbl(~S) -> TRUE~%)" (car p))
+		 	(format t "(is-vbl(~S) -> TRUE)~%" (car p))
 			(cond
 				;if it's a bound variable
 				( (bound (first p) a) 
+					(format t "(~S IS bound)~%" (car p))
 				 	(cond
 				 		;if its bound value is equal to the 
 				 		;first data element, we return the 
@@ -45,7 +46,8 @@
 				 		;pattern with the rest of the data 
 				 		;ie. if it's already been bound to
 				 		;this element
-						( (eql (first d) (assoc (first p) a)) (rpm (rest p) (rest d) a) ) 
+						( (eql (first d) (cdr (assoc (first p) a))) (rpm (rest p) (rest d) a) ) 
+						(t (format t "(~S -> ~S NOT ~S)~%" (car p) (cdr (assoc (first p) a)) (car d) ))
 						;here we know it's been bound
 						;and the bound value isnt this one 
 						;so we fail in the match (current branch)
