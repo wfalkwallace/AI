@@ -57,7 +57,8 @@
 				;if its unbound, we bind it on the 
 				;association list and similarly call
 				;rpm recursively.
-				( T (rpm (rest p) (rest d) (cons (list (first p) (first d)) a)) )
+				(T (rpm (rest p) (rest d) (cons (list (first p) (first d)) a)) )
+				;;WHAT AM I RETURNING HERE
 			) 
 		)
 		
@@ -81,7 +82,7 @@
 			 	;and recurse over the rest of p and d, if so
 				( (eql (first p) (first d)) (rpm (rest p) (rest d) a) )
 				;if it's not a match, fail
-				(t NIL)
+				(T NIL)
 			)
 		) 
 		
@@ -101,7 +102,7 @@
 					((listp newa) (rpm (rest p) (rest d) newa) ) 
 					;Here newa is "t" so rpm with the association 
 					;list of nil
-					(t (rpm (rest p) (rest d) NIL) )
+					(T (rpm (rest p) (rest d) NIL) )
 				)
 			)
 		)
