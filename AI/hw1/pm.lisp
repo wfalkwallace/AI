@@ -91,6 +91,64 @@
 				(T (rpm (rest p) (rest d) a))
 			) 
 		)
+
+		;<
+		( (is-lt (car p) ) 
+		 	; (format t "(is-not(~A): ~A -> ~A)~%" (car d) (concatenate 'string "?" (string (elt (symbol-name (first p)) 1))) (first (rest (assoc (intern (concatenate 'string "?" (string (elt (symbol-name (first p)) 1)))) a))) )
+			(cond
+				;if it's a bound variable
+				( (bound (intern (concatenate 'string "?" (string (elt (symbol-name (first p)) 1)))) a) 
+					; (format t "(~S IS bound)~%" (car p))
+				 	(cond
+				 		;if its bound value is equal to the 
+				 		;first data element, we return the 
+				 		;real pattern match of the rest of the 
+				 		;pattern with the rest of the data 
+				 		;ie. if it's already been bound to
+				 		;this element
+						( (< (first d) (first (rest (assoc (intern (concatenate 'string "?" (string (elt (symbol-name (first p)) 1)))) a)))) (rpm (rest p) (rest d) a) ) 
+						; (t (format t "(~S -> ~S NOT ~S)~%" (car p) (cdr (assoc (first p) a)) (list (first d)) ))
+						;here we know it's been bound
+						;and the bound value isnt this one 
+						;so we fail in the match (current branch)
+						(T NIL) 
+					) 
+				)
+				;if its unbound, we bind it on the 
+				;association list and similarly call
+				;rpm recursively.
+				(T (rpm (rest p) (rest d) a))
+			) 
+		)
+
+		;>
+		( (is-gt (car p) ) 
+		 	; (format t "(is-not(~A): ~A -> ~A)~%" (car d) (concatenate 'string "?" (string (elt (symbol-name (first p)) 1))) (first (rest (assoc (intern (concatenate 'string "?" (string (elt (symbol-name (first p)) 1)))) a))) )
+			(cond
+				;if it's a bound variable
+				( (bound (intern (concatenate 'string "?" (string (elt (symbol-name (first p)) 1)))) a) 
+					; (format t "(~S IS bound)~%" (car p))
+				 	(cond
+				 		;if its bound value is equal to the 
+				 		;first data element, we return the 
+				 		;real pattern match of the rest of the 
+				 		;pattern with the rest of the data 
+				 		;ie. if it's already been bound to
+				 		;this element
+						( (> (first d) (first (rest (assoc (intern (concatenate 'string "?" (string (elt (symbol-name (first p)) 1)))) a)))) (rpm (rest p) (rest d) a) ) 
+						; (t (format t "(~S -> ~S NOT ~S)~%" (car p) (cdr (assoc (first p) a)) (list (first d)) ))
+						;here we know it's been bound
+						;and the bound value isnt this one 
+						;so we fail in the match (current branch)
+						(T NIL) 
+					) 
+				)
+				;if its unbound, we bind it on the 
+				;association list and similarly call
+				;rpm recursively.
+				(T (rpm (rest p) (rest d) a))
+			) 
+		)
 		
 		;for non-variable ?-matching
 		( (eq '? (first p))
@@ -161,14 +219,14 @@
 
 (defun is-lt (x) 
 	(and 
-		(equal (elt (symbol-name x) 0) #\?)
+		(equal (elt (symbol-name x) 0) #\<)
 		(>= (length (symbol-name x)) 2)
 	)
 )
 
 (defun is-gt (x) 
 	(and 
-		(equal (elt (symbol-name x) 0) #\?)
+		(equal (elt (symbol-name x) 0) #\>)
 		(>= (length (symbol-name x)) 2)
 	)
 )
