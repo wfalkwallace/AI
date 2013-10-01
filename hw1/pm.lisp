@@ -7,7 +7,7 @@
 		((equal (car p)(car d)) (direct_match (cdr p)(cdr d)))
 		;if the lists aren't exhausted and the heads aren't equal 
 		;(including if one is null) return no match
-		(T `NIL)
+		(T NIL)
 	)
 )
 
@@ -20,13 +20,18 @@
 (defun rpm (p d a)
 	(Cond
 		;we've exhausted both successfully, return association list or T
-		( (and (null p) (null d)) (cond (a a)(t t)) ) 
+		( (and (null p) (null d)) 
+			(cond 
+				(a a)
+				(T t)
+			) 
+		) 
 		;we've exhausted one and not the other nil, return failure
-		( (or (null p) (null d)) ) 
+		( (or (null p) (null d)) NIL) 
 		;we've encountered a pattern variable 
-		( (is-vbl (first p)) 
+		( (is-vbl (car p) ) 
 			(cond
-				;its a bound variable:
+				;it's a bound variable:
 				( (boundp (first p) a) 
 				 	(cond
 				 		;if its bound value is equal to the 
@@ -45,12 +50,16 @@
 				( T (rpm (rest p)(rest d) (cons (list (first p) (first d)) a)) )
 			) 
 		)
+		
+		( (eq `? (first p))
+			
+		)
 
 		;Ok, here is Kleene Star (for free!) You can 
 		;also include ? if you like preceeding this.
 		( (eq '* (first p))
 			;Kleene Star matches 0 or more elements, so...
-			(let ((newa (rpm (rest p) d a))) 
+			(let ( (newa (rpm (cdr p) d a)) ) 
 				;See if we match 0 elements. 
 				;Note how this is accomplished. We advance
 				;p to the cdr of p in the recursion BUT DO
@@ -96,15 +105,17 @@
 		;This is a little tricky so watch carefully:
 		;I'm repairing a bug left behind in class.
 		(t 
-			(let ( newa (rpm (first p)(first d) a)) 
-				;pattern match the sublists (cond ( (null newa) nil) 
-				;but it failed, so we fail
-				;we succeeded, but newa could be "t" or
-				;a binding list, so....
-				( (listp newa) (rpm (rest p)(rest d) newa) ) 
-				;Here newa is "t" so rpm with the association 
-				;list of nil
-				(t (rpm (rest p)(rest d) nil))
+			(let (newa (rpm (first p)(first d) a) ) 
+				;pattern match the sublists 
+				(cond ( (null newa) nil) 
+					;but it failed, so we fail
+					;we succeeded, but newa could be "t" or
+					;a binding list, so....
+					( (listp newa) (rpm (rest p)(rest d) newa) ) 
+					;Here newa is "t" so rpm with the association 
+					;list of nil
+					(t (rpm (rest p)(rest d) nil) )
+				)
 			)
 		)
 	)
@@ -121,7 +132,9 @@
 ;together in one master list of pattern variable symbols.....I guess that's
 ;more than a hint.
 
-;(defun is-vbl (x) ( ... ) )
+(defun is-vbl (x) 
+	(equal (position #\? (write-to-string x)) 0)
+)
 
 ;(defun assoc ( x a-list ) ( ... ) )
 
