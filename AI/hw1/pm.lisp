@@ -64,8 +64,8 @@
 		)
 		
 		;NOT
-		( (is-exc (car p) ) 
-		 	(format t "(is-exc(~S) -> TRUE)~%" (car p))
+		( (is-not (car p) ) 
+		 	(format t "(is-not(~S) -> TRUE)~%" (car p))
 			(cond
 				;if it's a bound variable
 				( (bound (intern (concatenate 'string "?" (string (elt (symbol-name (first p)) 1)))) a) 
@@ -159,19 +159,32 @@
 	)
 )
 
-;And here's a hint: pattern variables may 
-;have a new property associated with their 
-;symbol names, or may be collected 
-;together in one master list of pattern 
-;variable symbols.....I guess that's more 
-;than a hint.
-
-(defun is-vbl (x) 
-	(and (equal (elt (symbol-name x) 0) #\?) (>= (length (symbol-name x)) 2))
+(defun is-lt (x) 
+	(and 
+		(equal (elt (symbol-name x) 0) #\?)
+		(>= (length (symbol-name x)) 2)
+	)
 )
 
-(defun is-exc (x) 
-	(and (equal (elt (symbol-name x) 0) #\!) (>= (length (symbol-name x)) 2))
+(defun is-gt (x) 
+	(and 
+		(equal (elt (symbol-name x) 0) #\?)
+		(>= (length (symbol-name x)) 2)
+	)
+)
+
+(defun is-vbl (x) 
+	(and 
+		(equal (elt (symbol-name x) 0) #\?)
+		(>= (length (symbol-name x)) 2)
+	)
+)
+
+(defun is-not (x) 
+	(and 
+		(equal (elt (symbol-name x) 0) #\!)
+		(>= (length (symbol-name x)) 2)
+	)
 )
 
 (defun bound ( x a )
