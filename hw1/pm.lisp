@@ -199,9 +199,16 @@
 		
 		;& - carp here is the SUBLIST AMP CLAUSE
 		( (is-amp (first p) ) 
-		 	; (format t "(is-amp(~S) -> TRUE)~%" (car p))
+			;so it is an amp-clause
+			;print some debugging
+		 	(format t "(is-amp(~A) -> TRUE)~%(cdrcarp= ~A)~% " (car p) (rest (first p)) )
 			(cond
+			 	;call amped (below) on the first condition and the 
+			 	;rest of the data set (the 1-1 gets handled there.)
+			 	;if it's true, meaning conditionally matched, 
+			 	;then go to the next element of p and d (past the &-clause)
 				((amped (rest (first p)) d a) (rpm (rest p) (rest d) a))
+				;there wasn't a conditional match. fail.
 				(T nil)
 			) 
 		)
@@ -232,15 +239,27 @@
 ;p is the condition list part of the clause; 
 ;d is the whole rest of the data
 (defun amped (p d a)
+ 	;degubbing
+	(format t "IN AMPED~%")
+ 	(format t "(p = ~A| carp = ~A | cdrp = ~A)~%" p (first p) (rest p))
+ 	(format t "PAST~%")
  	(cond
-		((rpm (first p) (first d) a) (amp (rest p) d a))
-		;((listp (first p)))
+ 	 	;if p is null, conditional list is exhausted
+ 	 	;maybe should be car p?
+ 	 	((null p) t) 
+ 	 	;if it's not exhausted run a pattern match on the 
+ 	 	;single element of d (have to only pass in the single,
+ 	 	;otherwise the rpm will be different lengths and it will fail)
+ 		;if it matches, keep checking the amp-clause
+		((rpm (list (first p)) (list (first d)) a) (amped (rest p) d a))
+		;if it doesn't rpm, the conditional is wrong.
 		(T NIL)
  	)
 )
 
 (defun is-amp (x)
 	(cond
+	 	;gotta be a list, and the first part has to be an &
 		((listp x) (equal '& (first x)))
 		(T NIL)
 	)
