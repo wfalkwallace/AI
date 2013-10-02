@@ -201,7 +201,7 @@
 		( (is-amp (first p) ) 
 			;so it is an amp-clause
 			;print some debugging
-		 	(format t "(is-amp(~A) -> TRUE)~%(cdrcarp= ~A)~% " (car p) (rest (first p)) )
+		 	; (format t "(is-amp(~A) -> TRUE)~%(cdrcarp= ~A)~% " (car p) (rest (first p)) )
 			(cond
 			 	;call amped (below) on the first condition and the 
 			 	;rest of the data set (the 1-1 gets handled there.)
@@ -240,9 +240,9 @@
 ;d is the whole rest of the data
 (defun amped (p d a)
  	;degubbing
-	(format t "IN AMPED~%")
- 	(format t "(p = ~A| carp = ~A | cdrp = ~A)~%" p (first p) (rest p))
- 	(format t "PAST~%")
+	; (format t "IN AMPED~%")
+	; (format t "(p = ~A| carp = ~A | cdrp = ~A)~%" p (first p) (rest p))
+	; (format t "PAST~%")
  	(cond
  	 	;if p is null, conditional list is exhausted
  	 	;maybe should be car p?
