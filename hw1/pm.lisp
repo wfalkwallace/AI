@@ -159,26 +159,29 @@
 		( (eq '* (first p))
 			;recurse over both incr p and incr d
 			;or is serial, so incr d first
-			; (Or (rpm (rest p) d a) (rpm p (rest d) a))
-			
-			;Kleene Star matches 0 or more elements, so...
-			(let 
-				( 
-					(newa (rpm (rest p) d a))
-				) 
-				; (format t "p= ~A || restp= ~A || d= ~A || rpm= ~A~%" p (rest p) d (rpm (rest p) d a) )
-			;See if we match 0 elements. 
-			;Note how this is accomplished. We advance
-			;p to the cdr of p in the recursion BUT DO
-			;NOT ADVANCE d.
-			;if so we return the new association list
-				(cond 
-					(newa newa)
-					; (t (format t "newa = ~A" newa))
-				;otherwise we try to match one data element
-					(t (rpm p (rest d) a))
-				)
+			(Or 
+				(rpm (rest p) d a) 
+				(rpm p (rest d) a)
 			)
+			
+			; ;Kleene Star matches 0 or more elements, so...
+			; (let 
+			; 	( 
+			; 		(newa (rpm (rest p) d a))
+			; 	) 
+			; 	; (format t "p= ~A || restp= ~A || d= ~A || rpm= ~A~%" p (rest p) d (rpm (rest p) d a) )
+			; 	;See if we match 0 elements. 
+			; 	;Note how this is accomplished. We advance
+			; 	;p to the cdr of p in the recursion BUT DO
+			; 	;NOT ADVANCE d.
+			; 	;if so we return the new association list
+			; 	(cond 
+			; 		(newa newa)
+			; 		; (t (format t "newa = ~A" newa))
+			; 	;otherwise we try to match one data element
+			; 		(t (rpm p (rest d) a))
+			; 	)
+			; )
 			
 		)
 
@@ -197,8 +200,8 @@
 		;otherwise we failed
 		;Now we know we have a list or something 
 		;non-atomic/variable at the head of p
-		;This is a little tricky so watch carefully:
-		;I'm repairing a bug left behind in class.
+		; (T (format t "(first p = ~S || first d = ~S)~%" (first p) (first d) ))
+		(T (rpm (first p) (first d) a) )
 		(T 
 			(let (newa (rpm (first p) (first d) a) ) 
 				;pattern match the sublists 
@@ -219,6 +222,7 @@
 
 (defun is-lt (x) 
 	(and 
+	 	(not (listp x))
 		(equal (elt (symbol-name x) 0) #\<)
 		(>= (length (symbol-name x)) 2)
 	)
@@ -226,6 +230,7 @@
 
 (defun is-gt (x) 
 	(and 
+	 	(not (listp x))
 		(equal (elt (symbol-name x) 0) #\>)
 		(>= (length (symbol-name x)) 2)
 	)
@@ -233,6 +238,7 @@
 
 (defun is-vbl (x) 
 	(and 
+	 	(not (listp x))
 		(equal (elt (symbol-name x) 0) #\?)
 		(>= (length (symbol-name x)) 2)
 	)
@@ -240,6 +246,7 @@
 
 (defun is-not (x) 
 	(and 
+	 	(not (listp x))
 		(equal (elt (symbol-name x) 0) #\!)
 		(>= (length (symbol-name x)) 2)
 	)
