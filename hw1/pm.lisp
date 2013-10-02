@@ -197,13 +197,22 @@
 			)
 		) 
 		
+		;& - carp here is the SUBLIST AMP CLAUSE
+		( (is-amp (first p) ) 
+		 	; (format t "(is-amp(~S) -> TRUE)~%" (car p))
+			(cond
+				((amped (rest (first p)) d a) (rpm (rest p) (rest d) a))
+				(T nil)
+			) 
+		)
+		
 		;otherwise we failed
 		;Now we know we have a list or something 
 		;non-atomic/variable at the head of p
 		; (T (format t "(first p = ~S || first d = ~S)~%" (first p) (first d) ))
-		(T (rpm (first p) (first d) a) )
+		; (T (rpm (first p) (first d) a) )
 		(T 
-			(let (newa (rpm (first p) (first d) a) ) 
+			(let ((newa (rpm (first p) (first d) a)) ) 
 				;pattern match the sublists 
 				(cond 
 					;but it failed, so we fail
@@ -219,6 +228,24 @@
 		)
 	)
 )
+
+;p is the condition list part of the clause; 
+;d is the whole rest of the data
+(defun amped (p d a)
+ 	(cond
+		((rpm (first p) (first d) a) (amp (rest p) d a))
+		;((listp (first p)))
+		(T NIL)
+ 	)
+)
+
+(defun is-amp (x)
+	(cond
+		((listp x) (equal '& (first x)))
+		(T NIL)
+	)
+)
+
 
 (defun is-lt (x) 
 	(and 
