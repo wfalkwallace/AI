@@ -12,22 +12,24 @@
 }
 */
 
+html,
+body {
+  height: 100%;
+}
+
 #jumbo {
    	background-color: #333;
    	color: #eee;
 }
-#jumbo p {
-   	font-size: 16px;
-}
-#try-header {
-   	margin: 30px 0px;
-}
-#try-more {
-   	margin: 30px 0px;
-   	font-style: italic;
+
+#footer {
+  height: 40px;
+  background-color: #f5f5f5;
 }
 
-
+.credit {
+  margin: 10px 0;
+}
 
 
 
