@@ -32,45 +32,47 @@ $(function () {
 	bird.setToken(credentials.access_token, credentials.access_token_secret);
 	
 
-
-
-
-
-	// Wrap in func submit
-	var params = {
-		query: "Toronto"
-	};
-	bird.__call(
-	            "geo_search",
-	            params,
-	            geolookup
-	            );
-	
-	//keep sep
-	function geolookup(reply) {
-		console.dir(reply);
-		$('#content').append(
-		                     '<h4>Response from Twitter:</h4>'+
-		                     '<pre><code>' + reply.result.places[0].id + '</code></pre>'
-		                     );
-		var placeid = '"' + reply.result.places[0].id + '"'
+	$('#search-form').submit(function search_submit() {
+		var keywords = $('#searchbar').val();
+		var location = $('#locationbar').val();
+		var since = $('#sincebar').val();
+		var until = $('#untilbar').val();
 		
-		var params = {
-			place: placeid,
-			since: "2013-09-25",
-			until: "2013-10-02", 
-			q: "happy",
-			count: "50"
-		};		
+		console.dir(since);
+		
+		// VALIDATION
+		
+		// prepare the geosearch parameters
+		var geoargs = {
+			query: location,
+		};
+		
 		bird.__call(
-		            "search_tweets",
-		            params,
-		            tweetparse
-		            );
-	};
+		            "geo_search",
+		            geoargs,
+		            function geolookup(reply) {
+		            	console.dir(reply);
+		            	$('#content').append(
+		            	                     '<h4>Response from Twitter:</h4>'+
+		            	                     '<pre><code> place:' + reply.result.places[0].id + '</code></pre>'
+		            	                     );
+		            	var location_id = reply.result.places[0].id
+		            	
+		            	var params = {
+		            		// since: since,
+		            		// until: until, 
+		            		q: keywords + " place:" + location_id,
+		            		count: "50"
+		            	};		
+		            	bird.__call(
+		            	            "search_tweets",
+		            	            params,
+		            	            tweetparse
+		            	            );
+		            });
+		return false;
+	});
 	
-	//wrap in submit? or callbacking?
-
 
 	
 	
@@ -78,10 +80,11 @@ $(function () {
 	function tweetparse(reply) {
 		console.dir(reply);
 		_.each(reply.statuses, function printstatus(element, index, list) { 
-			$('#content').append(
-			                     '<h4>Response from Twitter:</h4>'+
+			element.place && $('#content').append(
+			                     '<div class="well"><div class="container"><h4 class="pull-left">' + element.user.screen_name + ':</h4>' +
+			                     '<img src="' + element.user.profile_image_url + '" class="pull-right"></div>' +
 			                     '<pre><code>' + index + ': ' + element.text + '<br/>' + 
-			                     'place: ' + element.place + '</code></pre>'
+			                     'place: ' + element.place.full_name + '</code></pre></div>'
 			                     );
 		});
 	};
