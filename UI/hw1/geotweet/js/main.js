@@ -72,21 +72,24 @@ $(function () {
 		            });
 		return false;
 	});
-	
 
-	
-	
+
+var templates={ tweet: '<div class="well"><div class="container"><div class="pull-left"><a href="https://www.twitter.com/<%=user.screen_name %>" target="_blank"><img src="<%=user.profile_image_url %>"></a></div><div class="pull-right"><h3><%=user.screen_name %></h3></div></div><hr><div class="container"><p><%=text %></p></div><hr><div class="container"><div class="row"><div class="col-md-4"><strong>Tweeted From:</strong><%=place.full_name %></div><div class="col-md-4"><strong>On:</strong><%=created_at %></div><div class="col-md-4"><a href="https://www.twitter.com/<%=user.screen_name %>/status/<%=id_str %>" target="_blank">Original Tweet</a></div></div></div></div>'};
+
+
 	//sep
 	function tweetparse(reply) {
 		console.dir(reply);
-		_.each(reply.statuses, function printstatus(element, index, list) { 
-			element.place && $('#content').append(
-			                     '<div class="well"><div class="container"><h4 class="pull-left">' + element.user.screen_name + ':</h4>' +
-			                     '<img src="' + element.user.profile_image_url + '" class="pull-right"></div>' +
-			                     '<pre><code>' + index + ': ' + element.text + '<br/>' + 
-			                     'place: ' + element.place.full_name + '</code></pre></div>'
-			                     );
+		
+		var tweets = reply && reply.statuses;
+
+		tweets.forEach(function(response){
+			response.place && $('#content').append(_.template(templates.tweet, response));
 		});
+
+
+
+
 	};
 
 
@@ -95,3 +98,13 @@ $(function () {
 
 
 
+
+
+// _.each(reply.statuses, function printstatus(element, index, list) { 
+// 	element.place && $('#content').append(
+// 	                     '<div class="well"><div class="container"><h4 class="pull-left">' + element.user.screen_name + ':</h4>' +
+// 	                     '<img src="' + element.user.profile_image_url + '" class="pull-right"></div>' +
+// 	                     '<pre><code>' + index + ': ' + element.text + '<br/>' + 
+// 	                     'place: ' + element.place.full_name + '</code></pre></div>'
+// 	                     );
+// });
