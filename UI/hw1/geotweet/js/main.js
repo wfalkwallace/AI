@@ -30,7 +30,17 @@ $(function () {
 	var bird = new Codebird;
 	bird.setConsumerKey(credentials.consumer_key, credentials.consumer_secret);
 	bird.setToken(credentials.access_token, credentials.access_token_secret);
+
+
+	// bird.__call(
+	//             "oauth_requestToken",
+	//             {oauth_callback: "oob"},
+	//             function (reply) {
+	//             console.dir(reply);
+	//         	bird.setToken(reply.oauth_token, reply.oauth_token_secret);
+	//         });
 	
+
 
 	$('#search-form').submit(function search_submit() {
 		var keywords = $('#searchbar').val();
@@ -52,10 +62,6 @@ $(function () {
 		            geoargs,
 		            function geolookup(reply) {
 		            	console.dir(reply);
-		            	$('#content').append(
-		            	                     '<h4>Response from Twitter:</h4>'+
-		            	                     '<pre><code> place:' + reply.result.places[0].id + '</code></pre>'
-		            	                     );
 		            	var location_id = reply.result.places[0].id
 		            	
 		            	var params = {
@@ -74,16 +80,21 @@ $(function () {
 	});
 
 
-var templates={ tweet: '<div class="well"><div class="container"><div class="pull-left"><a href="https://www.twitter.com/<%=user.screen_name %>" target="_blank"><img src="<%=user.profile_image_url %>"></a></div><div class="pull-right"><h3><%=user.screen_name %></h3></div></div><hr><div class="container"><p><%=text %></p></div><hr><div class="container"><div class="row"><div class="col-md-4"><strong>Tweeted From:</strong><%=place.full_name %></div><div class="col-md-4"><strong>On:</strong><%=created_at %></div><div class="col-md-4"><a href="https://www.twitter.com/<%=user.screen_name %>/status/<%=id_str %>" target="_blank">Original Tweet</a></div></div></div></div>'};
+	var templates={ 
+		tweet: 
+		'<div class="well"><div class="container"><div class="pull-left"><a href="https://www.twitter.com/<%=user.screen_name %>" target="_blank"><img src="<%=user.profile_image_url %>"></a></div><div class="pull-right"><h2><a href="https://www.twitter.com/<%=user.screen_name %>" target="_blank" style="text-decoration:none;color:#<%=user.profile_link_color %>"><%=user.screen_name %></a></h2></div></div><div class="panel panel-default"><div class="panel-body"><h4><%=text %></h4></div></div><div class="container"><div class="row-fluid"><div class="col-md-4"><h4><strong>Tweeted From: </strong><a href="https://twitter.com/search?q=place%3A<%=place.id_str %>" target="_blank" style="text-decoration:none;color:#<%=user.profile_link_color %>"><%=place.full_name %></a></h4></div><div class="col-md-4"><h4><strong>On: </strong><%=created_at %></h4></div><div class="col-md-4"><h4><a href="https://www.twitter.com/<%=user.screen_name %>/status/<%=id_str %>" target="_blank" style="text-decoration:none;color:#<%=user.profile_link_color %>">Original Tweet</a></h4></div></div></div></div>'
+	};
 
 
 	//sep
 	function tweetparse(reply) {
 		console.dir(reply);
 		
+		$('#content').empty();
+		
 		var tweets = reply && reply.statuses;
-
 		tweets.forEach(function(response){
+			response.created_at = response.created_at.replace(' +0000 2013', '');
 			response.place && $('#content').append(_.template(templates.tweet, response));
 		});
 
