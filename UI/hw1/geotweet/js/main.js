@@ -53,11 +53,15 @@ $(function () {
 		                     '<h4>Response from Twitter:</h4>'+
 		                     '<pre><code>' + reply.result.places[0].id + '</code></pre>'
 		                     );
+		var placeid = '"' + reply.result.places[0].id + '"'
 		
 		var params = {
+			place: placeid,
+			since: "2013-09-25",
+			until: "2013-10-02", 
 			q: "happy",
-			place: reply.result.places[0].id
-		};
+			count: "50"
+		};		
 		bird.__call(
 		            "search_tweets",
 		            params,
@@ -76,7 +80,8 @@ $(function () {
 		_.each(reply.statuses, function printstatus(element, index, list) { 
 			$('#content').append(
 			                     '<h4>Response from Twitter:</h4>'+
-			                     '<pre><code>' + index + ': ' + element.text + '</code></pre>'
+			                     '<pre><code>' + index + ': ' + element.text + '<br/>' + 
+			                     'place: ' + element.place + '</code></pre>'
 			                     );
 		});
 	};
