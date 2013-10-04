@@ -31,7 +31,7 @@ $(function () {
 	bird.setConsumerKey(credentials['consumer_key'], credentials['consumer_secret']);
 	bird.setToken(credentials['access_token'], credentials['access_token_secret']);
 	
-	$('#content').append('<h3>Requesting users_show for indexzero</h3>');
+	// $('#content').append('<h3>Requesting users_show for indexzero</h3>');
 	bird.__call(
 	              "users_show",
 	              { screen_name: 'indexzero' },
