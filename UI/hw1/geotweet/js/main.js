@@ -31,6 +31,18 @@ $(function () {
 	bird.setConsumerKey(credentials['consumer_key'], credentials['consumer_secret']);
 	bird.setToken(credentials['access_token'], credentials['access_token_secret']);
 	
+	$('#content').append('<h3>Requesting users_show for indexzero</h3>');
+	bird.__call(
+	              "users_show",
+	              { screen_name: 'indexzero' },
+	              function (reply) {
+	              	$('#content').append(
+	              	                     '<h4>Response from Twitter:</h4>'+
+	              	                     '<pre><code>' + JSON.stringify(reply, null, 2) + '</code></pre>'
+	              	                     )
+	              }
+	              );
 	
 	
 
+});
