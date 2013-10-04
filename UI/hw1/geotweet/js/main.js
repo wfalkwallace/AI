@@ -31,24 +31,59 @@ $(function () {
 	bird.setConsumerKey(credentials.consumer_key, credentials.consumer_secret);
 	bird.setToken(credentials.access_token, credentials.access_token_secret);
 	
-	// $('#content').append('<h3>Requesting users_show for indexzero</h3>');
+
+
+
+
+
+	// Wrap in func submit
 	var params = {
 		query: "Toronto"
 	};
 	bird.__call(
 	            "geo_search",
 	            params,
-	            function (reply) {
-	            	console.dir(reply);
-	            	$('#content').append(
-	            	                     '<h4>Response from Twitter:</h4>'+
-	            	                     '<pre><code>' + reply.result.places[0].id + '</code></pre>'
-	            	                     );
-	            }
+	            geolookup
 	            );
 	
+	//keep sep
+	function geolookup(reply) {
+		console.dir(reply);
+		$('#content').append(
+		                     '<h4>Response from Twitter:</h4>'+
+		                     '<pre><code>' + reply.result.places[0].id + '</code></pre>'
+		                     );
+		
+		var params = {
+			q: "happy",
+			place: reply.result.places[0].id
+		};
+		bird.__call(
+		            "search_tweets",
+		            params,
+		            tweetparse
+		            );
+	};
+	
+	//wrap in submit? or callbacking?
+
+
 	
 	
-	
+	//sep
+	function tweetparse(reply) {
+		console.dir(reply);
+		_.each(reply.statuses, function printstatus(element, index, list) { 
+			$('#content').append(
+			                     '<h4>Response from Twitter:</h4>'+
+			                     '<pre><code>' + index + ': ' + element.text + '</code></pre>'
+			                     );
+		});
+	};
+
 
 });
+
+
+
+
