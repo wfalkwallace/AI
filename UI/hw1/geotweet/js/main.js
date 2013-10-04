@@ -20,28 +20,34 @@ $(function () {
 	// Credential Display
 	$('#info-header').append(
 	                         '<h3>Using Credentials:</h3>' +
-	                         '<ul><li><strong>Consumer Key: </strong>' + credentials['consumer_key'] + '</li>' +
-	                         '<li><strong>Consumer Secret: </strong>' + credentials['consumer_secret'] + '</li>' +
-	                         '<li><strong>Access Token: </strong>' + credentials['access_token'] + '</li>' +
-	                         '<li><strong>Access Token Secret: </strong>' + credentials['access_token_secret'] + '</li></ul>'                   
+	                         '<ul><li><strong>Consumer Key: </strong>' + credentials.consumer_key + '</li>' +
+	                         '<li><strong>Consumer Secret: </strong>' + credentials.consumer_secret + '</li>' +
+	                         '<li><strong>Access Token: </strong>' + credentials.access_token + '</li>' +
+	                         '<li><strong>Access Token Secret: </strong>' + credentials.access_token_secret + '</li></ul>'                   
 	                         );
 	
 	// Codebird Initialization
 	var bird = new Codebird;
-	bird.setConsumerKey(credentials['consumer_key'], credentials['consumer_secret']);
-	bird.setToken(credentials['access_token'], credentials['access_token_secret']);
+	bird.setConsumerKey(credentials.consumer_key, credentials.consumer_secret);
+	bird.setToken(credentials.access_token, credentials.access_token_secret);
 	
 	// $('#content').append('<h3>Requesting users_show for indexzero</h3>');
+	var params = {
+		query: "Toronto"
+	};
 	bird.__call(
-	              "users_show",
-	              { screen_name: 'indexzero' },
-	              function (reply) {
-	              	$('#content').append(
-	              	                     '<h4>Response from Twitter:</h4>'+
-	              	                     '<pre><code>' + JSON.stringify(reply, null, 2) + '</code></pre>'
-	              	                     )
-	              }
-	              );
+	            "geo_search",
+	            params,
+	            function (reply) {
+	            	console.dir(reply);
+	            	$('#content').append(
+	            	                     '<h4>Response from Twitter:</h4>'+
+	            	                     '<pre><code>' + reply.result.places[0].id + '</code></pre>'
+	            	                     );
+	            }
+	            );
+	
+	
 	
 	
 
