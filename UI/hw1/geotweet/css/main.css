@@ -31,6 +31,25 @@ body {
   margin: 10px 0;
 }
 
+.input-group-addon {
+  color:#000000;
+}
+
+.input-group {
+  line-height:1;
+}
+
+.nav>li>a {
+  background-color: #ffffff;
+}
+
+.nav-tabs>li.active>a {
+/*#credentialtab {*/
+  background-color: #3071a9;
+  color:#ffffff;
+}
+
+
 
 
 

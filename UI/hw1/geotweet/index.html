@@ -50,10 +50,11 @@
           
           <div class="form-group">
             <div class="input-group input-daterange" id="datepicker">
-              <label class="sr-only" for="sincebar">Since</label>
+              <!-- <label class="sr-only" for="sincebar">Since</label> -->
               <input type="text" class="form-control" id="sincebar" placeholder="Since (YYYY-MM-DD)" name="search-since" >
               <span class="input-group-addon">to</span>
-              <label class="sr-only" for="untilbar">Until</label>
+              <!-- <span class=".add-on">to</span> -->
+              <!-- <label class="sr-only" for="untilbar">Until</label> -->
               <input type="text" class="form-control" id="untilbar" placeholder="Until (YYYY-MM-DD)" name="search-until" >
             </div>
           </div>
@@ -71,8 +72,31 @@
   -->
 </div>
 
-
 <div id="info-header" class="well">
+  <ul class="nav nav-tabs nav-justified">
+    <li id="credentialtab" class="active"><a href="#credentialtab">Credentials</a></li>
+    <li id="infotab"><a href="#infotab">Search Info</a></li>
+  </ul>
+  
+  <div class="container">
+   <h3>Using Credentials:</h3>
+   <ul>
+    <li id="consumer_key">
+      <strong>Consumer Key: </strong>
+    </li>
+    <li id="consumer_secret">
+      <strong>Consumer Secret: </strong>
+    </li>
+    <li id="access_token">
+      <strong>Access Token: </strong>
+    </li>
+    <li id="access_token_secret">
+      <strong>Access Token Secret: </strong>
+    </li>
+  </ul> 
+</div>
+
+
 </div>
 
 <div id="content" class="container">
