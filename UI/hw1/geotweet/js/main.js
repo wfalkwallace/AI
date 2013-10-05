@@ -17,74 +17,122 @@ $(function () {
 		access_token_secret: 'qThVWaxB7llq1LrS4Ee3mM5iK18n410Jxbzoc4Q2aUo'
 	};
 	
+	writeCredInfo();
+	// show on the UI:
+	// would be a username or something with 
+	// sign in implemented
+	function writeCredInfo() {
+		$('#infowell').append('<h3>Using Credentials:</h3><ul><li id="consumer_key"><strong>Consumer Key: </strong></li><li id="consumer_secret"><strong>Consumer Secret: </strong></li><li id="access_token"><strong>Access Token: </strong></li><li id="access_token_secret"><strong>Access Token Secret: </strong></li></ul>');
+		$('#consumer_key').append(credentials.consumer_key);
+		$('#consumer_secret').append(credentials.consumer_secret);
+		$('#access_token').append(credentials.access_token);
+		$('#access_token_secret').append(credentials.access_token_secret);
+	};
+	
+	function writeSearchInfo() {
+		$('#infowell').append('<h3>Showing tweets matching: </h3>' +
+		                      '<ul><li id="keytab"><strong>Keywords: </strong></li>' + 
+		                      '<li id="loctab"><strong>Place: </strong></li>' + 
+		                      '<li id="datetab"><strong>Dates: </strong></li></ul>');
+	};
+	
 	// Codebird Initialization
 	var bird = new Codebird;
 	bird.setConsumerKey(credentials.consumer_key, credentials.consumer_secret);
 	bird.setToken(credentials.access_token, credentials.access_token_secret);
 
-
-	// bird.__call(
-	//             "oauth_requestToken",
-	//             {oauth_callback: "oob"},
-	//             function (reply) {
-	//             console.dir(reply);
-	//         	bird.setToken(reply.oauth_token, reply.oauth_token_secret);
-	//         });
-
-
-
-$('#search-form').submit(function search_submit() {
-	var keywords = $('#searchbar').val();
-	var location = $('#locationbar').val();
-	var since = $('#sincebar').val();
-	var until = $('#untilbar').val();
+	$('#infotab').click(function infotabclick() {
+		$('#credentialtab').removeClass('active');
+		$('#infotab').addClass('active');
+		$('#infowell').empty();
+		writeSearchInfo();
+	});
 	
-		// VALIDATION
-		
-		$('#info-header').append('<ul class="nav nav-tabs nav-justified">' + 
-		                         '<li id="credentialtab" class="active"><a href="#credentialtab">Credentials</a></li>' +
-		                         '<li id="infotab"><a href="#infotab">Search Info</a></li>' +
-		                         '</ul>');
-		$('#info-header').append('<div id="cred" class="container">' + 
-		                         '<h3>Using Credentials:</h3>' +
-		                         '<ul><li><strong>Consumer Key: </strong>' + credentials.consumer_key + '</li>' +
-		                         '<li><strong>Consumer Secret: </strong>' + credentials.consumer_secret + '</li>' +
-		                         '<li><strong>Access Token: </strong>' + credentials.access_token + '</li>' +
-		                         '<li><strong>Access Token Secret: </strong>' + credentials.access_token_secret + '</li></ul>' + 
-		                         '</div>');
+	$('#credentialtab').click(function credtabclick() {
+		$('#infotab').removeClass('active');
+		$('#credentialtab').addClass('active');
+		$('#infowell').empty();
+		writeCredInfo();
+	});
 
+	$('#search-form').submit(function search_submit() {
+		var keywords = $('#searchbar').val();
+		var location = $('#locationbar').val();
+		var since = $('#sincebar').val();
+		var until = $('#untilbar').val();
 		
+		//VALIDATION
+		// keywords && location && since && until;
+
+		//update the info well display to search info
+		$('#credentialtab').removeClass('active');
+		$('#infotab').addClass('active');
+		$('#infowell').empty();
+		writeSearchInfo();
+		$('#keytab').append(keywords);
+		$('#loctab').append(location);
+		$('#datetab').append(since + ' to ' + until);
+
 		
 		// prepare the geosearch parameters
-		var geoargs = {
-			query: location,
-		};
-		
-		bird.__call(
-		            "geo_search",
-		            geoargs,
-		            function geolookup(reply) {
-		            	console.dir(reply);
-		            	var location_id = reply.result.places[0].id
-		            	
-		            	var params = {
-		            		// since: since,
-		            		// until: until, 
-		            		q: keywords + " place:" + location_id,
-		            		count: "50"
-		            	};		
-		            	bird.__call(
-		            	            "search_tweets",
-		            	            params,
-		            	            tweetparse
-		            	            );
-		            });
+		if(location){
+			
+			var geoargs = {
+				query: location,
+			};
+			
+			bird.__call(
+			            "geo_search",
+			            geoargs,
+			            function geolookup(reply) {
+			            	console.dir(reply);
+			            	var location_id = reply.result.places && reply.result.places[0].id;
+
+			            	if(location_id) {
+			            		var params = {
+			            			since: since,
+			            			until: until, 
+			            			q: keywords + " place:" + location_id,
+			            			count: "50"
+			            		};	
+			            	}
+			            	else {
+			            		var params = { 
+			            			since: since,
+			            			until: until, 
+			            			q: keywords,
+			            			count: "50"
+			            		}
+			            	};	
+			            	bird.__call(
+			            	            "search_tweets",
+			            	            params,
+			            	            tweetparse
+			            	            );
+			            });
+			
+		}
+		else {
+			var params = { 
+				since: since,
+				until: until, 
+				q: keywords,
+				count: "50"
+			};	
+			bird.__call(
+			            "search_tweets",
+			            params,
+			            tweetparse
+			            );
+		}
 		return false;
 	});
 
 
 var templates={ 
 	tweet: 
+	'<div class="well"><div class="container"><div class="pull-left"><a href="https://www.twitter.com/<%=user.screen_name %>" target="_blank"><img src="<%=user.profile_image_url %>"></a></div><div class="pull-right"><h2><a href="https://www.twitter.com/<%=user.screen_name %>" target="_blank" style="text-decoration:none;color:#<%=user.profile_link_color %>"><%=user.screen_name %></a></h2></div></div><div class="panel panel-default"><div class="panel-body"><h4><%=text %></h4></div></div><div class="container"><div class="row-fluid"><div class="col-md-6"><h4><strong>Tweeted On: </strong><%=created_at %></h4></div><div class="col-md-6"><h4><a href="https://www.twitter.com/<%=user.screen_name %>/status/<%=id_str %>" target="_blank" style="text-decoration:none;color:#<%=user.profile_link_color %>">Original Tweet</a></h4></div></div></div></div>',
+	tweet_loc: 
 	'<div class="well"><div class="container"><div class="pull-left"><a href="https://www.twitter.com/<%=user.screen_name %>" target="_blank"><img src="<%=user.profile_image_url %>"></a></div><div class="pull-right"><h2><a href="https://www.twitter.com/<%=user.screen_name %>" target="_blank" style="text-decoration:none;color:#<%=user.profile_link_color %>"><%=user.screen_name %></a></h2></div></div><div class="panel panel-default"><div class="panel-body"><h4><%=text %></h4></div></div><div class="container"><div class="row-fluid"><div class="col-md-4"><h4><strong>Tweeted From: </strong><a href="https://twitter.com/search?q=place%3A<%=place.id_str %>" target="_blank" style="text-decoration:none;color:#<%=user.profile_link_color %>"><%=place.full_name %></a></h4></div><div class="col-md-4"><h4><strong>On: </strong><%=created_at %></h4></div><div class="col-md-4"><h4><a href="https://www.twitter.com/<%=user.screen_name %>/status/<%=id_str %>" target="_blank" style="text-decoration:none;color:#<%=user.profile_link_color %>">Original Tweet</a></h4></div></div></div></div>'
 };
 
@@ -96,9 +144,18 @@ var templates={
 		$('#content').empty();
 		
 		var tweets = reply && reply.statuses;
+		if(!reply) {
+			$('#content').text('<div class="well danger"><h3>No search results were found for your search:</h3><br/><h3>try expanding your dates, searching a broader geographic region, or less specific keywords.</h3></div>');
+		}
 		tweets.forEach(function(response){
 			response.created_at = response.created_at.replace(' +0000 2013', '');
-			response.place && $('#content').append(_.template(templates.tweet, response));
+			if(response.place){
+				$('#content').append(_.template(templates.tweet_loc, response));
+			}
+			else {
+				$('#content').append(_.template(templates.tweet, response));
+			}
+			
 		});
 		
 
