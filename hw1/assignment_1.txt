@@ -1,0 +1,153 @@
+COMS W4701 Artificial Intelligence
+Fall 2013
+Assignment 1: Pattern Matcher
+Due: 11:59:59 EDT October 1st 2013 AD
+
+Objective: 
+
+Implement a function which matches pattern with data. 
+This function should return "NIL" if it fails to match, 
+"t" if it succeeds but finds NO variables in the pattern, 
+and an association list of variable bindings in the case where it succeeds 
+AND finds variables in the pattern.
+For example, given the argument pattern: (a b c) and data: (a b d), the function would return "NIL".
+             given the argument pattern: (a b c) and data: (a b c), the function would return "t"
+
+An association list is a list of pairs. 
+The first element of list is a symbol, the name of a pattern variable. 
+The second element of list is the data element found to match the variable during pattern matching.
+For example, given the argument pattern: (?a ?b c) and data: (1 2 c), the function would return 
+             an association list ((?a 1) (?b 2))
+Notice that here we use interrogation mark "?" in front of a word to represent a variable.
+
+The pattern consists of parentheses, variables, and symbols, 
+while the data consists of only parentheses and symbols.
+
+There are some special marks in the pattern:
+Interrogation mark - "?" - This should match anything (a single unit, i.e atom or list) without binding data to a variable.
+For example, given the argument pattern: (? ? c) and data: (a b c), the function would return "t".
+	     given the argument pattern: (? ? ?) and data: (a (a b) ((a b c))), the function would return "t".
+
+Kleene Star - "*" - matches 0 or more elements without binding data to a variable.
+For example, given the argument pattern: (a * b) and data: (a x x x b), the function would return "t".
+	     given the argument pattern: (a * ?x) and data: (a b), 
+             the function would return an association list (?x b)
+             
+Exclamation mark - "!" -  use !x to indicate that the data should not be equal to the value bounded to variable x
+
+Ampersand - "&" - (& ?x !y) matches any data that equals to variable x and not equal to y.
+
+Greater than and Less than - '<' and '>' - (& ?x <y >z) matches to data that equals to x, smaller than y, and larger than z, (these two predicates only apply to numbers).           
+             
+Notice that there may be more than one possible binding, and you have to enumerate all of them. 
+For example, given the argument pattern: (a * ?x *) and data: (a b c d),
+	     the function would return a list of association lists (((?x b)) ((?x c)) ((?x d)))
+
+For the cases where multiple bindings are possible, please return a list of all complete possible bindings, for example: 
+pattern: (?x * ?y ?z *) 
+data: (1 2 3 4)
+should return (((?x 1) (?y 2) (?z 3))((?x 1) (?y 3) (?z 4))), where ((?x 1) (?y 2) (?z 3)) and ((?x 1) (?y 3) (?z 4)) are two complete bindings. Any other answers, e.g. ((?x 1) (((?y 2) (?z 3)) ((?y 3) (?z 4)))), will not be accepted. The ordering of the bindings does NOT matter.
+
+Here are some samples of inputs and the corresponding outputs:
+
+pattern: () 
+data: () 
+output: t
+
+pattern: (ai)
+data: (ai)
+output: t
+
+pattern: (ai cs)
+data: (ai cs)
+output: t
+
+pattern: (cs ai)
+data: (ai cs)
+output: NIL
+
+pattern: (1 2 3 0)
+data: (1 2 3 4 0)
+output: NIL
+
+pattern: (? mudd)
+data: (seely mudd)
+output: t
+
+pattern: (?first ?middle mudd) 
+data: (seely w mudd)
+output: ((?middle w) (?first seely))
+
+pattern: (? ?x ? ?y ?)
+data: (Warren Buffet Is A Good Man)
+output: NIL
+
+pattern: (School Of Engineering and Applied Science)
+data: (School Of Engineering)
+output: NIL
+
+pattern: (* School Of Engineering and Applied Science)
+data: (The Fu Foundation School Of Engineering and Applied Science)
+output: t
+
+pattern: (The * School Of Engineering and Applied Science)
+data: (The Fu Foundation School Of Engineering and Applied Science)
+output: t
+
+pattern: (The * School Of Engineering and Applied Science)
+data: (The School Of Engineering and Applied Science)
+output: t
+
+pattern: (* 3 ?x 4 *)
+data: (3 5 4)
+output: ((?x 5)) 
+
+pattern: ( ?x (1 2) ?y (4 5))
+data: (c (1 2) d (4 5))
+output: ((?y d)(?x c))
+
+pattern: (?y ?z (c v))
+data: (8 gh (c v) )
+output: ((?z gh)(?y 8))
+
+pattern: (((get) me) out)
+data: (get (me (out)))
+output: NIL
+
+pattern: (A * B)
+data: (A A A A A B)
+output: t
+
+pattern: (?x * ?y)
+data: (A A A A A B)
+output: ((?y b)(?x a))
+
+pattern (a ?x !x)
+data (a 5 5)
+output NIL
+
+pattern (a ?x !x) 
+data (a 5 4) 
+output ((?x 5))
+
+Variables can also be bound to a list. Here's an illustrative example:
+pattern: (a ?x ?y)
+data: (a (a b) c)
+output: ((?x (a b))(?y c))
+
+pattern: (?x ?y ?z (& <x >y !z)) 
+data: (10 5 7 8) 
+output: ((?x 10)(?y 5)(?z 7))
+
+pattern: (ai ?y !y)
+data: (ai cs cs)
+output: NIL
+
+pattern: (ai ?x ?y (& ?x ?y))
+data: (ai cs cs cs)
+output: ((?x cs)(?y cs))
+
+pattern: (* ?x * ?y (& !x !y))
+data: (a b c d) 
+output: ( ((?x a)(?y c)) ((?x b)(?y c)) )
+Note that in this case, there are two valid bindings: first - ((?x a)(?y c)), and second - ((?x b)(?y c))
