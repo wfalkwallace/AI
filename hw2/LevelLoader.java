@@ -22,14 +22,54 @@ public class LevelLoader {
 //	   0 - empty space
 //	  10 - goal
 
-private int[][] map;
-private int width;
-private int height;
+	ArrayList<String> stringmap;
+	private char[][] levelmap;
 
-public LevelLoader () {
-	map = new int[width][height];
-
-}
+	public LevelLoader (File levelsource) {
+		
+		loadStringMap(levelsource);
+		
+		
+	}
 	
-ArrayList<String> inputRows;
+	private void loadStringMap(File levelsource) {
+		Scanner input = new Scanner(levelsource);
+		stringmap = new ArrayList<String>();
+		//file should start with a puzzle height
+		if(input.hasNextInt()){
+			//iterate over that full height/depth
+			for(int i = 0; i < input.nextInt(); i++) {
+				//check for validity (is height as specified)
+				if(input.hasNextLine()){
+					//add the row to the stringmap
+					stringmap.add(input.nextLine());
+				}
+				//invalid puzzle; bail
+				else {
+					System.out.println("That is not a valid puzzle file");
+					exit;
+				}
+			}
+		}
+		//close the scanner
+		input.close();
+	}
+	
+	private void parseStringMap() {
+		map = new char[stringmap.size()];
+		for(i = 
+				
+			
+				
+			}
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 }
