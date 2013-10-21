@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author wgf2104
  *
  */
-public class Puzzle {
+public class LevelLoader {
 
 	
 	
@@ -26,7 +26,7 @@ private int[][] map;
 private int width;
 private int height;
 
-public Puzzle () {
+public LevelLoader () {
 	map = new int[width][height];
 
 }
