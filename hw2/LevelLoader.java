@@ -47,8 +47,10 @@ public class LevelLoader {
 			stringmap = new ArrayList<String>();
 			//file should start with a puzzle height
 			if(input.hasNextInt()){
+				int height = Integer.parseInt(input.nextLine());
+				//System.out.println(height);
 				//iterate over that full height/depth
-				for(int i = 0; i < input.nextInt(); i++) {
+				for(int i = 0; i < height; i++) {
 					//check for validity (is height as specified)
 					if(input.hasNextLine()){
 						//add the row to the stringmap
