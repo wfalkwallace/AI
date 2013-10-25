@@ -24,30 +24,22 @@ public class LevelLoader {
 	//	* (asterisk) Box on goal
 
 
-	ArrayList<String> stringmap;
 	private char[][] levelmap;
-	int [] loc;
 
 	public LevelLoader (File levelsource) {
-
-		loadStringMap(levelsource);
-		loc = getPlayerLocation();
+		parseRowList(loadRowList(levelsource));
 		printLevel();
-		parseStringMap();
-
 	}
 
-	public char[][] getLevel() {
-
-		return levelmap;
-
+	public State init() {
+		return new State(levelmap, getX(), getY());
 	}
 
-	private void loadStringMap(File levelsource) {
+	private ArrayList<String> loadRowList(File levelsource) {
 		Scanner input;
+		ArrayList<String> rowlist = new ArrayList<String>();
 		try {
 			input = new Scanner(levelsource);
-			stringmap = new ArrayList<String>();
 			//file should start with a puzzle height
 			if(input.hasNextInt()){
 				int height = Integer.parseInt(input.nextLine());
@@ -57,7 +49,7 @@ public class LevelLoader {
 					//check for validity (is height as specified)
 					if(input.hasNextLine()){
 						//add the row to the stringmap
-						stringmap.add(input.nextLine());
+						rowlist.add(input.nextLine());
 					}
 					//invalid puzzle; bail
 					else {
@@ -72,31 +64,35 @@ public class LevelLoader {
 			System.out.println("The specified file could not be located");
 			e.printStackTrace();
 		}
+		return rowlist;
 	}
 
-	private void parseStringMap() {
-		int height = stringmap.size();
+	private void parseRowList(ArrayList<String> rowlist) {
+		int height = rowlist.size();
 		levelmap = new char[height][];
 		for(int i = 0; i < height; i++) {
-			levelmap[i] = stringmap.get(i).toCharArray();
-			for(char c : levelmap[i]) {
-				if(c == '@') {
-					c = ' ';
-					System.out.println("HERE");
-				}
-				else if(c == '+')
-					c = '.';
-			}
+			levelmap[i] = rowlist.get(i).toCharArray();
+//			NOTE: this is for taking the player off the board
+//			for(char c : levelmap[i]) {
+//				if(c == '@') {
+//					c = ' ';
+//				}
+//				else if(c == '+')
+//					c = '.';
+//			}
 		}
 	}
 
 	private void printLevel() {
+		System.out.println("The level char[][] read in by the LevelLoader is:");
+		System.out.println("=================================================");
 		for(char[] row : levelmap){
 			for(char c : row){
 				System.out.print(c);
 			}
 			System.out.println();
 		}
+		System.out.println("=================================================");
 	}
 	
 	private int[] getPlayerLocation() {
@@ -110,12 +106,12 @@ public class LevelLoader {
 		return new int[2];
 	}
 	
-	public int[] getPlayer() {
-		return loc;
+	private int getX() {
+		return getPlayerLocation()[0];
 	}
-
-	public int getPlayer(int i) {
-		return loc[i];
+	
+	private int getY() {
+		return getPlayerLocation()[1];
 	}
 
 }
