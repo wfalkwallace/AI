@@ -26,6 +26,8 @@ public class State {
 
 	public State (char[][] map, int x, int y) {
 		this.level = map;
+		this.x = x;
+		this.y = y;
 	}
 
 	public char[][] getState() {

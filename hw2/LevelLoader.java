@@ -103,14 +103,17 @@ public class LevelLoader {
 			}
 		}
 		//never reached, ignoring playerless game entry for now.
+		System.out.println("something went wrong...");
 		return new int[2];
 	}
 	
 	private int getX() {
+//		System.out.println("getting x: " + getPlayerLocation()[0]);
 		return getPlayerLocation()[0];
 	}
 	
 	private int getY() {
+//		System.out.println("getting y: " + getPlayerLocation()[1]);
 		return getPlayerLocation()[1];
 	}
 
