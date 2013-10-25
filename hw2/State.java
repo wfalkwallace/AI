@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 /**
  * 
@@ -21,8 +20,10 @@ public class State {
 //	* (asterisk) Box on goal
 
 	private char[][] map;
+	private int x;
+	private int y;
 
-	public State (char[][] map) {
+	public State (char[][] map, int x, int y) {
 		this.map = map;
 	}
 	
@@ -30,6 +31,18 @@ public class State {
 		return map;
 	}
 	
+	public int[] getPlayer() {
+		return new int[] {x, y};
+	}
+	
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
 	public void printState() {
 		for(char[] row : map){
 			for(char c : row){
@@ -39,33 +52,23 @@ public class State {
 		}
 	}
 	
-	public int[] getLocation() {
-		for(int i = 0; i < map.length; i++) {
-			for(int j = 0; j < map[i].length; i++) {
-				if(map[i][j] == '@' || map[i][j] == '+')
-					return {i, j};
-			}
-		}
-	}
-	
 	public char[] getValidMoves() {
-		int[] loc = getLocation();
 		char[] moves = new char[4];
-		if(map[loc[0] + 1][loc[1]] == '.' || 
-		   map[loc[0] + 1][loc[1]] == '$' ||
-		   map[loc[0] + 1][loc[1]] == '*') 
+		if(map[x + 1][y] == '.' || 
+		   map[x + 1][y] == '$' ||
+		   map[x + 1][y] == '*') 
 			moves[0] = 'u';
-		else if(map[loc[0] - 1][loc[1]] == '.' || 
-		        map[loc[0] - 1][loc[1]] == '$' ||
-		        map[loc[0] - 1][loc[1]] == '*') 
+		else if(map[x - 1][y] == '.' || 
+		        map[x - 1][y] == '$' ||
+		        map[x - 1][y] == '*') 
 			moves[1] = 'd';
-		else if(map[loc[0]][loc[1] + 1] == '.' || 
-		        map[loc[0]][loc[1] + 1] == '$' ||
-		        map[loc[0]][loc[1] + 1] == '*') 
+		else if(map[x][y + 1] == '.' || 
+		        map[x][y + 1] == '$' ||
+		        map[x][y + 1] == '*') 
 			moves[2] = 'r';
-		else if(map[loc[0]][loc[1] - 1] == '.' || 
-		        map[loc[0]][loc[1] - 1] == '$' ||
-		        map[loc[0]][loc[1] - 1] == '*') 
+		else if(map[x][y - 1] == '.' || 
+		        map[x][y - 1] == '$' ||
+		        map[x][y - 1] == '*') 
 			moves[3] = 'l';
 		
 		return moves;

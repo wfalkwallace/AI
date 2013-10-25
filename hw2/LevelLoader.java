@@ -19,23 +19,26 @@ public class LevelLoader {
 	//	_ (space) empty space
 	//	. (period) Empty goal
 	//	@ (at) Player on floor
-	//	+ (plus) Player on goal $ (dollar) Box on floor
+	//	+ (plus) Player on goal 
+	//  $ (dollar) Box on floor
 	//	* (asterisk) Box on goal
 
 
 	ArrayList<String> stringmap;
 	private char[][] levelmap;
+	int [] loc;
 
 	public LevelLoader (File levelsource) {
 
 		loadStringMap(levelsource);
+		loc = getPlayerLocation();
+		printLevel();
 		parseStringMap();
 
 	}
 
 	public char[][] getLevel() {
 
-		printLevel();
 		return levelmap;
 
 	}
@@ -76,6 +79,14 @@ public class LevelLoader {
 		levelmap = new char[height][];
 		for(int i = 0; i < height; i++) {
 			levelmap[i] = stringmap.get(i).toCharArray();
+			for(char c : levelmap[i]) {
+				if(c == '@') {
+					c = ' ';
+					System.out.println("HERE");
+				}
+				else if(c == '+')
+					c = '.';
+			}
 		}
 	}
 
@@ -86,8 +97,25 @@ public class LevelLoader {
 			}
 			System.out.println();
 		}
-
+	}
+	
+	private int[] getPlayerLocation() {
+		for(int i = 0; i < levelmap.length; i++) {
+			for(int j = 0; j < levelmap[i].length; j++) {
+				if(levelmap[i][j] == '@' || levelmap[i][j] == '+')
+					return new int[] {i, j};
+			}
+		}
+		//never reached, ignoring playerless game entry for now.
+		return new int[2];
+	}
+	
+	public int[] getPlayer() {
+		return loc;
 	}
 
+	public int getPlayer(int i) {
+		return loc[i];
+	}
 
 }
