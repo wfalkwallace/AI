@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 
 /**
@@ -25,173 +26,48 @@ public class State {
 	private char[][] level;
 	private int x;
 	private int y;
+	
+	private State parent;
+	private Hashtable<State, Character> children;
 
 	public State (char[][] map, int x, int y) {
+		parent = null;
+		children = new Hashtable<State, Character>();
+		
 		this.level = map;
 		this.x = x;
 		this.y = y;
-		getStateString();
+		
+		setStateString();
 	}
 
 	public State (State s, char d) {
 
-		level = s.getState();
-		x = s.getX();
-		y = s.getY();
-
+		parent = s;
+		children = new Hashtable<State, Character>();
+		//make the move
+		level = computeState(s.getState(), d);
+		//get new x and y
 		switch (d) {
-		//if move is up
 		case 'u': 
-			//and the spot youre moving to is open floorspace
-			if(level[x - 1][y] == ' ')
-				//move the player into the space
-				level[x - 1][y] = '@';
-			//and the spot youre moving to is an empty goal
-			if(level[x - 1][y] == '.')
-				//move the player onto the goal
-				level[x - 1][y] = '+';
-			//and the spot youre moving to is a box-on-floor
-			if(level[x - 1][y] == '$') {
-				//and there's a space in front of it,
-				if(level[x - 2][y] == ' '){
-					//make that space a box on floor
-					level[x - 2][y] = '$';
-					//and move the player into the old box-space
-					level[x - 1][y] = '@';
-				}
-				//if it's a goal ahead of the box
-				else{
-					//make the goal a box-on-goal
-					level[x - 2][y] = '*';
-					//and move the player into the old box-space
-					level[x - 1][y] = '@';
-				}	
-			}
-			//now that we've moved the player and the box, if there was one
-			//lets remove his tail
-			//if he was on empty space,
-			if(level[x][y] == '@')
-				//leave the space
-				level[x][y] = ' ';
-			//otherwise he was on a goal (+),
-			else
-				//keep the goal
-				level[x][y] = '.';
-			break;	
-		case 'd': 
-			//and the spot youre moving to is open floorspace
-			if(level[x + 1][y] == ' ')
-				//move the player into the space
-				level[x + 1][y] = '@';
-			//and the spot youre moving to is an empty goal
-			if(level[x + 1][y] == '.')
-				//move the player onto the goal
-				level[x + 1][y] = '+';
-			//and the spot youre moving to is a box-on-floor
-			if(level[x + 1][y] == '$') {
-				//and there's a space in front of it,
-				if(level[x + 2][y] == ' '){
-					//make that space a box on floor
-					level[x + 2][y] = '$';
-					//and move the player into the old box-space
-					level[x + 1][y] = '@';
-				}
-				//if it's a goal ahead of the box
-				else{
-					//make the goal a box-on-goal
-					level[x + 2][y] = '*';
-					//and move the player into the old box-space
-					level[x + 1][y] = '@';
-				}	
-			}
-			//now that we've moved the player and the box, if there was one
-			//lets remove his tail
-			//if he was on empty space,
-			if(level[x][y] == '@')
-				//leave the space
-				level[x][y] = ' ';
-			//otherwise he was on a goal (+),
-			else
-				//keep the goal
-				level[x][y] = '.';
-			break;	
-		case 'l': 
-			//and the spot youre moving to is open floorspace
-			if(level[x][y - 1] == ' ')
-				//move the player into the space
-				level[x][y - 1] = '@';
-			//and the spot youre moving to is an empty goal
-			if(level[x][y - 1] == '.')
-				//move the player onto the goal
-				level[x][y - 1] = '+';
-			//and the spot youre moving to is a box-on-floor
-			if(level[x][y - 1] == '$') {
-				//and there's a space in front of it,
-				if(level[x][y - 2] == ' '){
-					//make that space a box on floor
-					level[x][y - 2] = '$';
-					//and move the player into the old box-space
-					level[x][y - 1] = '@';
-				}
-				//if it's a goal ahead of the box
-				else{
-					//make the goal a box-on-goal
-					level[x][y - 2] = '*';
-					//and move the player into the old box-space
-					level[x][y - 1] = '@';
-				}	
-			}
-			//now that we've moved the player and the box, if there was one
-			//lets remove his tail
-			//if he was on empty space,
-			if(level[x][y] == '@')
-				//leave the space
-				level[x][y] = ' ';
-			//otherwise he was on a goal (+),
-			else
-				//keep the goal
-				level[x][y] = '.';
-			break;	
-		case 'r': 
-			//and the spot youre moving to is open floorspace
-			if(level[x][y + 1] == ' ')
-				//move the player into the space
-				level[x][y + 1] = '@';
-			//and the spot youre moving to is an empty goal
-			if(level[x][y + 1] == '.')
-				//move the player onto the goal
-				level[x][y + 1] = '+';
-			//and the spot youre moving to is a box-on-floor
-			if(level[x][y + 1] == '$') {
-				//and there's a space in front of it,
-				if(level[x][y + 2] == ' '){
-					//make that space a box on floor
-					level[x][y + 2] = '$';
-					//and move the player into the old box-space
-					level[x][y + 1] = '@';
-				}
-				//if it's a goal ahead of the box
-				else{
-					//make the goal a box-on-goal
-					level[x][y + 2] = '*';
-					//and move the player into the old box-space
-					level[x][y + 1] = '@';
-				}	
-			}
-			//now that we've moved the player and the box, if there was one
-			//lets remove his tail
-			//if he was on empty space,
-			if(level[x][y] == '@')
-				//leave the space
-				level[x][y] = ' ';
-			//otherwise he was on a goal (+),
-			else
-				//keep the goal
-				level[x][y] = '.';
+			x = s.getX() - 1;
+			y = s.getY();
 			break;
+		case 'd': 
+			x = s.getX() + 1;
+			y = s.getY();
+			break;
+		case 'l': 
+			x = s.getX();
+			y = s.getY() - 1;
+			break;
+		case 'r': 
+			x = s.getX();
+			y = s.getY() + 1;
+			break;	
 		}
-
-		getStateString();
+			
+		setStateString();
 	} 
 
 	public char[][] getState() {
@@ -216,19 +92,41 @@ public class State {
 		System.out.println();
 	}
 
-	public String getStateString() {
-		// this would prevent re-compute, maybe better for caching, 
-		// but not helpful for state(state) constructor
-		//		if(statestring != null)
-		//			return statestring;
-		statestring = "";
+	public String setStateString() {
+		String tmp = "";
 		for(char[] row : level){
 			for(char c : row){
-				statestring += c;
+				tmp += c;
 			}
 		}
+		statestring = tmp;
 		return statestring;
 	}
+	
+	public String getStateString() {
+		return statestring;
+	}
+	
+	public State getParent() {
+		return parent;
+	}
+	
+	public void addChild(State ch, char dir) {
+		children.put(ch, dir);
+	}
+	
+	public Hashtable<State, Character> getChildren() {
+		return children;
+	}
+	
+	public String getPath(State st) {
+		if(parent == null)
+			return "" + children.get(st);
+		if(children.isEmpty())
+			
+		return parent.getPath(this) + children.get(st);
+	}
+
 	
 	public boolean isGoal() {
 		for(char[] row : level){
@@ -295,6 +193,161 @@ public class State {
 			moves.add('r');
 
 		return moves;
+	}
+	
+	private char[][] computeState(char[][] oldlevel, char mv) {
+		switch (mv) {
+		//if move is up
+		case 'u': 
+			//and the spot youre moving to is open floorspace
+			if(oldlevel[x - 1][y] == ' ')
+				//move the player into the space
+				oldlevel[x - 1][y] = '@';
+			//and the spot youre moving to is an empty goal
+			if(oldlevel[x - 1][y] == '.')
+				//move the player onto the goal
+				oldlevel[x - 1][y] = '+';
+			//and the spot youre moving to is a box-on-floor
+			if(oldlevel[x - 1][y] == '$') {
+				//and there's a space in front of it,
+				if(oldlevel[x - 2][y] == ' '){
+					//make that space a box on floor
+					oldlevel[x - 2][y] = '$';
+					//and move the player into the old box-space
+					oldlevel[x - 1][y] = '@';
+				}
+				//if it's a goal ahead of the box
+				else{
+					//make the goal a box-on-goal
+					oldlevel[x - 2][y] = '*';
+					//and move the player into the old box-space
+					oldlevel[x - 1][y] = '@';
+				}	
+			}
+			//now that we've moved the player and the box, if there was one
+			//lets remove his tail
+			//if he was on empty space,
+			if(oldlevel[x][y] == '@')
+				//leave the space
+				oldlevel[x][y] = ' ';
+			//otherwise he was on a goal (+),
+			else
+				//keep the goal
+				oldlevel[x][y] = '.';
+			break;	
+		case 'd': 
+			//and the spot youre moving to is open floorspace
+			if(oldlevel[x + 1][y] == ' ')
+				//move the player into the space
+				oldlevel[x + 1][y] = '@';
+			//and the spot youre moving to is an empty goal
+			if(oldlevel[x + 1][y] == '.')
+				//move the player onto the goal
+				oldlevel[x + 1][y] = '+';
+			//and the spot youre moving to is a box-on-floor
+			if(oldlevel[x + 1][y] == '$') {
+				//and there's a space in front of it,
+				if(oldlevel[x + 2][y] == ' '){
+					//make that space a box on floor
+					oldlevel[x + 2][y] = '$';
+					//and move the player into the old box-space
+					oldlevel[x + 1][y] = '@';
+				}
+				//if it's a goal ahead of the box
+				else{
+					//make the goal a box-on-goal
+					oldlevel[x + 2][y] = '*';
+					//and move the player into the old box-space
+					oldlevel[x + 1][y] = '@';
+				}	
+			}
+			//now that we've moved the player and the box, if there was one
+			//lets remove his tail
+			//if he was on empty space,
+			if(oldlevel[x][y] == '@')
+				//leave the space
+				oldlevel[x][y] = ' ';
+			//otherwise he was on a goal (+),
+			else
+				//keep the goal
+				oldlevel[x][y] = '.';
+			break;	
+		case 'l': 
+			//and the spot youre moving to is open floorspace
+			if(oldlevel[x][y - 1] == ' ')
+				//move the player into the space
+				oldlevel[x][y - 1] = '@';
+			//and the spot youre moving to is an empty goal
+			if(oldlevel[x][y - 1] == '.')
+				//move the player onto the goal
+				oldlevel[x][y - 1] = '+';
+			//and the spot youre moving to is a box-on-floor
+			if(oldlevel[x][y - 1] == '$') {
+				//and there's a space in front of it,
+				if(oldlevel[x][y - 2] == ' '){
+					//make that space a box on floor
+					oldlevel[x][y - 2] = '$';
+					//and move the player into the old box-space
+					oldlevel[x][y - 1] = '@';
+				}
+				//if it's a goal ahead of the box
+				else{
+					//make the goal a box-on-goal
+					oldlevel[x][y - 2] = '*';
+					//and move the player into the old box-space
+					oldlevel[x][y - 1] = '@';
+				}	
+			}
+			//now that we've moved the player and the box, if there was one
+			//lets remove his tail
+			//if he was on empty space,
+			if(oldlevel[x][y] == '@')
+				//leave the space
+				oldlevel[x][y] = ' ';
+			//otherwise he was on a goal (+),
+			else
+				//keep the goal
+				oldlevel[x][y] = '.';
+			break;	
+		case 'r': 
+			//and the spot youre moving to is open floorspace
+			if(oldlevel[x][y + 1] == ' ')
+				//move the player into the space
+				oldlevel[x][y + 1] = '@';
+			//and the spot youre moving to is an empty goal
+			if(oldlevel[x][y + 1] == '.')
+				//move the player onto the goal
+				oldlevel[x][y + 1] = '+';
+			//and the spot youre moving to is a box-on-floor
+			if(oldlevel[x][y + 1] == '$') {
+				//and there's a space in front of it,
+				if(oldlevel[x][y + 2] == ' '){
+					//make that space a box on floor
+					oldlevel[x][y + 2] = '$';
+					//and move the player into the old box-space
+					oldlevel[x][y + 1] = '@';
+				}
+				//if it's a goal ahead of the box
+				else{
+					//make the goal a box-on-goal
+					oldlevel[x][y + 2] = '*';
+					//and move the player into the old box-space
+					oldlevel[x][y + 1] = '@';
+				}	
+			}
+			//now that we've moved the player and the box, if there was one
+			//lets remove his tail
+			//if he was on empty space,
+			if(oldlevel[x][y] == '@')
+				//leave the space
+				oldlevel[x][y] = ' ';
+			//otherwise he was on a goal (+),
+			else
+				//keep the goal
+				oldlevel[x][y] = '.';
+			break;
+		}
+		return oldlevel;
 	}
 
 }
