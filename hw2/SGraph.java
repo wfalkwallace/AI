@@ -16,9 +16,13 @@ public class SGraph {
 	public SGraph(){
 		graph = new Hashtable<State, ArrayList<Move>>();
 	}
-
-	private void addV(State v){
+	
+	public void addV(State v){
 		graph.put(v, new ArrayList<Move>());
+	}
+	
+	public boolean contains(State st) {
+		return graph.containsKey(st);
 	}
 
 	// be weary of cycles! check for them elsewhere and addE in sets of validmoves!
