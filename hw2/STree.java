@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
@@ -27,7 +26,7 @@ public class STree {
 	}
 	
 	private String solution(State sol) {
-		sol.getPath(st)
+		return sol.getPath();
 	}
 
 	public void DFS() {

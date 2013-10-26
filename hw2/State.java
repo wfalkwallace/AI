@@ -46,7 +46,7 @@ public class State {
 		parent = s;
 		children = new Hashtable<State, Character>();
 		//make the move
-		level = computeState(s.getState(), d);
+		level = computeState(s.getState(), d, s.getX(), s.getY());
 		//get new x and y
 		switch (d) {
 		case 'u': 
@@ -119,12 +119,10 @@ public class State {
 		return children;
 	}
 	
-	public String getPath(State st) {
+	public String getPath() {
 		if(parent == null)
-			return "" + children.get(st);
-		if(children.isEmpty())
-			
-		return parent.getPath(this) + children.get(st);
+			return "";
+		return parent.getPath() + parent.getChildren().get(this);
 	}
 
 	
@@ -195,7 +193,7 @@ public class State {
 		return moves;
 	}
 	
-	private char[][] computeState(char[][] oldlevel, char mv) {
+	private char[][] computeState(char[][] oldlevel, char mv, int x, int y) {
 		switch (mv) {
 		//if move is up
 		case 'u': 
