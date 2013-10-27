@@ -182,18 +182,6 @@ public class State {
 		return true;
 	}
 
-	public int hashCode() {
-		return statestring.hashCode();
-	}
-
-	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (!(obj instanceof State))
-			return false;
-		return ( ((State) obj).getStateString() == this.getStateString() ) ? true : false;
-	}
-
 
 	//	# (hash) Wall
 	//	  (space) open floor
