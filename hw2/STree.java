@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * 
@@ -40,12 +41,13 @@ public class STree {
 	}
 
 	//for simple checking later
-	private String solution(State solution) {
+	private String[] solution(State solution) {
 		JUSTKEEPSWIMMING = false;
 		//LOG
 		//System.out.println("Solution Found");
 		//ENDLOG
-		return solution.getPath();
+		String[] result = {solution.getPath()};
+		return result;
 	}
 
 	private String[] solution(State solution, int generated, int repeated, int fringe, int seen, long start) {
@@ -57,12 +59,12 @@ public class STree {
 		//give in millis
 		double time = (System.nanoTime() - start) / 1000000000.0;
 		String[] data = {
-				solution.getPath(), 
-				Integer.toString(generated), 
-				Integer.toString(repeated), 
-				Integer.toString(fringe), 
-				Integer.toString(seen), 
-				String.valueOf((time)) 
+				"Solution: " + solution.getPath(), 
+				"Generated: " + Integer.toString(generated), 
+				"Repeated: " + Integer.toString(repeated), 
+				"Fringe: " + Integer.toString(fringe), 
+				"Explored: " + Integer.toString(seen), 
+				"Duration: " + String.valueOf((time)) 
 		};
 		return data;
 	}
@@ -72,12 +74,13 @@ public class STree {
 		return fail;
 	}
 
+	//BFS
 	public String[] BFS() {
 		JUSTKEEPSWIMMING = true;
 		//data and results
 		long start = System.nanoTime();
 		int rep = 0;
-		int gen = 0;
+		int gen = 1;
 
 		//here we go
 		State node = root;
@@ -129,8 +132,9 @@ public class STree {
 		}
 		return new String[0];
 	}
+	//ENDBFS
 
-	
+	//UCS
 	private int getCostFromPQ(PriorityQueue<State> pq, State comp) {
 		for(Object orig : pq.toArray()) {
 			if( ((State) orig).equals(comp) )
@@ -138,12 +142,12 @@ public class STree {
 		}
 		return -1;
 	}
-	
+
 	public String[] UCS() {
 		//data and results
 		long start = System.nanoTime();
 		int rep = 0;
-		int gen = 0;
+		int gen = 1;
 
 		//here we go
 		State node = root;
@@ -175,90 +179,60 @@ public class STree {
 		}
 		return new String[0];
 	}
+	//ENDUCS
 
-	
-	
+	//DFS
 	public String[] DFS() {
+		JUSTKEEPSWIMMING = true;
 		//data and results
 		long start = System.nanoTime();
 		int rep = 0;
-		int gen = 0;
-
-		return DFS(root);
-	}
-
-	public String[] DFS(State st) {
+		int gen = 1;
 
 		//here we go
-		State node = st;
+		State node = root;
 		HashSet<String> explored = new HashSet<String>();
-		Queue<State> frontier = new LinkedList<State>();
-		frontier.add(node);
-
-		if(node.isGoal())
-			return solution(node, gen, rep, frontier.size(), explored.size(), start);
-
-
-
-
+		Stack<State> frontier = new Stack<State>();
+		
+		frontier.push(node);
 		while(JUSTKEEPSWIMMING) {
 			if(frontier.peek() == null)
 				return failure();
-			node = frontier.remove();
-			explored.add(node.getStateString());
-
-			//LOG
-			//node.log("===========================================================\nSTATE: " + node.getPath() + "\n");
-			//node.logState();
-			//node.log("HAS UNEXPLORED CHILDREN: \n");
-			//ENDLOG
-
-			for(char c : node.getValidMoves()) {
-				State child = new State(node, c);
-				gen++;
-				//LOG
-				//assert child.equals(new State(new State(new State(node, 'u'), 'd'), c)) : "CHILD EQUALITY BROKEN";
-				//ENDLOG
-				if( !explored.contains(child.getStateString()) && !frontier.contains(child) ) {
-					//LOG
-					//child.log(c + "\n");
-					//child.logState();
-					//child.log(child.getStateString() + '\n');
-					//for(char mv : child.getValidMoves())
-					//	child.log(mv + ", ");
-					//child.log("\n\n");
-					//ENDLOG
-
-					if(child.isGoal())
-						return solution(child, gen, rep, frontier.size(), explored.size(), start);
-					frontier.add(child);
+			node = frontier.pop();
+			if( !explored.contains(node.getStateString()) ) {
+				explored.add(node.getStateString());
+				if(node.isGoal())
+					return solution(node, gen, rep, frontier.size(), explored.size(), start);
+				for(char c : node.getValidMoves()) {
+					State child = new State(node, c);
+					gen++;
+					if( !explored.contains(child.getStateString()) ) {
+						frontier.add(child);
+					}
+					else
+						rep++;
 				}
-				else if(explored.contains(child.getStateString()))
-					rep++;
 			}
+			else
+				rep++;
 		}
 		return new String[0];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
+	//ENDDFS
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 
