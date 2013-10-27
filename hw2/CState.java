@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author wgf2104
  *
  */
-public class State implements Comparable<State> {
+public class CState {
 
 
 
@@ -22,16 +22,16 @@ public class State implements Comparable<State> {
 	//	$ (dollar) Box on floor
 	//	* (asterisk) Box on goal
 
-	private String statestring;
+	private String CStatestring;
 	private char[][] level;
 	private int x;
 	private int y;
 	private int cost;
 	private String path;
 
-	private State parent;
+	private CState parent;
 
-	public State (char[][] level, int x, int y) {
+	public CState (char[][] level, int x, int y) {
 		parent = null;
 
 		//2D deep copy
@@ -48,20 +48,20 @@ public class State implements Comparable<State> {
 		path = "";
 
 		//recompute the satestring
-		statestring = "";
+		CStatestring = "";
 		for(char[] row : level)
 			for(char c : row)
-				statestring += c;
+				CStatestring += c;
 	}
 
-	public State (State par, char dir) {
+	public CState (CState par, char dir) {
 
 		parent = par;
 		this.cost = par.getCost() + 1;
 		path = par.getPath() + dir;
 
 		//make the move
-		char[][] tmplevel = computeState(par, dir);
+		char[][] tmplevel = computeCState(par, dir);
 
 		//2D deep copy
 		level = new char[tmplevel.length][];
@@ -92,17 +92,17 @@ public class State implements Comparable<State> {
 		}
 
 		//recompute the satestring
-		statestring = "";
+		CStatestring = "";
 		for(char[] row : level)
 			for(char c : row)
-				statestring += c;
+				CStatestring += c;
 	}
 
 	public int getCost() {
 		return cost;
 	}
 
-	public char[][] getState() {
+	public char[][] getCState() {
 		return level;
 	}
 
@@ -114,7 +114,7 @@ public class State implements Comparable<State> {
 		return y;
 	}
 
-	public void logState() {
+	public void logCState() {
 		try {
 			FileWriter fw = new FileWriter("log.txt", true);
 
@@ -132,7 +132,7 @@ public class State implements Comparable<State> {
 		}
 	}
 
-	public void printState() {
+	public void printCState() {
 		for(char[] row : level){
 			for(char c : row){
 				System.out.print(c);
@@ -154,11 +154,11 @@ public class State implements Comparable<State> {
 		}
 	}
 
-	public String getStateString() {
-		return statestring;
+	public String getCStateString() {
+		return CStatestring;
 	}
 
-	public State getParent() {
+	public CState getParent() {
 		return parent;
 	}
 
@@ -167,20 +167,20 @@ public class State implements Comparable<State> {
 	}
 
 	public int hashCode() {
-		return statestring.hashCode();
+		return CStatestring.hashCode();
 	}
 
 	public boolean equals(Object obj) {
 		if (obj == null)
 			return false;
-		if (!(obj instanceof State))
+		if (!(obj instanceof CState))
 			return false;
-		return ( ((State) obj).getStateString().equals(this.getStateString()) ) ? true : false;
+		return ( ((CState) obj).getCStateString().equals(this.getCStateString()) ) ? true : false;
 	}
 
 	public boolean isGoal() {
-		for(int i = 0; i < statestring.length(); i++) { 
-			char c = statestring.charAt(i); 
+		for(int i = 0; i < CStatestring.length(); i++) { 
+			char c = CStatestring.charAt(i); 
 			if(c == '.' || c == '+')
 				return false;
 		}
@@ -312,8 +312,8 @@ public class State implements Comparable<State> {
 		return moves;
 	}
 
-	private char[][] computeState(State par, char dir) {
-		char[][] oldlevel = par.getState();
+	private char[][] computeCState(CState par, char dir) {
+		char[][] oldlevel = par.getCState();
 		int x = par.getX();
 		int y = par.getY();
 
@@ -554,13 +554,6 @@ public class State implements Comparable<State> {
 			break;
 		}
 		return newlevel;
-	}
-
-	@Override
-	public int compareTo(State o) {
-		if(this.getCost() == o.getCost())
-			return 0;
-		return (getCost() < o.getCost() ? -1 : 1);
 	}
 
 }
