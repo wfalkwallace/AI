@@ -67,7 +67,7 @@ public class STree {
 			for(char c : node.getValidMoves()) {
 				State child = new State(node, c);
 				if( !explored.contains(child.getStateString()) && !frontier.contains(child) ) {
-					child.logState();
+					child.log(child.getStateString() + '\n');
 					if(child.isGoal())
 						return solution(child);
 					frontier.add(child);
