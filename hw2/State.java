@@ -26,18 +26,18 @@ public class State {
 	private char[][] level;
 	private int x;
 	private int y;
-	
+
 	private State parent;
 	private Hashtable<State, Character> children;
 
 	public State (char[][] map, int x, int y) {
 		parent = null;
 		children = new Hashtable<State, Character>();
-		
+
 		this.level = map;
 		this.x = x;
 		this.y = y;
-		
+
 		setStateString();
 	}
 
@@ -66,7 +66,7 @@ public class State {
 			y = s.getY() + 1;
 			break;	
 		}
-			
+
 		setStateString();
 	} 
 
@@ -102,30 +102,30 @@ public class State {
 		statestring = tmp;
 		return statestring;
 	}
-	
+
 	public String getStateString() {
 		return statestring;
 	}
-	
+
 	public State getParent() {
 		return parent;
 	}
-	
+
 	public void addChild(State ch, char dir) {
 		children.put(ch, dir);
 	}
-	
+
 	public Hashtable<State, Character> getChildren() {
 		return children;
 	}
-	
+
 	public String getPath() {
 		if(parent == null)
 			return "";
 		return parent.getPath() + parent.getChildren().get(this);
 	}
 
-	
+
 	public boolean isGoal() {
 		for(char[] row : level){
 			for(char c : row){
@@ -158,13 +158,47 @@ public class State {
 	//	+ (plus) Player on goal 
 	//	$ (dollar) Box on floor
 	//	* (asterisk) Box on goal
+
+	private boolean isUpValid() {
+		//there's always an up, because I'll check later 
+		//to make sure you dont move into a wall					
+		char up = level[x - 1][y];;
+		//if youre below a wall
+		if(up == '#') 
+			//you cant move up
+			return false;
+		//if you cna move up, set the up variable and check open space
+		if(up == ' ' || up == '.') 
+			return true;
+		//lets check if upup exists: if the row 2 above is
+		//long enough to support this column, then carry on checking
+		if(level[x-2].length <= y)
+			//if it's not, it's not an open space/goal, and there isn't 
+			//a space two rows above to push the box into
+			return false;
+		//now that we know there is a two rows up in this column,
+		char up2 = level[x - 2][y];
+		//and check if the space two rows up can accept a box (ie. its an empty space or goal)
+		if( (up == '$' || up == '*') && (up2 == ' ' || up2 == '.') )
+			return true;
+		//backup here shouldnt ever be reached or is maybe a really odd deadlock?
+		// might as well default to false
+		return false;
+	}
+
+
+
+
 	public ArrayList<Character> getValidMoves() {
 		char up = level[x - 1][y];
 		char upup = level[x - 2][y];
+
 		char down = level[x + 1][y];
 		char downdown = level[x + 2][y];
+
 		char left = level[x][y - 1];
 		char leftleft = level[x][y - 2];
+
 		char right = level[x][y + 1];
 		char rightright = level[x][y + 2];
 
@@ -192,7 +226,7 @@ public class State {
 
 		return moves;
 	}
-	
+
 	private char[][] computeState(char[][] oldlevel, char mv, int x, int y) {
 		switch (mv) {
 		//if move is up
