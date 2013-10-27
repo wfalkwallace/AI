@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -82,14 +84,46 @@ public class State {
 		return y;
 	}
 
-	public void printState() {
-		for(char[] row : level){
-			for(char c : row){
-				System.out.print(c);
+	public void printState(int loc) {
+		if(loc == 0) {
+			for(char[] row : level){
+				for(char c : row){
+					System.out.print(c);
+				}
+				System.out.println();
 			}
 			System.out.println();
 		}
-		System.out.println();
+		else{
+
+			try {
+				FileWriter fw = new FileWriter("log.txt", true);
+
+
+				for(char[] row : level){
+					for(char c : row){
+						fw.write(c);
+					}
+					fw.write('\n');
+				}
+				fw.write('\n');
+				fw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void print(String line) {
+		try {
+			FileWriter fw = new FileWriter("log.txt", true);
+			fw.write(line);
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public String setStateString() {
@@ -172,7 +206,7 @@ public class State {
 			return true;
 		//lets check if upup exists: if the row 2 above is
 		//long enough to support this column, then carry on checking
-		if(level[x-2].length <= y)
+		if(level[x - 2].length <= y)
 			//if it's not, it's not an open space/goal, and there isn't 
 			//a space two rows above to push the box into
 			return false;
@@ -186,200 +220,266 @@ public class State {
 		return false;
 	}
 
+	private boolean isDownValid() {
+		//there's always a down, because I'll check later 
+		//to make sure you dont move into a wall					
+		char down = level[x + 1][y];;
+		//if youre above a wall
+		if(down == '#') 
+			//you cant move down
+			return false;
+		//if you can move down, check for open space
+		if(down == ' ' || down == '.') 
+			return true;
+		//lets check if downdown exists: if the row 2 below is
+		//long enough to support this column, then carry on checking
+		if(level[x + 2].length <= y)
+			//if it's not, it's not an open space/goal, and there isn't 
+			//a space two rows below to push the box into
+			return false;
+		//now that we know there is a two rows down in this column,
+		char down2 = level[x + 2][y];
+		//and check if the space two rows down can accept a box (ie. its an empty space or goal)
+		if( (down == '$' || down == '*') && (down2 == ' ' || down2 == '.') )
+			return true;
+		//backup here shouldnt ever be reached or is maybe a really odd deadlock?
+		// might as well default to false
+		return false;
+	}
 
+	private boolean isLeftValid() {
+		//there's always a left, because I'll check later 
+		//to make sure you dont move into a wall					
+		char left = level[x][y - 1];;
+		//if youre right of a wall
+		if(left == '#') 
+			//you cant move left
+			return false;
+		//if you can move left, check for open space
+		if(left == ' ' || left == '.') 
+			return true;
+		//lets check if leftleft exists: if the column is >1, then carry on checking
+		if(y > 1)
+			//if it's not, it's not an open space/goal, and there isn't 
+			//a space two rows right to push the box into
+			return false;
+		//now that we know there is a two rows down in this column,
+		char left2 = level[x][y - 2];
+		//and check if the space two rows down can accept a box (ie. its an empty space or goal)
+		if( (left == '$' || left == '*') && (left2 == ' ' || left2 == '.') )
+			return true;
+		//backup here shouldnt ever be reached or is maybe a really odd deadlock?
+		// might as well default to false
+		return false;
+	}
+
+	private boolean isRightValid() {
+		//there's always a right, because I'll check later 
+		//to make sure you dont move into a wall					
+		char right = level[x][y + 1];;
+		//if youre left of a wall
+		if(right == '#') 
+			//you cant move right
+			return false;
+		//if you can move right, check for open space
+		if(right == ' ' || right == '.') 
+			return true;
+		//lets check if rightright exists: if the row is at least 2 longer, then carry on checking
+		if(level[x].length <= y + 2)
+			//if it's not, it's not an open space/goal, and there isn't 
+			//a space two rows right to push the box into
+			return false;
+		//now that we know there is a two rows down in this column,
+		char right2 = level[x][y + 2];
+		//and check if the space two rows down can accept a box (ie. its an empty space or goal)
+		if( (right == '$' || right == '*') && (right2 == ' ' || right2 == '.') )
+			return true;
+		//backup here shouldnt ever be reached or is maybe a really odd deadlock?
+		// might as well default to false
+		return false;
+	}
 
 
 	public ArrayList<Character> getValidMoves() {
-		char up = level[x - 1][y];
-		char upup = level[x - 2][y];
-
-		char down = level[x + 1][y];
-		char downdown = level[x + 2][y];
-
-		char left = level[x][y - 1];
-		char leftleft = level[x][y - 2];
-
-		char right = level[x][y + 1];
-		char rightright = level[x][y + 2];
 
 		ArrayList<Character> moves = new ArrayList<Character>();
 
-		if(up == ' ' || up == '.') 
-			moves.add('u');
-		else if( (up == '$' || up == '*') && (upup == ' ' || upup == '.') )
+		if(isUpValid()) 
 			moves.add('u');
 
-		if(down == ' ' || down == '.') 
-			moves.add('d');
-		else if( (down == '$' || down == '*') && (downdown == ' ' || downdown == '.') )
+		if(isDownValid()) 
 			moves.add('d');
 
-		if(left == ' ' || left == '.') 
-			moves.add('l');
-		else if( (left == '$' || left == '*') && (leftleft == ' ' || leftleft == '.') )
+		if(isLeftValid()) 
 			moves.add('l');
 
-		if(right == ' ' || right == '.') 
-			moves.add('r');
-		else if( (right == '$' || right == '*') && (rightright == ' ' || rightright == '.') )
+		if(isRightValid()) 
 			moves.add('r');
 
 		return moves;
 	}
 
 	private char[][] computeState(char[][] oldlevel, char mv, int x, int y) {
+		char[][] newlevel = new char[oldlevel.length][];
+
+		for(int i = 0; i < oldlevel.length; i++){
+			newlevel[i] = new char[oldlevel[i].length];
+			for(int j = 0; j < oldlevel[i].length; j++)
+				newlevel[i][j]=oldlevel[i][j];
+		}
+
 		switch (mv) {
 		//if move is up
 		case 'u': 
 			//and the spot youre moving to is open floorspace
-			if(oldlevel[x - 1][y] == ' ')
+			if(newlevel[x - 1][y] == ' ')
 				//move the player into the space
-				oldlevel[x - 1][y] = '@';
+				newlevel[x - 1][y] = '@';
 			//and the spot youre moving to is an empty goal
-			if(oldlevel[x - 1][y] == '.')
+			if(newlevel[x - 1][y] == '.')
 				//move the player onto the goal
-				oldlevel[x - 1][y] = '+';
+				newlevel[x - 1][y] = '+';
 			//and the spot youre moving to is a box-on-floor
-			if(oldlevel[x - 1][y] == '$') {
+			if(newlevel[x - 1][y] == '$') {
 				//and there's a space in front of it,
-				if(oldlevel[x - 2][y] == ' '){
+				if(newlevel[x - 2][y] == ' '){
 					//make that space a box on floor
-					oldlevel[x - 2][y] = '$';
+					newlevel[x - 2][y] = '$';
 					//and move the player into the old box-space
-					oldlevel[x - 1][y] = '@';
+					newlevel[x - 1][y] = '@';
 				}
 				//if it's a goal ahead of the box
 				else{
 					//make the goal a box-on-goal
-					oldlevel[x - 2][y] = '*';
+					newlevel[x - 2][y] = '*';
 					//and move the player into the old box-space
-					oldlevel[x - 1][y] = '@';
+					newlevel[x - 1][y] = '@';
 				}	
 			}
 			//now that we've moved the player and the box, if there was one
 			//lets remove his tail
 			//if he was on empty space,
-			if(oldlevel[x][y] == '@')
+			if(newlevel[x][y] == '@')
 				//leave the space
-				oldlevel[x][y] = ' ';
+				newlevel[x][y] = ' ';
 			//otherwise he was on a goal (+),
 			else
 				//keep the goal
-				oldlevel[x][y] = '.';
+				newlevel[x][y] = '.';
 			break;	
 		case 'd': 
 			//and the spot youre moving to is open floorspace
-			if(oldlevel[x + 1][y] == ' ')
+			if(newlevel[x + 1][y] == ' ')
 				//move the player into the space
-				oldlevel[x + 1][y] = '@';
+				newlevel[x + 1][y] = '@';
 			//and the spot youre moving to is an empty goal
-			if(oldlevel[x + 1][y] == '.')
+			if(newlevel[x + 1][y] == '.')
 				//move the player onto the goal
-				oldlevel[x + 1][y] = '+';
+				newlevel[x + 1][y] = '+';
 			//and the spot youre moving to is a box-on-floor
-			if(oldlevel[x + 1][y] == '$') {
+			if(newlevel[x + 1][y] == '$') {
 				//and there's a space in front of it,
-				if(oldlevel[x + 2][y] == ' '){
+				if(newlevel[x + 2][y] == ' '){
 					//make that space a box on floor
-					oldlevel[x + 2][y] = '$';
+					newlevel[x + 2][y] = '$';
 					//and move the player into the old box-space
-					oldlevel[x + 1][y] = '@';
+					newlevel[x + 1][y] = '@';
 				}
 				//if it's a goal ahead of the box
 				else{
 					//make the goal a box-on-goal
-					oldlevel[x + 2][y] = '*';
+					newlevel[x + 2][y] = '*';
 					//and move the player into the old box-space
-					oldlevel[x + 1][y] = '@';
+					newlevel[x + 1][y] = '@';
 				}	
 			}
 			//now that we've moved the player and the box, if there was one
 			//lets remove his tail
 			//if he was on empty space,
-			if(oldlevel[x][y] == '@')
+			if(newlevel[x][y] == '@')
 				//leave the space
-				oldlevel[x][y] = ' ';
+				newlevel[x][y] = ' ';
 			//otherwise he was on a goal (+),
 			else
 				//keep the goal
-				oldlevel[x][y] = '.';
+				newlevel[x][y] = '.';
 			break;	
 		case 'l': 
 			//and the spot youre moving to is open floorspace
-			if(oldlevel[x][y - 1] == ' ')
+			if(newlevel[x][y - 1] == ' ')
 				//move the player into the space
-				oldlevel[x][y - 1] = '@';
+				newlevel[x][y - 1] = '@';
 			//and the spot youre moving to is an empty goal
-			if(oldlevel[x][y - 1] == '.')
+			if(newlevel[x][y - 1] == '.')
 				//move the player onto the goal
-				oldlevel[x][y - 1] = '+';
+				newlevel[x][y - 1] = '+';
 			//and the spot youre moving to is a box-on-floor
-			if(oldlevel[x][y - 1] == '$') {
+			if(newlevel[x][y - 1] == '$') {
 				//and there's a space in front of it,
-				if(oldlevel[x][y - 2] == ' '){
+				if(newlevel[x][y - 2] == ' '){
 					//make that space a box on floor
-					oldlevel[x][y - 2] = '$';
+					newlevel[x][y - 2] = '$';
 					//and move the player into the old box-space
-					oldlevel[x][y - 1] = '@';
+					newlevel[x][y - 1] = '@';
 				}
 				//if it's a goal ahead of the box
 				else{
 					//make the goal a box-on-goal
-					oldlevel[x][y - 2] = '*';
+					newlevel[x][y - 2] = '*';
 					//and move the player into the old box-space
-					oldlevel[x][y - 1] = '@';
+					newlevel[x][y - 1] = '@';
 				}	
 			}
 			//now that we've moved the player and the box, if there was one
 			//lets remove his tail
 			//if he was on empty space,
-			if(oldlevel[x][y] == '@')
+			if(newlevel[x][y] == '@')
 				//leave the space
-				oldlevel[x][y] = ' ';
+				newlevel[x][y] = ' ';
 			//otherwise he was on a goal (+),
 			else
 				//keep the goal
-				oldlevel[x][y] = '.';
+				newlevel[x][y] = '.';
 			break;	
 		case 'r': 
 			//and the spot youre moving to is open floorspace
-			if(oldlevel[x][y + 1] == ' ')
+			if(newlevel[x][y + 1] == ' ')
 				//move the player into the space
-				oldlevel[x][y + 1] = '@';
+				newlevel[x][y + 1] = '@';
 			//and the spot youre moving to is an empty goal
-			if(oldlevel[x][y + 1] == '.')
+			if(newlevel[x][y + 1] == '.')
 				//move the player onto the goal
-				oldlevel[x][y + 1] = '+';
+				newlevel[x][y + 1] = '+';
 			//and the spot youre moving to is a box-on-floor
-			if(oldlevel[x][y + 1] == '$') {
+			if(newlevel[x][y + 1] == '$') {
 				//and there's a space in front of it,
-				if(oldlevel[x][y + 2] == ' '){
+				if(newlevel[x][y + 2] == ' '){
 					//make that space a box on floor
-					oldlevel[x][y + 2] = '$';
+					newlevel[x][y + 2] = '$';
 					//and move the player into the old box-space
-					oldlevel[x][y + 1] = '@';
+					newlevel[x][y + 1] = '@';
 				}
 				//if it's a goal ahead of the box
 				else{
 					//make the goal a box-on-goal
-					oldlevel[x][y + 2] = '*';
+					newlevel[x][y + 2] = '*';
 					//and move the player into the old box-space
-					oldlevel[x][y + 1] = '@';
+					newlevel[x][y + 1] = '@';
 				}	
 			}
 			//now that we've moved the player and the box, if there was one
 			//lets remove his tail
 			//if he was on empty space,
-			if(oldlevel[x][y] == '@')
+			if(newlevel[x][y] == '@')
 				//leave the space
-				oldlevel[x][y] = ' ';
+				newlevel[x][y] = ' ';
 			//otherwise he was on a goal (+),
 			else
 				//keep the goal
-				oldlevel[x][y] = '.';
+				newlevel[x][y] = '.';
 			break;
 		}
-		return oldlevel;
+		return newlevel;
 	}
 
 }
