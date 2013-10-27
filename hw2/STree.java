@@ -2,7 +2,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -17,13 +16,14 @@ import java.util.Queue;
 public class STree {
 
 	private State root;
-	private static Hashtable<String, Integer> seen;
 	private static boolean JUSTKEEPSWIMMING = true;
 
 	public STree(State r){
-		seen = new Hashtable<String, Integer>();
 		root = r;
-		
+		cleanLog();
+	}
+
+	private void cleanLog() {
 		try {
 			FileWriter fw = new FileWriter("log.txt");
 			fw.write(new Date().toString() + '\n');
@@ -40,12 +40,12 @@ public class STree {
 
 	private String solution(State solution) {
 		JUSTKEEPSWIMMING = false;
-		System.out.println("SOLVED");
+		System.out.println("Solution Found");
 		return solution.getPath();
 	}
 
 	private String failure() {
-		return "failed";
+		return "No Solution Found";
 	}
 
 	public String BFS() {
@@ -64,10 +64,28 @@ public class STree {
 			node = frontier.remove();
 			explored.add(node.getStateString());
 
+			//LOG
+			//node.log("===========================================================\nSTATE: " + node.getPath() + "\n");
+			//node.logState();
+			//node.log("HAS UNEXPLORED CHILDREN: \n");
+			//ENDLOG
+
 			for(char c : node.getValidMoves()) {
 				State child = new State(node, c);
+				//LOG
+				//assert child.equals(new State(new State(new State(node, 'u'), 'd'), c)) : "CHILD EQUALITY BROKEN";
+				//ENDLOG
 				if( !explored.contains(child.getStateString()) && !frontier.contains(child) ) {
-					child.log(child.getStateString() + '\n');
+					
+					//LOG
+					//child.log(c + "\n");
+					//child.logState();
+					//child.log(child.getStateString() + '\n');
+					//for(char mv : child.getValidMoves())
+					//	child.log(mv + ", ");
+					//child.log("\n\n");
+					//ENDLOG
+
 					if(child.isGoal())
 						return solution(child);
 					frontier.add(child);
@@ -75,66 +93,5 @@ public class STree {
 			}
 		}
 		return "huh?";
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-	public void oldDFS() {
-		JUSTKEEPSWIMMING = true;
-		try {
-			FileWriter fw = new FileWriter("log.txt");
-			fw.write(new Date().toString() + '\n');
-			fw.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		root.logState();
-		oldDFS(root);
-	}
-
-	private void oldDFS(State st) {
-		if(JUSTKEEPSWIMMING){
-
-			//if st has been expanded, dont expand again
-			//why isnt this working???
-			if(!seen.containsKey(st.getStateString())) {
-				//check if it is a solution
-				if(st.isGoal()) {
-					//if it is, call solution on it (to compute and return the path)
-					System.out.println(solution(st));
-					//and quit the search
-					return;
-				}
-				//for all valid moves (that havent been expanded yet: 
-				//avoid loops and save some memory)
-				for (char c : st.getValidMoves()) {
-					//make the successor state
-					State tmp = new State(st, c);
-					if(!seen.containsKey(tmp.getStateString())) {
-						//add it to its parent's childset
-						st.addChild(tmp, c);
-
-						tmp.log("path to below: " + tmp.getPath() + '\n');
-						tmp.log(tmp.getStateString() + '\n');
-						tmp.logState();
-					}
-				}
-				//mark it as seen
-				seen.put(st.getStateString(), 1);
-
-				for(State ch : st.getChildren().keySet())
-					oldDFS(ch);
-			} //end if not seen
-		} //end justkeepswimming
 	}
 }

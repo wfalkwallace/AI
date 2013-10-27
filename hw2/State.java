@@ -1,8 +1,6 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Hashtable;
-
 
 /**
  * 
@@ -29,14 +27,12 @@ public class State {
 	private int x;
 	private int y;
 	private int cost;
+	private String path;
 
 	private State parent;
-	private Hashtable<State, Character> children;
-
 
 	public State (char[][] level, int x, int y) {
 		parent = null;
-		children = new Hashtable<State, Character>();
 
 		//2D deep copy
 		this.level = new char[level.length][];
@@ -49,21 +45,26 @@ public class State {
 		this.x = x;
 		this.y = y;
 		cost = 0;
+		path = "";
 
-		setStateString();
+		//recompute the satestring
+		statestring = "";
+		for(char[] row : level)
+			for(char c : row)
+				statestring += c;
 	}
 
 	public State (State par, char dir) {
 
 		parent = par;
-		children = new Hashtable<State, Character>();
-		
 		this.cost = par.getCost() + 1;
-		
+		path = par.getPath() + dir;
+
 		//make the move
 		char[][] tmplevel = computeState(par, dir);
 
-		this.level = new char[tmplevel.length][];
+		//2D deep copy
+		level = new char[tmplevel.length][];
 		for(int i = 0; i < tmplevel.length; i++){
 			level[i] = new char[tmplevel[i].length];
 			for(int j = 0; j < tmplevel[i].length; j++)
@@ -91,13 +92,16 @@ public class State {
 		}
 
 		//recompute the satestring
-		setStateString();
-	} 
+		statestring = "";
+		for(char[] row : level)
+			for(char c : row)
+				statestring += c;
+	}
 
 	public int getCost() {
 		return cost;
 	}
-	
+
 	public char[][] getState() {
 		return level;
 	}
@@ -121,14 +125,13 @@ public class State {
 				}
 				fw.write('\n');
 			}
-			fw.write('\n');
 			fw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void printState() {
 		for(char[] row : level){
 			for(char c : row){
@@ -139,7 +142,7 @@ public class State {
 		System.out.println();
 
 	}
-	
+
 	public void log(String line) {
 		try {
 			FileWriter fw = new FileWriter("log.txt", true);
@@ -151,16 +154,6 @@ public class State {
 		}
 	}
 
-	private void setStateString() {
-		String tmp = "";
-		for(char[] row : level){
-			for(char c : row){
-				tmp += c;
-			}
-		}
-		statestring = tmp;
-	}
-
 	public String getStateString() {
 		return statestring;
 	}
@@ -169,39 +162,30 @@ public class State {
 		return parent;
 	}
 
-	public void addChild(State ch, char dir) {
-		children.put(ch, dir);
-	}
-
-	public Hashtable<State, Character> getChildren() {
-		return children;
-	}
-
 	public String getPath() {
-		if(parent == null)
-			return "";
-		return parent.getPath() + parent.getChildren().get(this);
+		return path;
 	}
 
+	public int hashCode() {
+		return statestring.hashCode();
+	}
+
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		if (!(obj instanceof State))
+			return false;
+		return ( ((State) obj).getStateString().equals(this.getStateString()) ) ? true : false;
+	}
 
 	public boolean isGoal() {
-		
 		for(int i = 0; i < statestring.length(); i++) { 
-		    char c = statestring.charAt(i); 
+			char c = statestring.charAt(i); 
 			if(c == '.' || c == '+')
 				return false;
 		}
 		return true;
 	}
-
-
-	//	# (hash) Wall
-	//	  (space) open floor
-	//	. (period) Empty goal
-	//	@ (at) Player on floor
-	//	+ (plus) Player on goal 
-	//	$ (dollar) Box on floor
-	//	* (asterisk) Box on goal
 
 	private boolean isUpValid() {
 		//there's always an up, because I'll check later 
@@ -269,7 +253,7 @@ public class State {
 		if(left == ' ' || left == '.') 
 			return true;
 		//lets check if leftleft exists: if the column is >1, then carry on checking
-		if(y > 1)
+		if(y <= 1)
 			//if it's not, it's not an open space/goal, and there isn't 
 			//a space two rows right to push the box into
 			return false;
@@ -309,7 +293,6 @@ public class State {
 		return false;
 	}
 
-
 	public ArrayList<Character> getValidMoves() {
 
 		ArrayList<Character> moves = new ArrayList<Character>();
@@ -333,7 +316,7 @@ public class State {
 		char[][] oldlevel = par.getState();
 		int x = par.getX();
 		int y = par.getY();
-		
+
 		//2D deep copy
 		char[][] newlevel = new char[oldlevel.length][];
 		for(int i = 0; i < oldlevel.length; i++){
@@ -549,7 +532,7 @@ public class State {
 					newlevel[x][y + 1] = '+';
 				}	
 			}
-			
+
 			//now that we've moved the player (and the box, if there was one)
 			//lets remove his tail
 			//if he was on empty space,
