@@ -20,7 +20,9 @@ public class SokoTest {
 		LevelLoader ll = new LevelLoader(lvl_src);		
 		STree tree = new STree(ll.init());
 		tree.getRoot().printState();
-		System.out.println(tree.BFS());
+		String[] solution = tree.BFS();
+		for(String s : solution)
+			System.out.println(s);
 
 	}
 
