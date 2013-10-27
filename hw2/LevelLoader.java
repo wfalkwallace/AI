@@ -28,7 +28,7 @@ public class LevelLoader {
 
 	public LevelLoader (File levelsource) {
 		parseRowList(loadRowList(levelsource));
-//		printLevel();
+		//printLevel();
 	}
 
 	public State init() {

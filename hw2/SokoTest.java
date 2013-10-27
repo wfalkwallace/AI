@@ -19,8 +19,8 @@ public class SokoTest {
 		File lvl_src = new File("test.txt");
 		LevelLoader ll = new LevelLoader(lvl_src);		
 		STree tree = new STree(ll.init());
-//		tree.getRoot().printState(0);
-		tree.DFS();
+		tree.getRoot().printState();
+		tree.BFS();
 
 	}
 

@@ -28,56 +28,76 @@ public class State {
 	private char[][] level;
 	private int x;
 	private int y;
+	private int cost;
 
 	private State parent;
 	private Hashtable<State, Character> children;
 
-	public State (char[][] map, int x, int y) {
+
+	public State (char[][] level, int x, int y) {
 		parent = null;
 		children = new Hashtable<State, Character>();
 
-		this.level = map;
+		//2D deep copy
+		this.level = new char[level.length][];
+		for(int i = 0; i < level.length; i++){
+			this.level[i] = new char[level[i].length];
+			for(int j = 0; j < level[i].length; j++)
+				this.level[i][j]=level[i][j];
+		}
+
 		this.x = x;
 		this.y = y;
+		cost = 0;
 
 		setStateString();
 	}
 
-	public State (State s, char d) {
+	public State (State par, char dir) {
 
-		parent = s;
+		parent = par;
 		children = new Hashtable<State, Character>();
+		
+		this.cost = par.getCost() + 1;
+		
 		//make the move
-		char[][] tmplevel = computeState(s.getState(), d, s.getX(), s.getY());
-		level = new char[tmplevel.length][];
+		char[][] tmplevel = computeState(par, dir);
+
+		this.level = new char[tmplevel.length][];
 		for(int i = 0; i < tmplevel.length; i++){
 			level[i] = new char[tmplevel[i].length];
 			for(int j = 0; j < tmplevel[i].length; j++)
 				level[i][j]=tmplevel[i][j];
 		}
+
 		//get new x and y
-		switch (d) {
+		switch (dir) {
 		case 'u': 
-			x = s.getX() - 1;
-			y = s.getY();
+			x = par.getX() - 1;
+			y = par.getY();
 			break;
 		case 'd': 
-			x = s.getX() + 1;
-			y = s.getY();
+			x = par.getX() + 1;
+			y = par.getY();
 			break;
 		case 'l': 
-			x = s.getX();
-			y = s.getY() - 1;
+			x = par.getX();
+			y = par.getY() - 1;
 			break;
 		case 'r': 
-			x = s.getX();
-			y = s.getY() + 1;
+			x = par.getX();
+			y = par.getY() + 1;
 			break;	
 		}
 
+		//recompute the satestring
 		setStateString();
 	} 
 
+	public int getCost() {
+		return cost;
+	}
+	
 	public char[][] getState() {
 		return level;
 	}
@@ -90,53 +110,48 @@ public class State {
 		return y;
 	}
 
-	public void printState(int outputStream) {
-		if(outputStream == 0) {
+	public void logState() {
+		try {
+			FileWriter fw = new FileWriter("log.txt", true);
+
+
 			for(char[] row : level){
 				for(char c : row){
-					System.out.print(c);
+					fw.write(c);
 				}
-				System.out.println();
+				fw.write('\n');
+			}
+			fw.write('\n');
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void printState() {
+		for(char[] row : level){
+			for(char c : row){
+				System.out.print(c);
 			}
 			System.out.println();
 		}
-		else{
+		System.out.println();
 
-			try {
-				FileWriter fw = new FileWriter("log.txt", true);
-
-
-				for(char[] row : level){
-					for(char c : row){
-						fw.write(c);
-					}
-					fw.write('\n');
-				}
-				fw.write('\n');
-				fw.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	}
+	
+	public void log(String line) {
+		try {
+			FileWriter fw = new FileWriter("log.txt", true);
+			fw.write(line);
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	public void print(String line, int outputStream) {
-		if(outputStream == 0)
-			System.out.println(line);
-		else {
-			try {
-				FileWriter fw = new FileWriter("log.txt", true);
-				fw.write(line);
-				fw.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public String setStateString() {
+	private void setStateString() {
 		String tmp = "";
 		for(char[] row : level){
 			for(char c : row){
@@ -144,7 +159,6 @@ public class State {
 			}
 		}
 		statestring = tmp;
-		return statestring;
 	}
 
 	public String getStateString() {
@@ -171,14 +185,12 @@ public class State {
 
 
 	public boolean isGoal() {
-		for(char[] row : level){
-			for(char c : row){
-				if(c == '.' || c == '+')
-					return false;
-			}
+		
+		for(int i = 0; i < statestring.length(); i++) { 
+		    char c = statestring.charAt(i); 
+			if(c == '.' || c == '+')
+				return false;
 		}
-		//if there are no empty or player-covered goals, success
-		// assume validity of other checks and balances 
 		return true;
 	}
 
@@ -193,7 +205,7 @@ public class State {
 
 	private boolean isUpValid() {
 		//there's always an up, because I'll check later 
-		//to make sure you dont move into a wall					
+		//to make sure you dont move into a wall
 		char up = level[x - 1][y];;
 		//if youre below a wall
 		if(up == '#') 
@@ -317,16 +329,20 @@ public class State {
 		return moves;
 	}
 
-	private char[][] computeState(char[][] oldlevel, char mv, int x, int y) {
+	private char[][] computeState(State par, char dir) {
+		char[][] oldlevel = par.getState();
+		int x = par.getX();
+		int y = par.getY();
+		
+		//2D deep copy
 		char[][] newlevel = new char[oldlevel.length][];
-
 		for(int i = 0; i < oldlevel.length; i++){
 			newlevel[i] = new char[oldlevel[i].length];
 			for(int j = 0; j < oldlevel[i].length; j++)
 				newlevel[i][j]=oldlevel[i][j];
 		}
 
-		switch (mv) {
+		switch (dir) {
 		//if move is up
 		case 'u': 
 			//the spot youre moving to is open floorspace
@@ -533,7 +549,8 @@ public class State {
 					newlevel[x][y + 1] = '+';
 				}	
 			}
-			//now that we've moved the player and the box, if there was one
+			
+			//now that we've moved the player (and the box, if there was one)
 			//lets remove his tail
 			//if he was on empty space,
 			if(newlevel[x][y] == '@')
