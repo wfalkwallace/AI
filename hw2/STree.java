@@ -40,12 +40,22 @@ public class STree {
 
 	private String solution(State solution) {
 		JUSTKEEPSWIMMING = false;
-		System.out.println("Solution Found");
+		//LOG
+		//System.out.println("Solution Found");
+		//ENDLOG
+		return solution.getPath();
+	}
+	
+	private String solution(State solution, int generated, int repeated, int fringe, int seen, int start) {
+		JUSTKEEPSWIMMING = false;
+		//LOG
+		//System.out.println("Solution Found");
+		//ENDLOG
 		return solution.getPath();
 	}
 
 	private String failure() {
-		return "No Solution Found";
+		return "Search Completed and No Solution Found";
 	}
 
 	public String BFS() {
