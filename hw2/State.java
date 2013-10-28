@@ -102,6 +102,43 @@ public class State implements Comparable<State> {
 		return cost;
 	}
 
+	//sum of shortest paths from boxes to goals
+	public int manhDist() {
+		ArrayList<int[]> goals = new ArrayList<int[]>();
+		ArrayList<int[]> boxes = new ArrayList<int[]>();
+		int sum = 0;
+
+		for(int i = 0; i < level.length; i++) {
+			for(int j = 0; j < level[i].length; j++) {
+				if(level[i][j] == '.' || level[i][j] == '*')
+					goals.add(new int[] {i, j});
+				if(level[i][j] == '$')
+					boxes.add(new int[] {i, j});			
+			}
+		}
+		
+		for(int[] b : boxes){
+			int min = 1000;
+			for(int[] g : goals){
+				int md = Math.abs(b[0] - g[0]) + Math.abs(b[1] - g[1]);
+				if(md < min)
+					min = md;
+			}
+			sum += min;
+		}
+		return sum;
+	}
+
+	//number of empty goals
+	public int openGoals() {
+		int opengoals = 0;
+		for(char[] row : level)
+			for(char c : row)
+				if(c == '.')
+					opengoals++;
+		return opengoals;
+	}
+
 	public char[][] getState() {
 		return level;
 	}

@@ -22,7 +22,7 @@ public class STree {
 
 	public STree(State r){
 		root = r;
-		cleanLog();
+//		cleanLog();
 	}
 
 	private void cleanLog() {
@@ -134,6 +134,45 @@ public class STree {
 	}
 	//ENDBFS
 
+	//DFS
+	public String[] DFS() {
+		JUSTKEEPSWIMMING = true;
+		//data and results
+		long start = System.nanoTime();
+		int rep = 0;
+		int gen = 1;
+
+		//here we go
+		State node = root;
+		HashSet<String> explored = new HashSet<String>();
+		Stack<State> frontier = new Stack<State>();
+		
+		frontier.push(node);
+		while(JUSTKEEPSWIMMING) {
+			if(frontier.peek() == null)
+				return failure();
+			node = frontier.pop();
+			if( !explored.contains(node.getStateString()) ) {
+				explored.add(node.getStateString());
+				if(node.isGoal())
+					return solution(node, gen, rep, frontier.size(), explored.size(), start);
+				for(char c : node.getValidMoves()) {
+					State child = new State(node, c);
+					gen++;
+					if( !explored.contains(child.getStateString()) ) {
+						frontier.add(child);
+					}
+					else
+						rep++;
+				}
+			}
+			else
+				rep++;
+		}
+		return new String[0];
+	}
+	//ENDDFS
+	
 	//UCS
 	private int getCostFromPQ(PriorityQueue<State> pq, State comp) {
 		for(Object orig : pq.toArray()) {
@@ -181,9 +220,16 @@ public class STree {
 	}
 	//ENDUCS
 
-	//DFS
-	public String[] DFS() {
-		JUSTKEEPSWIMMING = true;
+	//GREEDYOG
+	private int getOGFromPQ(PriorityQueue<State> pq, State comp) {
+		for(Object orig : pq.toArray()) {
+			if( ((State) orig).equals(comp) )
+				return ((State) orig).openGoals();
+		}
+		return -1;
+	}
+
+	public String[] GreedyOG() {
 		//data and results
 		long start = System.nanoTime();
 		int rep = 0;
@@ -191,40 +237,177 @@ public class STree {
 
 		//here we go
 		State node = root;
+		PriorityQueue<State> frontier = new PriorityQueue<State>(11, new OpenGoals());
 		HashSet<String> explored = new HashSet<String>();
-		Stack<State> frontier = new Stack<State>();
-		
-		frontier.push(node);
+		frontier.add(node);
+
 		while(JUSTKEEPSWIMMING) {
 			if(frontier.peek() == null)
 				return failure();
-			node = frontier.pop();
-			if( !explored.contains(node.getStateString()) ) {
-				explored.add(node.getStateString());
-				if(node.isGoal())
-					return solution(node, gen, rep, frontier.size(), explored.size(), start);
-				for(char c : node.getValidMoves()) {
-					State child = new State(node, c);
-					gen++;
-					if( !explored.contains(child.getStateString()) ) {
-						frontier.add(child);
-					}
-					else
-						rep++;
+			node = frontier.poll();
+			if(node.isGoal())
+				return solution(node, gen, rep, frontier.size(), explored.size(), start);
+			explored.add(node.getStateString());
+
+			for(char c : node.getValidMoves()) {
+				State child = new State(node, c);
+				gen++;
+				if( !explored.contains(child.getStateString()) && !frontier.contains(child) ) {
+					frontier.add(child);
 				}
+				else if(frontier.contains(child) && getOGFromPQ(frontier, child) > child.openGoals()){
+					frontier.remove(child);
+					frontier.add(child);
+				}
+				else if(explored.contains(child.getStateString()))
+					rep++;
 			}
-			else
-				rep++;
 		}
 		return new String[0];
 	}
-	//ENDDFS
+	//ENDGREEDYOG
 	
+	//GREEDYMD
+	private int getMDFromPQ(PriorityQueue<State> pq, State comp) {
+		for(Object orig : pq.toArray()) {
+			if( ((State) orig).equals(comp) )
+				return ((State) orig).manhDist();
+		}
+		return -1;
+	}
+
+	public String[] GreedyMD() {
+		//data and results
+		long start = System.nanoTime();
+		int rep = 0;
+		int gen = 1;
+
+		//here we go
+		State node = root;
+		PriorityQueue<State> frontier = new PriorityQueue<State>(11, new ManhDist());
+		HashSet<String> explored = new HashSet<String>();
+		frontier.add(node);
+
+		while(JUSTKEEPSWIMMING) {
+			if(frontier.peek() == null)
+				return failure();
+			node = frontier.poll();
+			if(node.isGoal())
+				return solution(node, gen, rep, frontier.size(), explored.size(), start);
+			explored.add(node.getStateString());
+
+			for(char c : node.getValidMoves()) {
+				State child = new State(node, c);
+				gen++;
+				if( !explored.contains(child.getStateString()) && !frontier.contains(child) ) {
+					frontier.add(child);
+				}
+				else if(frontier.contains(child) && getMDFromPQ(frontier, child) > child.manhDist()){
+					frontier.remove(child);
+					frontier.add(child);
+				}
+				else if(explored.contains(child.getStateString()))
+					rep++;
+			}
+		}
+		return new String[0];
+	}
+	//ENDGREEDYMD
 	
+	//ASTARMD
+	private int getStarMDFromPQ(PriorityQueue<State> pq, State comp) {
+		for(Object orig : pq.toArray()) {
+			if( ((State) orig).equals(comp) )
+				return ((State) orig).manhDist() + ((State) orig).getCost();
+		}
+		return -1;
+	}
+
+	public String[] AStarMD() {
+		//data and results
+		long start = System.nanoTime();
+		int rep = 0;
+		int gen = 1;
+
+		//here we go
+		State node = root;
+		PriorityQueue<State> frontier = new PriorityQueue<State>(11, new StarMD());
+		HashSet<String> explored = new HashSet<String>();
+		frontier.add(node);
+
+		while(JUSTKEEPSWIMMING) {
+			if(frontier.peek() == null)
+				return failure();
+			node = frontier.poll();
+			if(node.isGoal())
+				return solution(node, gen, rep, frontier.size(), explored.size(), start);
+			explored.add(node.getStateString());
+
+			for(char c : node.getValidMoves()) {
+				State child = new State(node, c);
+				gen++;
+				if( !explored.contains(child.getStateString()) && !frontier.contains(child) ) {
+					frontier.add(child);
+				}
+				else if(frontier.contains(child) && getStarMDFromPQ(frontier, child) > (child.manhDist() + child.manhDist())){
+					frontier.remove(child);
+					frontier.add(child);
+				}
+				else if(explored.contains(child.getStateString()))
+					rep++;
+			}
+		}
+		return new String[0];
+	}
+	//ENDASTARMD
 	
-	
-	
-	
+	//ASTAROG
+		private int getStarOGFromPQ(PriorityQueue<State> pq, State comp) {
+			for(Object orig : pq.toArray()) {
+				if( ((State) orig).equals(comp) )
+					return ((State) orig).openGoals() + ((State) orig).getCost();
+			}
+			return -1;
+		}
+
+		public String[] AStarOG() {
+			//data and results
+			long start = System.nanoTime();
+			int rep = 0;
+			int gen = 1;
+
+			//here we go
+			State node = root;
+			PriorityQueue<State> frontier = new PriorityQueue<State>(11, new StarOG());
+			HashSet<String> explored = new HashSet<String>();
+			frontier.add(node);
+
+			while(JUSTKEEPSWIMMING) {
+				if(frontier.peek() == null)
+					return failure();
+				node = frontier.poll();
+				if(node.isGoal())
+					return solution(node, gen, rep, frontier.size(), explored.size(), start);
+				explored.add(node.getStateString());
+
+				for(char c : node.getValidMoves()) {
+					State child = new State(node, c);
+					gen++;
+					if( !explored.contains(child.getStateString()) && !frontier.contains(child) ) {
+						frontier.add(child);
+					}
+					else if(frontier.contains(child) && getStarOGFromPQ(frontier, child) > (child.openGoals() + child.manhDist())){
+						frontier.remove(child);
+						frontier.add(child);
+					}
+					else if(explored.contains(child.getStateString()))
+						rep++;
+				}
+			}
+			return new String[0];
+		}
+		//ENDASTAROG
+
 	
 	
 	

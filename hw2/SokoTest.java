@@ -26,12 +26,14 @@ public class SokoTest {
 			Scanner input = new Scanner(System.in);
 			System.out.println("Enter a sokoban puzzle file [<filepath>]:");
 			levelpath = input.nextLine();
-			System.out.println("Specify which search to use [1-5]: ");
+			System.out.println("Specify which search to use [1-7]: ");
 			System.out.println("1) BFS");
 			System.out.println("2) DFS");
 			System.out.println("3) UCS");
-			System.out.println("4) Greedy Best First Search");
-			System.out.println("5) A* Search");
+			System.out.println("4) Greedy Best First Search (with open goals heuristic)");
+			System.out.println("5) Greedy Best First Search (with Manhattan distance heuristic)");
+			System.out.println("6) A* Search (with open goals heuristic)");
+			System.out.println("7) A* Search (with Manhattan distance heuristic)");
 			searchtype = input.nextInt();
 			System.out.println("Statistics [y/n]:");
 			stats = input.next().charAt(0);
@@ -61,10 +63,16 @@ public class SokoTest {
 			searchstring = "UCS";
 			break;
 		case 4:
-			searchstring = "Greedy";
+			searchstring = "Greedy (using OG)";
 			break;
 		case 5:
-			searchstring = "A*";
+			searchstring = "Greedy (using MD)";
+			break;
+		case 6:
+			searchstring = "A* (using OG)";
+			break;
+		case 7:
+			searchstring = "A* (using MD)";
 			break;
 		default:
 			searchstring = "nothing";
@@ -96,44 +104,35 @@ public class SokoTest {
 			else
 				System.out.println(tree.UCS()[0]);
 			break;
-//		case 4:
-//			if(stats == 'y')
-//				for(String s : tree.Greedy())
-//					System.out.println(s);
-//			else
-//				System.out.println(tree.Greedy()[0]);
-//			break;
-//		case 5:
-//			if(stats == 'y')
-//				for(String s : tree.AStar())
-//					System.out.println(s);
-//			else
-//				System.out.println(tree.AStar()[0]);
-//			break;
+		case 4:
+			if(stats == 'y')
+				for(String s : tree.GreedyOG())
+					System.out.println(s);
+			else
+				System.out.println(tree.GreedyOG()[0]);
+			break;
+		case 5:
+			if(stats == 'y')
+				for(String s : tree.GreedyMD())
+					System.out.println(s);
+			else
+				System.out.println(tree.GreedyMD()[0]);
+			break;
+		case 6:
+			if(stats == 'y')
+				for(String s : tree.AStarOG())
+					System.out.println(s);
+			else
+				System.out.println(tree.AStarOG()[0]);
+			break;
+		case 7:
+			if(stats == 'y')
+				for(String s : tree.AStarMD())
+					System.out.println(s);
+			else
+				System.out.println(tree.AStarMD()[0]);
+			break;
 		}
-
-
-		//BFS
-		//String[] bfs = tree.BFS();
-		//System.out.println("BFS:");
-		//for(String s : bfs)
-		//	System.out.println(s);
-		//System.out.println();
-
-		//DFS
-		//String[] dfs = tree.DFS();
-		//System.out.println("DFS:");
-		//for(String s : dfs)
-		//	System.out.println(s);
-		//System.out.println();
-
-		//UCS
-		//String[] ucs = tree.UCS();
-		//System.out.println("UCS:");
-		//for(String s : ucs)
-		//	System.out.println(s);
-		//System.out.println();
-
 	}
 
 
