@@ -1,0 +1,377 @@
+[21:54]wgf2104@dyn-160-39-133-168:hw2 $ make
+javac LevelLoader.java
+javac ManhDist.java
+javac OpenGoals.java
+javac SokoTest.java
+[21:54]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/0.txt" 1 y
+Running BFS on,
+####
+# .#
+#  ###
+#*@  #
+#  $ #
+#    #
+######
+
+Solution: rrdldluuu
+Generated: 690
+Repeated: 273
+Fringe: 81
+Explored: 248
+Duration: 0.050807
+[21:55]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/1.txt" 1 y
+Running BFS on,
+#######
+# .   #
+# # # #
+# # # #
+# $@  #
+#     #
+#######
+
+Solution: dllurdruuuddrruuull
+Generated: 747
+Repeated: 356
+Fringe: 19
+Explored: 303
+Duration: 0.056307
+[21:55]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/3.txt" 1 y
+Running BFS on,
+  ######
+  # ..@#
+  # $$ #
+  ## ###
+   # #
+   # #
+#### #
+#    ##
+# #   #
+#   # #
+###   #
+  #####
+
+Solution: llddddddldddrruuluuuuuuurrdlulddddddlllddrrudlluurrdddrruuluuuuuulurdddddddrddlluudlluurrdruuuuuu
+Generated: 9392
+Repeated: 4531
+Fringe: 36
+Explored: 4101
+Duration: 0.168103
+[21:55]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/0.txt" 2 y
+Running DFS on,
+####
+# .#
+#  ###
+#*@  #
+#  $ #
+#    #
+######
+
+Solution: rrdlrdlllurldrrurdllluruuldrdrrulrdlldluruu
+Generated: 914
+Repeated: 552
+Fringe: 31
+Explored: 331
+Duration: 0.045267
+[21:55]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/1.txt" 2 y
+Running DFS on,
+#######
+# .   #
+# # # #
+# # # #
+# $@  #
+#     #
+#######
+
+Solution: rrdllllurrlldrrrrulrdlluuuddrrdlllluuuurrlldddrrrruuull
+Generated: 729
+Repeated: 406
+Fringe: 26
+Explored: 297
+Duration: 0.047602
+[21:55]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/3.txt" 2 y
+Running DFS on,
+  ######
+  # ..@#
+  # $$ #
+  ## ###
+   # #
+   # #
+#### #
+#    ##
+# #   #
+#   # #
+###   #
+  #####
+
+Solution: llddddddlllddrrdrruulrddllulluurrruuuuulurrrdlrullddddddlllddrrudlluurrllddrrdrruulrddllulluurrdruldrrddllulluurrrudlllddrrurulruuddldrrddllulluurlddrrdrruuluuuudddlruuuuddddldrrddllulluurlddrrdrruuluuuuuulurldrdddddlrdrddllulluurrllddrrdrruuluuuuuu
+Generated: 5209
+Repeated: 2840
+Fringe: 61
+Explored: 2308
+Duration: 0.131281
+[21:55]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/0.txt" 3 y
+Running UCS on,
+####
+# .#
+#  ###
+#*@  #
+#  $ #
+#    #
+######
+
+Solution: rrdldluuu
+Generated: 1031
+Repeated: 435
+Fringe: 90
+Explored: 373
+Duration: 0.060277
+[21:55]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/1.txt" 3 y
+Running UCS on,
+#######
+# .   #
+# # # #
+# # # #
+# $@  #
+#     #
+#######
+
+Solution: dllurdruuuddrruuull
+Generated: 877
+Repeated: 423
+Fringe: 17
+Explored: 356
+Duration: 0.063839
+[21:55]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/3.txt" 3 y
+Running UCS on,
+  ######
+  # ..@#
+  # $$ #
+  ## ###
+   # #
+   # #
+#### #
+#    ##
+# #   #
+#   # #
+###   #
+  #####
+
+Solution: llddddddldddrruuluuuuuuurrdlulddddddlllddrrudlluurrdddrruuluuuuuulurdddddddrddlluudlluurrdruuuuuu
+Generated: 9653
+Repeated: 4667
+Fringe: 26
+Explored: 4217
+Duration: 0.182721
+[21:55]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/0.txt" 4 y
+Running Greedy (using OG) on,
+####
+# .#
+#  ###
+#*@  #
+#  $ #
+#    #
+######
+
+Solution: ddruruldluu
+Generated: 267
+Repeated: 94
+Fringe: 44
+Explored: 96
+Duration: 0.035486
+[21:56]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/1.txt" 4 y
+Running Greedy (using OG) on,
+#######
+# .   #
+# # # #
+# # # #
+# $@  #
+#     #
+#######
+
+Solution: uuulldddrrdrruldluuuddlluuurrdddrruuull
+Generated: 797
+Repeated: 379
+Fringe: 11
+Explored: 328
+Duration: 0.062533
+[21:56]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/3.txt" 4 y
+Running Greedy (using OG) on,
+  ######
+  # ..@#
+  # $$ #
+  ## ###
+   # #
+   # #
+#### #
+#    ##
+# #   #
+#   # #
+###   #
+  #####
+
+Solution: llddddddldddrruulrddlluuruuuuuuurrdlulddddddlddlluurrllddrrdrruululllddrrurulruuudddlddlluurlddrrdrruuluuuuuulurdddddddrddllulluurrdruuuuuu
+Generated: 5069
+Repeated: 2373
+Fringe: 109
+Explored: 2209
+Duration: 0.137258
+[21:56]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/0.txt" 5 y
+Running Greedy (using MD) on,
+####
+# .#
+#  ###
+#*@  #
+#  $ #
+#    #
+######
+
+Solution: rrdldluuu
+Generated: 94
+Repeated: 35
+Fringe: 18
+Explored: 33
+Duration: 0.023078
+[21:56]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/1.txt" 5 y
+Running Greedy (using MD) on,
+#######
+# .   #
+# # # #
+# # # #
+# $@  #
+#     #
+#######
+
+Solution: dllurdruuuddrruuull
+Generated: 280
+Repeated: 126
+Fringe: 15
+Explored: 111
+Duration: 0.050367
+[21:56]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/3.txt" 5 y
+Running Greedy (using MD) on,
+  ######
+  # ..@#
+  # $$ #
+  ## ###
+   # #
+   # #
+#### #
+#    ##
+# #   #
+#   # #
+###   #
+  #####
+
+Solution: llddddddldddrruulrddlluuruuuuuuurrdlulddddddlddlluurrdddrruuluuuuuuddddddrddlluuruuuuuulurdddddddldlluurrdruuuuuu
+Generated: 5269
+Repeated: 2520
+Fringe: 50
+Explored: 2274
+Duration: 0.201261
+[21:56]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/0.txt" 6 y
+Running A* (using OG) on,
+####
+# .#
+#  ###
+#*@  #
+#  $ #
+#    #
+######
+
+Solution: rrdldluuu
+Generated: 765
+Repeated: 315
+Fringe: 80
+Explored: 277
+Duration: 0.067241
+[21:56]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/1.txt" 6 y
+Running A* (using OG) on,
+#######
+# .   #
+# # # #
+# # # #
+# $@  #
+#     #
+#######
+
+Solution: dllurdruuuddrruuull
+Generated: 832
+Repeated: 399
+Fringe: 18
+Explored: 337
+Duration: 0.063424
+[21:56]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/3.txt" 6 y
+Running A* (using OG) on,
+  ######
+  # ..@#
+  # $$ #
+  ## ###
+   # #
+   # #
+#### #
+#    ##
+# #   #
+#   # #
+###   #
+  #####
+
+Solution: llddddddldddrruuluuuuuuurrdlulddddddlllddrrudlluurrdddrruuluuuuuulurdddddddrddlluudlluurrdruuuuuu
+Generated: 9598
+Repeated: 4642
+Fringe: 22
+Explored: 4192
+Duration: 0.215287
+[21:56]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/0.txt" 7 y
+Running A* (using MD) on,
+####
+# .#
+#  ###
+#*@  #
+#  $ #
+#    #
+######
+
+Solution: rrdldluuu
+Generated: 439
+Repeated: 178
+Fringe: 53
+Explored: 160
+Duration: 0.065548
+[21:56]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/1.txt" 7 y
+Running A* (using MD) on,
+#######
+# .   #
+# # # #
+# # # #
+# $@  #
+#     #
+#######
+
+Solution: dllurdruuuddrruuull
+Generated: 576
+Repeated: 267
+Fringe: 21
+Explored: 230
+Duration: 0.069963
+[21:56]wgf2104@dyn-160-39-133-168:hw2 $ java SokoTest "levels/3.txt" 7 y
+Running A* (using MD) on,
+  ######
+  # ..@#
+  # $$ #
+  ## ###
+   # #
+   # #
+#### #
+#    ##
+# #   #
+#   # #
+###   #
+  #####
+
+Solution: llddddddldddrruuluuuuuulurrrdlulddddddlllddrrudlluurrdddrruuluuuuuulurdddddddrddlluudlluurrdruuuuuu
+Generated: 9440
+Repeated: 4555
+Fringe: 35
+Explored: 4122
+Duration: 0.264868
+[21:56]wgf2104@dyn-160-39-133-168:hw2 $ 
