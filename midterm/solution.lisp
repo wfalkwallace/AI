@@ -1,0 +1,6 @@
+(defun myMin (l)
+ (if (null (cdr (l))
+  (car l)
+  (if (< (car l) (myMin (cdr l)))
+   (car l)
+   (myMin (cdr l)))))
