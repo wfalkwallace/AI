@@ -1,0 +1,63 @@
+COMS W4701 Artificial Intelligence
+Fall 2013
+Assignment 3: Battle of the Gomoku Agents
+Due: 11:59:59 EST November 19th 2013 AD
+
+The intent of apply the adversarial search techniques we discussed in class by constructing your first game playing agent. For this project, you will be implementing an agent which is capable of playing the game Gomoku.
+
+The Game
+
+The game has two players: x and o. The players alternate turns, with player x moving first at the beginning of each game.
+
+The game board consists of n by n intersections; when empty these can be represented with a period ".". Each turn a player places one of his or her game pieces at an unoccupied intersection, after which the position is marked with their stone character.
+
+The game ends when one of the following conditions is met:
+- One of the players creates an unbroken chain of m *and exactly m* pieces. The player who has formed the m stone chain wins.
+- There are no open intersections because the game board is completely full of stones, in which case the outcome is a draw.
+
+Your player will be required to run with a set total amount of time. A useful function to consider for this assignment is (get-internal-real-time). It is also useful to think of dividing the time you have left equally among the subtrees you want to search, stopping along any path when you're coming close to running out of the allocated time. If you do not select a move before time expires, your move is forfeit.
+
+When initially run, your program should take the game board dimension n, winning chain length m, and move selection time limit s in seconds as input.
+
+Your player function should take a game state as input and return a move in the format [row column]. If you cannot move, return [-1 -1]. TIf you return an illegal move, the other player (and/or the TA) will detect it and you will lose.
+
+Your program should support three modes of play:
+- Mode one will accept moves through stdin as input and return moves and an updated board to stdout as output. You'll use this version in the Gomoku agent tournament!
+- In mode two, your agent will play against itself, outputtting the moves it selects and an updated board state to the screen as output.
+- In mode three, your agent will play against itself, outputtting the moves it selects and an updated board state to the screen as output.
+
+Both cases should detect win conditions and output the appropriate game outcome when detected.
+
+What to turn in (60% of your grade is proper functioning code, 20% of your grade is the writeup, 20% available in the tournament!)
+
+- A single code file named player-your-account containing:
+	- Your name and uni at the top
+	- A time-based version of alpha-beta which plays Gomoku
+	- A good evaluation function for your player
+	- Any supporting code 
+- A single writeup file containing:
+	- Your name and uni at the top
+	- A paragraph or two justifying the evaluation function you designed. You may wish to talk about:
+		- Why it provides an appropriate approximation to the "goodness" of a particular board.
+		- How it balances quickness of execution (i.e. enables deeper search) vs. accuracy.
+		- How you determined it was a good evaluation function.
+		- The efficiency of your implementation.
+		- Any extensions you implemented
+	- A paragraph decribing the outcome of you challenging your own creation in mode one five times.
+	- A paragraph decribing the outcome of running your agent in mode two five times.
+	- A paragraph decribing the outcome of running your agent in mode three five times.
+
+Collaboration Policy
+Before turning in your assignment, you are allowed to try your player out against the players written by your fellow students; however, you are quite explicitly not allowed to look at any code (except what we provide) or descriptions of code for these games (or any games that are similar).
+
+You are, of course, allowed to play the games yourself or to play against humans. Again, do not let your discussions turn into any descriptions of an algorithm.
+
+The Tournament
+
+If you wish, your Gomoku game playing agent will be entered into a competition with the other players submitted by the class. Winners of the competition will receive credit for the assignment as follows:
+- 1st round: Losers 5 points, winners 10
+- 2nd round: Losers 2 more points, winners 3
+- 3rd round: Loosers 1 more point, winners 2
+- 4th round and onward: Losers 1 more point, winners 2
+- Final grand winner gets a  final 3 points
+(If there are fewer than 4 rounds, points will be adjusted so the grand winner can get 100 points. If there are more rounds, enjoy the extra points!)
