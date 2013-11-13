@@ -35,7 +35,7 @@ public class GomoTest {
 			turntime = Integer.parseInt(args[2]);
 		}
 		
-		GState root = new GState();
+		GState root = new GState(boardsize, chainlength);
 		GTree tree = new GTree(root);
 
 		
