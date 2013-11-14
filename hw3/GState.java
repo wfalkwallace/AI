@@ -15,7 +15,7 @@ public class GState {
 	private int boardsize;
 	private int chainlength;
 	private char[][] board;
-	
+
 	private String statestring;
 	private int cost;
 
@@ -33,17 +33,22 @@ public class GState {
 		for(int i = 0; i < getBoardsize(); i++)
 			for(int j = 0; j < getBoardsize(); j++)
 				board[i][j] = '.';
+		setStateString();
 	}
 
-	public GState(GState par, char dir) {
+	public GState(GState par, char player, int x, int y) {
 		parent = par;
 		children = new ArrayList<GState>();
 		boardsize = par.getBoardsize();
 		chainlength = par.getChainlength();
+
 		for(int i = 0; i < par.getBoardsize(); i++)
 			for(int j = 0; j < par.getBoardsize(); j++)
 				board[i][j] = par.getBoard()[i][j];
 
+		board[x][y] = player;
+
+		setStateString();
 	}
 
 	/**
@@ -77,10 +82,27 @@ public class GState {
 	public void printState() {
 		for(char[] row : board) {
 			for(char c : row) {
-				System.out.println(c);
+				System.out.print(c);
 			}
 			System.out.println();
 		}
+
+		for(int i = 0; i < boardsize; i++){
+			System.out.print("  i");
+		}
+		System.out.println();
+		
+		for(int i = 0; i < boardsize; i++) {
+			System.out.print(i + " ");
+			for(int j = 0; j < boardsize; j++) {
+
+			}
+			System.out.println();
+		}
+
+
+
+
 	}
 
 	public char[][] getBoard() {
@@ -90,15 +112,44 @@ public class GState {
 	public GState getParent() {
 		return parent;
 	}
-	
+
 	public ArrayList<GState> getChildren() {
 		return children;
 	}
-	
+
 	public void addChild(GState child) {
 		children.add(child);
 	}
-	
-	
+
+	private void setStateString() {
+		statestring = "";
+		for(char[] row : board)
+			for(char c : row)
+				statestring += c;
+	}
+
+	public String getStateString() {
+		return statestring;
+	}
+
+	public boolean isDraw() {
+		return statestring.contains(".");
+	}
+
+	public void isWin() {
+		for(int i = 0; i < boardsize; i++) {
+			for(int j = 0; j < boardsize; j++) {
+
+			}
+		}
+	}
+
+
+
+
+
+
+
+
 
 }
