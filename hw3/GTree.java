@@ -1,8 +1,10 @@
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Random;
 import java.util.Stack;
 
 /**
@@ -15,16 +17,36 @@ import java.util.Stack;
  */
 public class GTree {
 
+	private static Random random = new Random();
 	private static final int DEPTH_LIMIT = 5;
 	private Hashtable<String, Integer> explored = new Hashtable<String, Integer>();
 
-	public GTree(){
+	private GState current;
+	public GTree(GState r){
+		current = r;
 	}
 	
-	public int[] abSearch(GState current) {
-		int v = maxValue(current, -1000000000, 1000000000);
+	public void move (int mode) {
+		if(mode == 0)
+			randomMove();
+		
+		
+	}
+	
+	private void randomMove() {
+		ArrayList<int[]> moves = current.getActions();
+		int[] move = moves.get(random.nextInt(moves.size()));
+		current = current.getResult(move[0], move[1]);
+	}
+	
+	
+	
+	
+	
+	private int[] abSearch(GState state) {
+		int v = maxValue(state, -1000000000, 1000000000);
 		//TODO: which one to get?
-		return current.getActions().get(0);
+		return state.getActions().get(0);
 	}
 	
 	private int maxValue(GState state, int alpha, int beta) {
