@@ -14,9 +14,9 @@ public class GState {
 	private int boardsize;
 	private int chainlength;
 	private char[][] board;
-	
 	private int depth;
 	private char player;
+	private String path;
 	private String statestring;
 	private ArrayList<int[]> actions;
 
