@@ -14,7 +14,6 @@ public class GState {
 	private int boardsize;
 	private int chainlength;
 	private char[][] board;
-	private int depth;
 	private char player;
 	private String path;
 	private String statestring;
@@ -22,7 +21,6 @@ public class GState {
 
 	public GState(int size, int length) {
 		parent = null;
-		depth = 0;
 		player = 'x';
 		boardsize = size;
 		chainlength = length;
@@ -44,7 +42,6 @@ public class GState {
 	
 	private GState(GState par, int x, int y) {
 		parent = par;
-		depth = par.getDepth() + 1;
 		player = (par.getPlayer() == 'x') ? 'o' : 'x';
 		boardsize = par.getBoardsize();
 		chainlength = par.getChainlength();
@@ -68,10 +65,6 @@ public class GState {
 	
 	private char getPlayer() {
 		return player;
-	}
-	
-	public int getDepth() {
-		return depth;
 	}
 
 	private void setActions(){
