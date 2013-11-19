@@ -1,7 +1,5 @@
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -17,22 +15,60 @@ import java.util.Stack;
  */
 public class GTree {
 
+	private static final int DEPTH_LIMIT = 5;
+	private Hashtable<String, Integer> explored = new Hashtable<String, Integer>();
 
-	private GState root;
-
-	public GTree(GState root){
-		this.root = root;
+	public GTree(){
 	}
-
-	public GState getRoot() {
-		return root;
+	
+	public int[] abSearch(GState current, char player) {
+		int v = maxValue(current, -1000000000, 1000000000);
+		//TODO: which one to get?
+		return current.getActions().get(0);
 	}
-
 	
+	private int maxValue(GState state, int alpha, int beta) {
+		if(GState.getDepth() == DEPTH_LIMIT)
+			return utility(state);
+		int v = -1000000000;
+		for(int[] action : state.getActions()){
+			v = max(v, minValue(state.getResult(action[0], action[1], player), alpha, beta));
+			if(v >= beta)
+				return v;
+			alpha = max(v, alpha);
+		}
+		return v;
+	}
 	
+	private int minValue(GState state, int alpha, int beta) {
+		if(GState.getDepth() == DEPTH_LIMIT)
+			return utility(state);
+		int v = 1000000000;
+		for(int[] action : state.getActions()){
+			v = min(v, maxValue(state.getResult(action[0], action[1], player), alpha, beta));
+			if(v <= alpha)
+				return v;
+			beta = min(v, beta);
+		}
+		return v;
+	}
 	
+	private int min(int a, int b) {
+		return (a < b) ? a : b;
+	}
 	
+	private int max(int a, int b) {
+		return (a > b) ? a : b;
+	}
 	
+	//TODO Utility
+	private int utility(GState state) {
+		int u = 0;
+		
+		
+		
+		return u;
+	}
 	
 	
 	
