@@ -36,7 +36,9 @@ public class GomoTest {
 		}
 		
 		GState root = new GState(boardsize, chainlength);
-		GTree tree = new GTree(root);
+		GTree tree = new GTree();
+		
+		
 
 		
 		
