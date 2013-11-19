@@ -28,6 +28,16 @@ public class GTree {
 		return root;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	private String solution(GState solution, long start) {
 		JUSTKEEPSWIMMING = false;
 		//give in millis

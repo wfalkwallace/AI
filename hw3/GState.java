@@ -17,6 +17,7 @@ public class GState {
 	private char[][] board;
 
 	private String statestring;
+	private ArrayList<int[]> actions;
 
 	public GState(int size, int length) {
 		parent = null;
@@ -32,9 +33,14 @@ public class GState {
 			for(int j = 0; j < getBoardsize(); j++)
 				board[i][j] = '.';
 		setStateString();
+		setActions();
 	}
 
-	public GState(GState par, char player, int x, int y) {
+	public GState getResult(GState s, int x, int y, char p) {
+		return new GState(s, x, y, p);
+	}
+	
+	private GState(GState par, int x, int y, char player) {
 		parent = par;
 		children = new ArrayList<GState>();
 		boardsize = par.getBoardsize();
@@ -47,6 +53,7 @@ public class GState {
 		board[x][y] = player;
 
 		setStateString();
+		setActions();
 	}
 
 	/**
@@ -56,6 +63,17 @@ public class GState {
 		return boardsize;
 	}
 
+	private void setActions(){
+		for(int i = 0; i < boardsize; i++)
+			for(int j = 0; j < boardsize; j++)
+				if(board[i][j] == '.')
+					actions.add(new int[] {i, j});
+	}
+	
+	public ArrayList<int[]> getActions() {
+		return actions;
+	}
+	
 	/**
 	 * @param boardsize the boardsize to set
 	 */
@@ -135,13 +153,13 @@ public class GState {
 
 	//what about X's where one chainlength is too long, one is right?
 	public boolean isWin(int x, int y, char player) {
-		if(checkNorth(x, y, player) + checkSouth(x, y, player) == chainlength)
+		if(checkNorth(x, y, player) + checkSouth(x, y, player) + 1 == chainlength)
 			return true;
-		else if(checkEast(x, y, player) + checkWest(x, y, player) == chainlength)
+		else if(checkEast(x, y, player) + checkWest(x, y, player) + 1 == chainlength)
 			return true;
-		else if(checkNE(x, y, player) + checkSW(x, y, player) == chainlength)
+		else if(checkNE(x, y, player) + checkSW(x, y, player) + 1 == chainlength)
 			return true;
-		else if(checkNW(x, y, player) + checkSE(x, y, player) == chainlength)
+		else if(checkNW(x, y, player) + checkSE(x, y, player) + 1 == chainlength)
 			return true;
 		else 
 			return false;
