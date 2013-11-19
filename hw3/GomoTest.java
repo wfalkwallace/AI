@@ -36,8 +36,8 @@ public class GomoTest {
 		}
 		
 		GTree tree = new GTree(boardsize, chainlength, timeout);
-		
-		
+		System.out.println("Player " + tree.game(1, 0) + " WINS!");
+		tree.closeScanner();
 		
 		
 
