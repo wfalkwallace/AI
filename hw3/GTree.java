@@ -21,18 +21,18 @@ public class GTree {
 	public GTree(){
 	}
 	
-	public int[] abSearch(GState current, char player) {
+	public int[] abSearch(GState current) {
 		int v = maxValue(current, -1000000000, 1000000000);
 		//TODO: which one to get?
 		return current.getActions().get(0);
 	}
 	
 	private int maxValue(GState state, int alpha, int beta) {
-		if(GState.getDepth() == DEPTH_LIMIT)
+		if(state.getDepth() == DEPTH_LIMIT)
 			return utility(state);
 		int v = -1000000000;
 		for(int[] action : state.getActions()){
-			v = max(v, minValue(state.getResult(action[0], action[1], player), alpha, beta));
+			v = max(v, minValue(state.getResult(action[0], action[1]), alpha, beta));
 			if(v >= beta)
 				return v;
 			alpha = max(v, alpha);
@@ -41,11 +41,11 @@ public class GTree {
 	}
 	
 	private int minValue(GState state, int alpha, int beta) {
-		if(GState.getDepth() == DEPTH_LIMIT)
+		if(state.getDepth() == DEPTH_LIMIT)
 			return utility(state);
 		int v = 1000000000;
 		for(int[] action : state.getActions()){
-			v = min(v, maxValue(state.getResult(action[0], action[1], player), alpha, beta));
+			v = min(v, maxValue(state.getResult(action[0], action[1]), alpha, beta));
 			if(v <= alpha)
 				return v;
 			beta = min(v, beta);
@@ -69,6 +69,11 @@ public class GTree {
 		
 		return u;
 	}
+	
+	
+	
+	
+	
 	
 	
 	
