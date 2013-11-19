@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class GState {
 
 	private GState parent;
-	private ArrayList<GState> children;
 	private int boardsize;
 	private int chainlength;
 	private char[][] board;
@@ -21,7 +20,6 @@ public class GState {
 
 	public GState(int size, int length) {
 		parent = null;
-		children = new ArrayList<GState>();
 		boardsize = size;
 		chainlength = length;
 		board = new char[boardsize][boardsize];
@@ -36,13 +34,12 @@ public class GState {
 		setActions();
 	}
 
-	public GState getResult(GState s, int x, int y, char p) {
-		return new GState(s, x, y, p);
+	public GState getResult(int x, int y, char p) {
+		return new GState(this, x, y, p);
 	}
 	
 	private GState(GState par, int x, int y, char player) {
 		parent = par;
-		children = new ArrayList<GState>();
 		boardsize = par.getBoardsize();
 		chainlength = par.getChainlength();
 
@@ -126,14 +123,6 @@ public class GState {
 
 	public GState getParent() {
 		return parent;
-	}
-
-	public ArrayList<GState> getChildren() {
-		return children;
-	}
-
-	public void addChild(GState child) {
-		children.add(child);
 	}
 
 	private void setStateString() {
