@@ -22,15 +22,30 @@ public class GTree {
 	private Hashtable<String, Integer> explored = new Hashtable<String, Integer>();
 
 	private GState current;
-	public GTree(GState r){
-		current = r;
+	private int timeout;
+	public GTree(int boardsize, int chainlength, int timeout){
+		current = new GState(boardsize, chainlength);
+		this.timeout = timeout;
 	}
 	
-	public void move (int mode) {
-		if(mode == 0)
+	public void game(int p1, int p2) {
+		
+		
+	}
+	
+	
+	private void move (int mode) {
+		switch(mode) {
+		case 0:
 			randomMove();
-		
-		
+			break;
+		case 1:
+			promptMove();
+			break;
+		case 2:
+			abSearch();
+			break;
+		}		
 	}
 	
 	private void randomMove() {
@@ -43,18 +58,18 @@ public class GTree {
 	
 	
 	
-	private int[] abSearch(GState state) {
-		int v = maxValue(state, -1000000000, 1000000000);
+	private int[] abSearch() {
+		int v = maxValue(current, -1000000000, 1000000000, 0);
 		//TODO: which one to get?
-		return state.getActions().get(0);
+		return current.getActions().get(0);
 	}
 	
-	private int maxValue(GState state, int alpha, int beta) {
-		if(state.getDepth() == DEPTH_LIMIT)
+	private int maxValue(GState state, int alpha, int beta, int depth) {
+		if(cutoff(state, depth))
 			return utility(state);
 		int v = -1000000000;
 		for(int[] action : state.getActions()){
-			v = max(v, minValue(state.getResult(action[0], action[1]), alpha, beta));
+			v = max(v, minValue(state.getResult(action[0], action[1]), alpha, beta, depth + 1));
 			if(v >= beta)
 				return v;
 			alpha = max(v, alpha);
@@ -62,12 +77,12 @@ public class GTree {
 		return v;
 	}
 	
-	private int minValue(GState state, int alpha, int beta) {
-		if(state.getDepth() == DEPTH_LIMIT)
+	private int minValue(GState state, int alpha, int beta, int depth) {
+		if(cutoff(state, depth))
 			return utility(state);
 		int v = 1000000000;
 		for(int[] action : state.getActions()){
-			v = min(v, maxValue(state.getResult(action[0], action[1]), alpha, beta));
+			v = min(v, maxValue(state.getResult(action[0], action[1]), alpha, beta, depth + 1));
 			if(v <= alpha)
 				return v;
 			beta = min(v, beta);
@@ -81,6 +96,10 @@ public class GTree {
 	
 	private int max(int a, int b) {
 		return (a > b) ? a : b;
+	}
+	
+	private boolean cutoff(GState state, int depth) {
+		return depth == DEPTH_LIMIT;
 	}
 	
 	//TODO Utility
