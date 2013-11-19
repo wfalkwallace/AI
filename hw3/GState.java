@@ -11,10 +11,11 @@ import java.util.ArrayList;
 public class GState {
 
 	private GState parent;
-	private int boardsize;
-	private int chainlength;
+	private static int boardsize;
+	private static int chainlength;
 	private char[][] board;
 	private char player;
+	private int[] move;
 	private String statestring;
 	private ArrayList<int[]> actions;
 
@@ -26,32 +27,36 @@ public class GState {
 		board = new char[boardsize][boardsize];
 		init();
 		setStateString();
+		actions = new ArrayList<int[]>();
 		setActions();
 	}
 
 	private void init() {
-		for(int i = 0; i < getBoardsize(); i++)
-			for(int j = 0; j < getBoardsize(); j++)
+		for(int i = 0; i < boardsize; i++)
+			for(int j = 0; j < boardsize; j++)
 				board[i][j] = '.';
 	}
 
 	public GState getResult(int x, int y) {
 		return new GState(this, x, y);
 	}
-	
+
 	private GState(GState par, int x, int y) {
 		parent = par;
+		move = new int[] {x, y};
 		player = (par.getPlayer() == 'x') ? 'o' : 'x';
-		boardsize = par.getBoardsize();
-		chainlength = par.getChainlength();
+		board = new char[boardsize][boardsize];
 
-		for(int i = 0; i < par.getBoardsize(); i++)
-			for(int j = 0; j < par.getBoardsize(); j++)
+		for(int i = 0; i < boardsize; i++) {
+			for(int j = 0; j < boardsize; j++) {
 				board[i][j] = par.getBoard()[i][j];
+			}
+		}
 
 		board[x][y] = par.getPlayer();
 
 		setStateString();
+		actions = new ArrayList<int[]>();
 		setActions();
 	}
 
@@ -61,8 +66,8 @@ public class GState {
 	public int getBoardsize() {
 		return boardsize;
 	}
-	
-	private char getPlayer() {
+
+	public char getPlayer() {
 		return player;
 	}
 
@@ -72,11 +77,11 @@ public class GState {
 				if(board[i][j] == '.')
 					actions.add(new int[] {i, j});
 	}
-	
+
 	public ArrayList<int[]> getActions() {
 		return actions;
 	}
-	
+
 	/**
 	 * @param boardsize the boardsize to set
 	 */
@@ -109,15 +114,16 @@ public class GState {
 
 		// Line number print:
 		//col number header
+		System.out.print("  ");
 		for(int i = 0; i < boardsize; i++){
-			System.out.print("  i");
+			System.out.print(" " + i);
 		}
 		System.out.println();
 
 		for(int i = 0; i < boardsize; i++) {
 			System.out.print(i + " ");
 			for(int j = 0; j < boardsize; j++) {
-				System.out.print(board[i][j]);
+				System.out.print(" " + board[i][j]);
 			}
 			System.out.println();
 		}
@@ -147,23 +153,25 @@ public class GState {
 	}
 
 	//what about X's where one chainlength is too long, one is right?
-	public boolean isWin(int x, int y, char player) {
-		if(checkNorth(x, y, player) + checkSouth(x, y, player) + 1 == chainlength)
+	public boolean isWin() {
+		char mvp = (player == 'x') ? 'o' : 'x';
+		if(checkNorth(mvp) + checkSouth(mvp) - 1 == chainlength)
 			return true;
-		else if(checkEast(x, y, player) + checkWest(x, y, player) + 1 == chainlength)
+		else if(checkEast(mvp) + checkWest(mvp) - 1 == chainlength)
 			return true;
-		else if(checkNE(x, y, player) + checkSW(x, y, player) + 1 == chainlength)
+		else if(checkNE(mvp) + checkSW(mvp) - 1 == chainlength)
 			return true;
-		else if(checkNW(x, y, player) + checkSE(x, y, player) + 1 == chainlength)
+		else if(checkNW(mvp) + checkSE(mvp) - 1 == chainlength)
 			return true;
-		else 
-			return false;
+		return false;
 	}
 
-	private int checkNorth(int x, int y, char player){
+	private int checkNorth(char mvp){
 		int count = 0;
+		int x = move[0];
+		int y = move[1];
 		for(int i = y; i >= 0; i--){
-			if(board[x][i] == player)
+			if(board[x][i] == mvp)
 				count++;
 			else
 				return count;
@@ -171,10 +179,12 @@ public class GState {
 		return count;
 	}
 
-	private int checkSouth(int x, int y, char player){
+	private int checkSouth(char mvp){
 		int count = 0;
+		int x = move[0];
+		int y = move[1];
 		for(int i = y; i < boardsize; i++){
-			if(board[x][i] == player)
+			if(board[x][i] == mvp)
 				count++;
 			else
 				return count;
@@ -182,21 +192,26 @@ public class GState {
 		return count;
 	}
 
-	private int checkEast(int x, int y, char player){
+	private int checkEast(char mvp){
 		int count = 0;
+		int x = move[0];
+		int y = move[1];
 		for(int i = x; i < boardsize; i++){
-			if(board[i][y] == player)
+			if(board[i][y] == mvp)
 				count++;
-			else
+			else{
 				return count;
+			}
 		}
 		return count;
 	}
 
-	private int checkWest(int x, int y, char player){
+	private int checkWest(char mvp){
 		int count = 0;
+		int x = move[0];
+		int y = move[1];
 		for(int i = x; i >= 0; i--){
-			if(board[i][y] == player)
+			if(board[i][y] == mvp)
 				count++;
 			else
 				return count;
@@ -204,10 +219,12 @@ public class GState {
 		return count;
 	}
 
-	private int checkNW(int x, int y, char player){
+	private int checkNW(char mvp){
 		int count = 0;
+		int x = move[0];
+		int y = move[1];
 		for(int i = x, j = y; i >= 0 && j >= 0; i--, j--){
-			if(board[x][y] == player)
+			if(board[x][y] == mvp)
 				count++;
 			else
 				return count;
@@ -215,10 +232,12 @@ public class GState {
 		return count;
 	}
 
-	private int checkNE(int x, int y, char player){
+	private int checkNE(char mvp){
 		int count = 0;
+		int x = move[0];
+		int y = move[1];
 		for(int i = x, j = y; i < boardsize && j >= 0; i++, j--){
-			if(board[x][y] == player)
+			if(board[x][y] == mvp)
 				count++;
 			else
 				return count;
@@ -226,10 +245,12 @@ public class GState {
 		return count;
 	}
 
-	private int checkSW(int x, int y, char player){
+	private int checkSW(char mvp){
 		int count = 0;
+		int x = move[0];
+		int y = move[1];
 		for(int i = x, j = y; i >= 0 && j < boardsize; i--, j++){
-			if(board[x][y] == player)
+			if(board[x][y] == mvp)
 				count++;
 			else
 				return count;
@@ -237,10 +258,12 @@ public class GState {
 		return count;
 	}
 
-	private int checkSE(int x, int y, char player){
+	private int checkSE(char mvp){
 		int count = 0;
+		int x = move[0];
+		int y = move[1];
 		for(int i = x, j = y; i < boardsize && j < boardsize; i++, j++){
-			if(board[x][y] == player)
+			if(board[x][y] == mvp)
 				count++;
 			else
 				return count;
