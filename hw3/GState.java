@@ -133,6 +133,7 @@ public class GState {
 		return !statestring.contains(".");
 	}
 
+	//what about X's where one chainlength is too long, one is right?
 	public boolean isWin(int x, int y, char player) {
 		if(checkNorth(x, y, player) + checkSouth(x, y, player) == chainlength)
 			return true;
