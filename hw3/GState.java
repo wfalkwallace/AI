@@ -17,10 +17,6 @@ public class GState {
 	private char[][] board;
 
 	private String statestring;
-	private String o_winstring;	
-	private String x_winstring;	
-	private int cost;
-
 
 	public GState(int size, int length) {
 		parent = null;
@@ -36,7 +32,6 @@ public class GState {
 			for(int j = 0; j < getBoardsize(); j++)
 				board[i][j] = '.';
 		setStateString();
-		setWinStrings();
 	}
 
 	public GState(GState par, char player, int x, int y) {
@@ -130,58 +125,113 @@ public class GState {
 				statestring += c;
 	}
 
-	private void setWinStrings() {
-		o_winstring = "";
-		x_winstring = "";
-		for(int i = 0; i < chainlength; i++){
-			o_winstring += 'o';
-			x_winstring += 'x';
-		}
-	}
-
 	public String getStateString() {
 		return statestring;
 	}
 
 	public boolean isDraw() {
-		return statestring.contains(".");
+		return !statestring.contains(".");
 	}
 
 	public boolean isWin(int x, int y, char player) {
-		String winstring = (player == 'x') ? x_winstring : o_winstring;
-		int row = 0, col = 0;
-		for(int i = 0; i < boardsize; i++) {
-			for(int j = 0; j < boardsize; j++) {
-				//check the rows
-				if(board[i][j] == player)
-					//if you see a player, add to the chain count
-					row++;
-				else
-					//if you see an opponent, check to see if you are at the chainlength
-					if(row == chainlength)
-						return true;
-					else
-						//if you see an opponent and dont have a win, reset the chain counter
-						row = 0;
-				//check the columns
-				if(board[j][i] == player)
-					//if you see a player, add to the chain count
-					col++;
-				else
-					//if you see an opponent, check to see if you are at the chainlength
-					if(col == chainlength)
-						return true;
-					else
-						//if you see an opponent and dont have a win, reset the chain counter
-						col = 0;
-			}
-			//when you get to the end of a row/col, check if you've got the chainlength
-			if(row == chainlength || col == chainlength)
-				return true;
-			//if not reset the chain count for the next row/col
-			row = col = 0;
-		}
-		//if you haven't found a win after all that...
-		return false;
+		if(checkNorth(x, y, player) + checkSouth(x, y, player) == chainlength)
+			return true;
+		else if(checkEast(x, y, player) + checkWest(x, y, player) == chainlength)
+			return true;
+		else if(checkNE(x, y, player) + checkSW(x, y, player) == chainlength)
+			return true;
+		else if(checkNW(x, y, player) + checkSE(x, y, player) == chainlength)
+			return true;
+		else 
+			return false;
 	}
+
+	private int checkNorth(int x, int y, char player){
+		int count = 0;
+		for(int i = y; i >= 0; i--){
+			if(board[x][i] == player)
+				count++;
+			else
+				return count;
+		}
+		return count;
+	}
+
+	private int checkSouth(int x, int y, char player){
+		int count = 0;
+		for(int i = y; i < boardsize; i++){
+			if(board[x][i] == player)
+				count++;
+			else
+				return count;
+		}
+		return count;
+	}
+
+	private int checkEast(int x, int y, char player){
+		int count = 0;
+		for(int i = x; i < boardsize; i++){
+			if(board[i][y] == player)
+				count++;
+			else
+				return count;
+		}
+		return count;
+	}
+
+	private int checkWest(int x, int y, char player){
+		int count = 0;
+		for(int i = x; i >= 0; i--){
+			if(board[i][y] == player)
+				count++;
+			else
+				return count;
+		}
+		return count;
+	}
+
+	private int checkNW(int x, int y, char player){
+		int count = 0;
+		for(int i = x, j = y; i >= 0 && j >= 0; i--, j--){
+			if(board[x][y] == player)
+				count++;
+			else
+				return count;
+		}
+		return count;
+	}
+
+	private int checkNE(int x, int y, char player){
+		int count = 0;
+		for(int i = x, j = y; i < boardsize && j >= 0; i++, j--){
+			if(board[x][y] == player)
+				count++;
+			else
+				return count;
+		}
+		return count;
+	}
+
+	private int checkSW(int x, int y, char player){
+		int count = 0;
+		for(int i = x, j = y; i >= 0 && j < boardsize; i--, j++){
+			if(board[x][y] == player)
+				count++;
+			else
+				return count;
+		}
+		return count;
+	}
+
+	private int checkSE(int x, int y, char player){
+		int count = 0;
+		for(int i = x, j = y; i < boardsize && j < boardsize; i++, j++){
+			if(board[x][y] == player)
+				count++;
+			else
+				return count;
+		}
+		return count;
+	}
+
 }
