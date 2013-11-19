@@ -14,32 +14,38 @@ public class GState {
 	private int boardsize;
 	private int chainlength;
 	private char[][] board;
-
+	
+	private int depth;
+	private char player;
 	private String statestring;
 	private ArrayList<int[]> actions;
 
 	public GState(int size, int length) {
 		parent = null;
+		depth = 0;
+		player = 'x';
 		boardsize = size;
 		chainlength = length;
 		board = new char[boardsize][boardsize];
 		init();
+		setStateString();
+		setActions();
 	}
 
 	private void init() {
 		for(int i = 0; i < getBoardsize(); i++)
 			for(int j = 0; j < getBoardsize(); j++)
 				board[i][j] = '.';
-		setStateString();
-		setActions();
 	}
 
-	public GState getResult(int x, int y, char p) {
-		return new GState(this, x, y, p);
+	public GState getResult(int x, int y) {
+		return new GState(this, x, y);
 	}
 	
-	private GState(GState par, int x, int y, char player) {
+	private GState(GState par, int x, int y) {
 		parent = par;
+		depth = par.getDepth() + 1;
+		player = (par.getPlayer() == 'x') ? 'o' : 'x';
 		boardsize = par.getBoardsize();
 		chainlength = par.getChainlength();
 
@@ -47,7 +53,7 @@ public class GState {
 			for(int j = 0; j < par.getBoardsize(); j++)
 				board[i][j] = par.getBoard()[i][j];
 
-		board[x][y] = player;
+		board[x][y] = par.getPlayer();
 
 		setStateString();
 		setActions();
@@ -58,6 +64,14 @@ public class GState {
 	 */
 	public int getBoardsize() {
 		return boardsize;
+	}
+	
+	private char getPlayer() {
+		return player;
+	}
+	
+	public int getDepth() {
+		return depth;
 	}
 
 	private void setActions(){
