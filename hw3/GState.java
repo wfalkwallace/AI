@@ -71,11 +71,25 @@ public class GState {
 		return player;
 	}
 
+	//TODO priority queue
 	private void setActions(){
 		for(int i = 0; i < boardsize; i++)
 			for(int j = 0; j < boardsize; j++)
 				if(board[i][j] == '.')
-					actions.add(new int[] {i, j});
+					if( (j + 1  < boardsize && board[i][j+1] == player) || 
+							(j - 1  > 0 && board[i][j-1] == player) || 
+							(i + 1  < boardsize && board[i+1][j] == player) || 
+							(i - 1  > 0 && board[i-1][j] == player) || 
+							(i + 1  < boardsize && j + 1  < boardsize && board[i+1][j+1] == player) || 
+							(i - 1  > 0 && j - 1  > 0 && board[i-1][j-1] == player) || 
+							(i - 1  > 0 && j + 1  < boardsize && board[i-1][j+1] == player) || 
+							(i + 1  < boardsize && j - 1  > 0 && board[i+1][j-1] == player))
+						actions.add(new int[] {i, j});
+		if(actions.size() == 0)
+			for(int i = 0; i < boardsize; i++)
+				for(int j = 0; j < boardsize; j++)
+					if(board[i][j] == '.')
+						actions.add(new int[] {i, j});
 	}
 
 	public ArrayList<int[]> getActions() {
@@ -102,7 +116,7 @@ public class GState {
 	public void setChainlength(int length) {
 		chainlength = length;
 	}
-	
+
 	public int[] getMove() {
 		return move;
 	}
@@ -159,19 +173,19 @@ public class GState {
 	//what about X's where one chainlength is too long, one is right?
 	public boolean isWin() {
 		char mvp = (player == 'x') ? 'o' : 'x';
-		if(checkNorth(mvp) + checkSouth(mvp) + 1 == chainlength) {
+		if(checkNorth(mvp, move) + checkSouth(mvp, move) + 1 == chainlength) {
 			return true;
 		}
-		else if(checkEast(mvp) + checkWest(mvp) + 1 == chainlength)
+		else if(checkEast(mvp, move) + checkWest(mvp, move) + 1 == chainlength)
 			return true;
-		else if(checkNE(mvp) + checkSW(mvp) + 1 == chainlength)
+		else if(checkNE(mvp, move) + checkSW(mvp, move) + 1 == chainlength)
 			return true;
-		else if(checkNW(mvp) + checkSE(mvp) + 1 == chainlength)
+		else if(checkNW(mvp, move) + checkSE(mvp, move) + 1 == chainlength)
 			return true;
 		return false;
 	}
 
-	private int checkNorth(char mvp){
+	private int checkNorth(char mvp, int[] move){
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
@@ -184,7 +198,7 @@ public class GState {
 		return count;
 	}
 
-	private int checkSouth(char mvp){
+	private int checkSouth(char mvp, int[] move){
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
@@ -197,7 +211,7 @@ public class GState {
 		return count;
 	}
 
-	private int checkEast(char mvp){
+	private int checkEast(char mvp, int[] move){
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
@@ -211,7 +225,7 @@ public class GState {
 		return count;
 	}
 
-	private int checkWest(char mvp){
+	private int checkWest(char mvp, int[] move){
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
@@ -224,7 +238,7 @@ public class GState {
 		return count;
 	}
 
-	private int checkNW(char mvp){
+	private int checkNW(char mvp, int[] move){
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
@@ -237,7 +251,7 @@ public class GState {
 		return count;
 	}
 
-	private int checkNE(char mvp){
+	private int checkNE(char mvp, int[] move){
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
@@ -250,7 +264,7 @@ public class GState {
 		return count;
 	}
 
-	private int checkSW(char mvp){
+	private int checkSW(char mvp, int[] move){
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
@@ -263,7 +277,7 @@ public class GState {
 		return count;
 	}
 
-	private int checkSE(char mvp){
+	private int checkSE(char mvp, int[] move){
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
@@ -275,29 +289,51 @@ public class GState {
 		}
 		return count;
 	}
-	
+
+	//TODO better. check diagonals and stuff.
 	public int getUtility(char p) {
-		int u = 0, v = 0;
-		int max = 0;
+		if(isWin())
+			return 1000000;
+		if(isDraw())
+			return 0;
+		int u = 0, v = 0, w = 0, x = 0;
+		int max = 0, opp = 0;
 		for(int i = 0; i < boardsize; i++) {
 			for(int j = 0; j < boardsize; j++) {
 				//check the rows
 				if(board[i][j] == p)
 					u++;
 				else {
-					max = max < u ? u : max;
+					max = (max < u && u <= chainlength) ? u : max;
 					u = 0;
 				}
 				//check the columns
 				if(board[j][i] == p)
 					v++;
 				else {
-					max = max < v ? v : max;
+					max = (max < v && v <= chainlength) ? v : max;
 					v = 0;
 				}
+
+				//account for opponent's near win
+				//check the rows
+				if(board[i][j] == (p == 'x' ? 'o' : 'x'))
+					w++;
+				else {
+					opp = (opp < w && w <= chainlength) ? w : opp;
+					w = 0;
+				}
+				//check the columns
+				if(board[j][i] == (p == 'x' ? 'o' : 'x'))
+					x++;
+				else {
+					opp = (opp < x && x <= chainlength) ? x : opp;
+					x = 0;
+				}
+
 			}
 		}
-		return max;
+		return max - opp;
 	}
 
 }

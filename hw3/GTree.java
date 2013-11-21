@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class GTree {
 
 	private static Random random = new Random();
-	private static final int DEPTH_LIMIT = 3;
+	private static final int DEPTH_LIMIT = 6;
 	private Hashtable<Integer, GState> explored = new Hashtable<Integer, GState>();
 	private GState current;
 	private int timeout;
@@ -132,6 +132,7 @@ public class GTree {
 		return (a > b) ? a : b;
 	}
 
+	//TODO timer and terminal (draw and win) cutoffs
 	private boolean cutoff(GState state, int depth) {
 		return depth == DEPTH_LIMIT;
 	}
