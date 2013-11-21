@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class GTree {
 
 	private static Random random = new Random();
-	private static final int DEPTH_LIMIT = 6;
+	private static final int DEPTH_LIMIT = 4;
 	private Hashtable<Integer, GState> explored = new Hashtable<Integer, GState>();
 	private GState current;
 	private int timeout;
