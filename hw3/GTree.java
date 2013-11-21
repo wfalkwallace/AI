@@ -14,8 +14,8 @@ import java.util.Scanner;
 public class GTree {
 
 	private static Random random = new Random();
-	private static final int DEPTH_LIMIT = 5;
-	private Hashtable<String, Integer> explored = new Hashtable<String, Integer>();
+	private static final int DEPTH_LIMIT = 3;
+	private Hashtable<Integer, GState> explored = new Hashtable<Integer, GState>();
 	private GState current;
 	private int timeout;
 	private long start;
@@ -86,10 +86,16 @@ public class GTree {
 		input.close();
 	}
 
-	private int[] abSearch(long start) {
+	private void abSearch(long start) {
 		int v = maxValue(current, -1000000000, 1000000000, 0);
 		//TODO: which one to get?
-		return current.getActions().get(0);
+		GState end = explored.get(v);
+		GState next = end.getParent();
+		while(next.getParent() != current)
+			next = next.getParent();
+		current = next;
+		//		current = current.getResult(next.getMove()[0], next.getMove()[1]);
+		//		return next.getMove();
 	}
 
 	private int maxValue(GState state, int alpha, int beta, int depth) {
@@ -132,10 +138,8 @@ public class GTree {
 
 	//TODO Utility
 	private int utility(GState state) {
-		int u = 0;
-
-
-
+		int u = state.getUtility(current.getPlayer());
+		explored.put(u, state);
 		return u;
 	}
 
