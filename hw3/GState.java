@@ -155,13 +155,14 @@ public class GState {
 	//what about X's where one chainlength is too long, one is right?
 	public boolean isWin() {
 		char mvp = (player == 'x') ? 'o' : 'x';
-		if(checkNorth(mvp) + checkSouth(mvp) - 1 == chainlength)
+		if(checkNorth(mvp) + checkSouth(mvp) + 1 == chainlength) {
 			return true;
-		else if(checkEast(mvp) + checkWest(mvp) - 1 == chainlength)
+		}
+		else if(checkEast(mvp) + checkWest(mvp) + 1 == chainlength)
 			return true;
-		else if(checkNE(mvp) + checkSW(mvp) - 1 == chainlength)
+		else if(checkNE(mvp) + checkSW(mvp) + 1 == chainlength)
 			return true;
-		else if(checkNW(mvp) + checkSE(mvp) - 1 == chainlength)
+		else if(checkNW(mvp) + checkSE(mvp) + 1 == chainlength)
 			return true;
 		return false;
 	}
@@ -170,8 +171,8 @@ public class GState {
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
-		for(int i = y; i >= 0; i--){
-			if(board[x][i] == mvp)
+		for(int i = x - 1; i >= 0; i--){
+			if(board[i][y] == mvp)
 				count++;
 			else
 				return count;
@@ -183,8 +184,8 @@ public class GState {
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
-		for(int i = y; i < boardsize; i++){
-			if(board[x][i] == mvp)
+		for(int i = x + 1; i < boardsize; i++){
+			if(board[i][y] == mvp)
 				count++;
 			else
 				return count;
@@ -196,8 +197,8 @@ public class GState {
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
-		for(int i = x; i < boardsize; i++){
-			if(board[i][y] == mvp)
+		for(int i = y + 1; i < boardsize; i++){
+			if(board[x][i] == mvp)
 				count++;
 			else{
 				return count;
@@ -210,8 +211,8 @@ public class GState {
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
-		for(int i = x; i >= 0; i--){
-			if(board[i][y] == mvp)
+		for(int i = y - 1; i >= 0; i--){
+			if(board[x][i] == mvp)
 				count++;
 			else
 				return count;
@@ -223,8 +224,8 @@ public class GState {
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
-		for(int i = x, j = y; i >= 0 && j >= 0; i--, j--){
-			if(board[x][y] == mvp)
+		for(int i = x-1, j = y-1; i >= 0 && j >= 0; i--, j--){
+			if(board[i][j] == mvp)
 				count++;
 			else
 				return count;
@@ -236,8 +237,8 @@ public class GState {
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
-		for(int i = x, j = y; i < boardsize && j >= 0; i++, j--){
-			if(board[x][y] == mvp)
+		for(int i = x-1, j = y+1; i >= 0 && j < boardsize; i--, j++){
+			if(board[i][j] == mvp)
 				count++;
 			else
 				return count;
@@ -249,8 +250,8 @@ public class GState {
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
-		for(int i = x, j = y; i >= 0 && j < boardsize; i--, j++){
-			if(board[x][y] == mvp)
+		for(int i = x+1, j = y-1; i < boardsize && j >= 0; i++, j--){
+			if(board[i][j] == mvp)
 				count++;
 			else
 				return count;
@@ -262,8 +263,8 @@ public class GState {
 		int count = 0;
 		int x = move[0];
 		int y = move[1];
-		for(int i = x, j = y; i < boardsize && j < boardsize; i++, j++){
-			if(board[x][y] == mvp)
+		for(int i = x+1, j = y+1; i < boardsize && j < boardsize; i++, j++){
+			if(board[i][j] == mvp)
 				count++;
 			else
 				return count;
