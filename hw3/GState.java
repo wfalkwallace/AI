@@ -102,6 +102,10 @@ public class GState {
 	public void setChainlength(int length) {
 		chainlength = length;
 	}
+	
+	public int[] getMove() {
+		return move;
+	}
 
 	public void printState() {
 		// Simple print:
@@ -270,6 +274,30 @@ public class GState {
 				return count;
 		}
 		return count;
+	}
+	
+	public int getUtility(char p) {
+		int u = 0, v = 0;
+		int max = 0;
+		for(int i = 0; i < boardsize; i++) {
+			for(int j = 0; j < boardsize; j++) {
+				//check the rows
+				if(board[i][j] == p)
+					u++;
+				else {
+					max = max < u ? u : max;
+					u = 0;
+				}
+				//check the columns
+				if(board[j][i] == p)
+					v++;
+				else {
+					max = max < v ? v : max;
+					v = 0;
+				}
+			}
+		}
+		return max;
 	}
 
 }
