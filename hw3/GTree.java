@@ -17,11 +17,11 @@ public class GTree {
 	private static final int DEPTH_LIMIT = 4;
 	private Hashtable<Integer, GState> explored = new Hashtable<Integer, GState>();
 	private GState current;
-	private int timeout;
+	private double timeout;
 	private long start;
 	private Scanner input;
 
-	public GTree(int boardsize, int chainlength, int timeout){
+	public GTree(int boardsize, int chainlength, double timeout){
 		current = new GState(boardsize, chainlength);
 		this.timeout = timeout;
 		//user input
@@ -33,6 +33,7 @@ public class GTree {
 			start = System.nanoTime();
 			move(p1, start);
 			current.printState();
+			System.out.println((System.nanoTime() - start) / 1000000000.0);
 			if(current.isWin())
 				//TODO WIN
 				return current.getParent().getPlayer();
@@ -42,6 +43,7 @@ public class GTree {
 			start = System.nanoTime();
 			move(p2, start);
 			current.printState();
+			System.out.println((System.nanoTime() - start) / 1000000000.0);
 			if(current.isWin())
 				//TODO WIN
 				return current.getParent().getPlayer();
@@ -90,10 +92,12 @@ public class GTree {
 		int v = maxValue(current, -1000000000, 1000000000, 0);
 		//TODO: which one to get?
 		GState end = explored.get(v);
-		GState next = end.getParent();
-		while(next.getParent() != current)
-			next = next.getParent();
-		current = next;
+//		if(next == null)
+//			next = end;
+		while(end.getParent() != current)
+			end = end.getParent();
+		current = end;
+		explored.clear();
 		//		current = current.getResult(next.getMove()[0], next.getMove()[1]);
 		//		return next.getMove();
 	}
@@ -134,7 +138,14 @@ public class GTree {
 
 	//TODO timer and terminal (draw and win) cutoffs
 	private boolean cutoff(GState state, int depth) {
-		return depth == DEPTH_LIMIT;
+		double time = (System.nanoTime() - start) / 1000000000.0;
+		if(time > .75 * timeout)
+			return true;
+		if(depth == DEPTH_LIMIT)
+			return true;
+		if(state.isWin() || state.isDraw())
+			return true;
+		return false;
 	}
 
 	//TODO Utility
@@ -145,8 +156,9 @@ public class GTree {
 //					return c;
 		int u = state.getUtility(current.getPlayer());
 		if(explored.containsKey(u)) {
-			if(random.nextBoolean())
+			if(random.nextBoolean()) {
 				explored.put(u, state);
+			}
 		}
 		else
 			explored.put(u, state);

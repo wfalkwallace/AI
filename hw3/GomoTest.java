@@ -16,7 +16,7 @@ public class GomoTest {
 	public static void main(String[] args) {
 		int boardsize;
 		int chainlength;
-		int timeout;
+		double timeout;
 
 		if(args.length < 3){
 			//user input
@@ -26,20 +26,17 @@ public class GomoTest {
 			System.out.println("Enter a winning chain length: ");
 			chainlength = input.nextInt();
 			System.out.println("Enter a turn time limit (in seconds):");
-			timeout = input.nextInt();
+			timeout = input.nextDouble();
 			input.close();
 		}
 		else {
 			boardsize = Integer.parseInt(args[0]);
 			chainlength = Integer.parseInt(args[1]);
-			timeout = Integer.parseInt(args[2]);
+			timeout = Double.parseDouble(args[2]);
 		}
 		
 		GTree tree = new GTree(boardsize, chainlength, timeout);
-		GTree tree2 = new GTree(boardsize, chainlength, timeout);
 		System.out.println("Player " + tree.game(2, 2) + " WINS!");
-		System.out.println("====================================");
-		System.out.println("Player " + tree2.game(2, 2) + " WINS!");
 		tree.closeScanner();
 		
 		

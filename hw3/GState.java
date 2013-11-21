@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * 
@@ -74,24 +73,35 @@ public class GState {
 
 	//TODO priority queue
 	private void setActions(){
+		//		for(int i = 0; i < boardsize; i++) {
+		//			for(int j = 0; j < boardsize; j++) {
+		//				if(board[i][j] == '.') {
+		//					if( (j + 1  < boardsize && board[i][j+1] != '.') || 
+		//							(j - 1  > 0 && board[i][j-1] != '.') || 
+		//							(i + 1  < boardsize && board[i+1][j] != '.') || 
+		//							(i - 1  > 0 && board[i-1][j] != '.') || 
+		//							(i + 1  < boardsize && j + 1  < boardsize && board[i+1][j+1] != '.') || 
+		//							(i - 1  > 0 && j - 1  > 0 && board[i-1][j-1] != '.') || 
+		//							(i - 1  > 0 && j + 1  < boardsize && board[i-1][j+1] != '.') || 
+		//							(i + 1  < boardsize && j - 1  > 0 && board[i+1][j-1] != '.')) {
+		//						actions.add(new int[] {i, j});
+		//					}
+		//				}
+		//			}
+		//		}
+		//		if(actions.size() == 0) {
+		//			if(board[boardsize/2][boardsize/2] == '.') {
+		//				actions.add(new int[] {boardsize/2, boardsize/2});
+		//			}
+		//			else {
+		//				actions.add(new int[] {boardsize/2, boardsize/2 - 1});
+		//			}
+		//		}
+
 		for(int i = 0; i < boardsize; i++)
 			for(int j = 0; j < boardsize; j++)
 				if(board[i][j] == '.')
-					if( (j + 1  < boardsize && board[i][j+1] != '.') || 
-							(j - 1  > 0 && board[i][j-1] != '.') || 
-							(i + 1  < boardsize && board[i+1][j] != '.') || 
-							(i - 1  > 0 && board[i-1][j] != '.') || 
-							(i + 1  < boardsize && j + 1  < boardsize && board[i+1][j+1] != '.') || 
-							(i - 1  > 0 && j - 1  > 0 && board[i-1][j-1] != '.') || 
-							(i - 1  > 0 && j + 1  < boardsize && board[i-1][j+1] != '.') || 
-							(i + 1  < boardsize && j - 1  > 0 && board[i+1][j-1] != '.'))
-						actions.add(new int[] {i, j});
-		if(actions.size() == 0)
-			if(board[boardsize/2][boardsize/2] == '.')
-				actions.add(new int[] {boardsize/2, boardsize/2});
-			else
-				actions.add(new int[] {boardsize/2, boardsize/2 - 1});
-
+					actions.add(new int[] {i, j});		
 	}
 
 	public ArrayList<int[]> getActions() {
@@ -178,6 +188,8 @@ public class GState {
 
 	//what about X's where one chainlength is too long, one is right?
 	public boolean isWin() {
+		if(move == null)
+			return false;
 		char mvp = (player == 'x') ? 'o' : 'x';
 		if(checkNorth(mvp, move) + checkSouth(mvp, move) + 1 == chainlength) {
 			return true;
@@ -298,48 +310,58 @@ public class GState {
 
 	//TODO better. check diagonals and stuff.
 	public int getUtility(char p) {
+		//just handle edge cases
 		if(isWin())
 			return 1000000;
 		if(isDraw())
 			return 0;
-		int u = 0, v = 0, w = 0, x = 0;
+
+		//directional chainlength
+		int n = 0, s = 0, e = 0, w = 0, nw = 0, sw = 0, ne = 0, se = 0;
+		int o_n = 0, o_s = 0, o_e = 0, o_w = 0, o_nw = 0, o_sw = 0, o_ne = 0, o_se = 0;
+
+		char o = (p == 'x') ? 'o' : 'x';
+		int threat = 0;
 		int max = 0, opp = 0;
+
 		for(int i = 0; i < boardsize; i++) {
 			for(int j = 0; j < boardsize; j++) {
-				//check the rows
-				if(board[i][j] == p)
-					u++;
-				else {
-					max = (max < u && u <= chainlength) ? u : max;
-					u = 0;
-				}
-				//check the columns
-				if(board[j][i] == p)
-					v++;
-				else {
-					max = (max < v && v <= chainlength) ? v : max;
-					v = 0;
-				}
+				//my threat
+				n = checkNorth(p, new int[] {i, j});
+				s = checkSouth(p, new int[] {i, j});
+				e = checkEast(p, new int[] {i, j});
+				w = checkWest(p, new int[] {i, j});
+				nw = checkNW(p, new int[] {i, j});
+				sw = checkSW(p, new int[] {i, j});
+				ne = checkNE(p, new int[] {i, j});
+				se = checkSE(p, new int[] {i, j});
 
-				//account for opponent's near win
-				//check the rows
-				if(board[i][j] == (p == 'x' ? 'o' : 'x'))
-					w++;
-				else {
-					opp = (opp < w && w <= chainlength) ? w : opp;
-					w = 0;
-				}
-				//check the columns
-				if(board[j][i] == (p == 'x' ? 'o' : 'x'))
-					x++;
-				else {
-					opp = (opp < x && x <= chainlength) ? x : opp;
-					x = 0;
-				}
+				threat += (n + s < chainlength) ? (n + s) : 0;
+				threat += (e + w < chainlength) ? (e + w) : 0;
+				threat += (nw + se < chainlength) ? (nw + se) : 0;
+				threat += (ne + sw < chainlength) ? (ne + sw) : 0;
+				max = (threat > max) ? threat : max;
+
+				//opponent threat
+				threat = 0;
+				o_n = checkNorth(o, new int[] {i, j});
+				o_s = checkSouth(o, new int[] {i, j});
+				o_e = checkEast(o, new int[] {i, j});
+				o_w = checkWest(o, new int[] {i, j});
+				o_nw = checkNW(o, new int[] {i, j});
+				o_sw = checkSW(o, new int[] {i, j});
+				o_ne = checkNE(o, new int[] {i, j});
+				o_se = checkSE(o, new int[] {i, j});
+
+				threat += (o_n + o_s < chainlength) ? (o_n + o_s) : 0;
+				threat += (o_e + o_w < chainlength) ? (o_e + o_w) : 0;
+				threat += (o_nw + o_se < chainlength) ? (o_nw + o_se) : 0;
+				threat += (o_ne + o_sw < chainlength) ? (o_ne + o_sw) : 0;
+				opp = (threat > opp) ? threat : opp;
 
 			}
 		}
-		return 2 * max - opp;
+		return max - opp;
 	}
 
 }
