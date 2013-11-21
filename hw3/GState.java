@@ -85,11 +85,8 @@ public class GState {
 							(i - 1  > 0 && j + 1  < boardsize && board[i-1][j+1] == player) || 
 							(i + 1  < boardsize && j - 1  > 0 && board[i+1][j-1] == player))
 						actions.add(new int[] {i, j});
-		if(actions.size() == 0)
-			for(int i = 0; i < boardsize; i++)
-				for(int j = 0; j < boardsize; j++)
-					if(board[i][j] == '.')
-						actions.add(new int[] {i, j});
+		//					else
+		//						actions.add(new int[] {i, j});
 	}
 
 	public ArrayList<int[]> getActions() {
@@ -132,16 +129,20 @@ public class GState {
 
 		// Line number print:
 		//col number header
-		System.out.print("  ");
+		System.out.print("   ");
 		for(int i = 0; i < boardsize; i++){
+			if(i < 10)
+				System.out.print(" ");
 			System.out.print(" " + i);
 		}
 		System.out.println();
 
 		for(int i = 0; i < boardsize; i++) {
+			if(i < 10)
+				System.out.print(" ");
 			System.out.print(i + " ");
 			for(int j = 0; j < boardsize; j++) {
-				System.out.print(" " + board[i][j]);
+				System.out.print("  " + board[i][j]);
 			}
 			System.out.println();
 		}

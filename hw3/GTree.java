@@ -139,8 +139,17 @@ public class GTree {
 
 	//TODO Utility
 	private int utility(GState state) {
+//		if(explored.contains(state))
+//			for(int c : explored.keySet())
+//				if(explored.get(c) == state)
+//					return c;
 		int u = state.getUtility(current.getPlayer());
-		explored.put(u, state);
+		if(explored.containsKey(u)) {
+			if(random.nextBoolean())
+				explored.put(u, state);
+		}
+		else
+			explored.put(u, state);
 		return u;
 	}
 
