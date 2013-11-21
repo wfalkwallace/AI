@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * 
@@ -85,8 +86,12 @@ public class GState {
 							(i - 1  > 0 && j + 1  < boardsize && board[i-1][j+1] == player) || 
 							(i + 1  < boardsize && j - 1  > 0 && board[i+1][j-1] == player))
 						actions.add(new int[] {i, j});
-		//					else
-		//						actions.add(new int[] {i, j});
+		if(actions.size() == 0)
+			if(board[boardsize/2][boardsize/2] == '.')
+				actions.add(new int[] {boardsize/2, boardsize/2});
+			else
+				actions.add(new int[] {boardsize/2, boardsize/2 - 1});
+
 	}
 
 	public ArrayList<int[]> getActions() {
