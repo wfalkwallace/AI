@@ -362,7 +362,7 @@ public class GState {
 
 			}
 		}
-		return max - opp;
+		return max;
 	}
 
 }
