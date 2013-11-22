@@ -104,7 +104,7 @@ public class GTree {
 
 	private int maxValue(GState state, int alpha, int beta, int depth) {
 		if(cutoff(state, depth))
-			return utility(state);
+			return utility(state, current.getPlayer());
 		int v = -1000000000;
 		for(int[] action : state.getActions()){
 			v = max(v, minValue(state.getResult(action[0], action[1]), alpha, beta, depth + 1));
@@ -117,7 +117,7 @@ public class GTree {
 
 	private int minValue(GState state, int alpha, int beta, int depth) {
 		if(cutoff(state, depth))
-			return utility(state);
+			return utility(state, current.getPlayer() == 'x' ? 'o' : 'x');
 		int v = 1000000000;
 		for(int[] action : state.getActions()){
 			v = min(v, maxValue(state.getResult(action[0], action[1]), alpha, beta, depth + 1));
@@ -149,12 +149,12 @@ public class GTree {
 	}
 
 	//TODO Utility
-	private int utility(GState state) {
+	private int utility(GState state, char player) {
 //		if(explored.contains(state))
 //			for(int c : explored.keySet())
 //				if(explored.get(c) == state)
 //					return c;
-		int u = state.getUtility(current.getPlayer());
+		int u = state.getUtility(player);
 		if(explored.containsKey(u)) {
 			if(random.nextBoolean()) {
 				explored.put(u, state);
