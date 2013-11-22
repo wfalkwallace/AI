@@ -4,7 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * 
+ * William Falk-Wallace
+ * AI HW3
  */
 
 /**

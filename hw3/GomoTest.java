@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 /**
- * 
+ * William Falk-Wallace
+ * AI HW3
  */
 
 /**

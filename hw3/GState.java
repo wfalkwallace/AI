@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 
 /**
- * 
+ * William Falk-Wallace
+ * AI HW3
  */
 
 /**
