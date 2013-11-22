@@ -1,28 +1,22 @@
 #!/bin/bash
-# Date = Sun Oct 27 10:34:30 EST 2013
+# Date = Sun Nov 21 10:44:30 EST 2013
 # Author = William Falk-Wallace
 # Description = Script to run AI HW2 Tests
 
+echo "make"
 make
-java GomoTest 10 5 30 > log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
-java GomoTest 10 5 30 >> log.txt
+echo "Running GomoTest 5 3 10 2 2"
+echo "GomoTest 5 3 10 2 2" > log.txt
+java GomoTest 5 3 10 2 2 >> log.txt
+echo "Completed GomoTest 5 3 10 2 2"
+echo "================================================" >> log.txt
+echo "Running GomoTest 15 5 10 2 2"
+echo "GomoTest 15 5 10 2 2" >> log.txt
+java GomoTest 15 5 10 2 2 >> log.txt
+echo "Completed GomoTest 15 5 10 2 2"
+echo "================================================" >> log.txt
+echo "Running GomoTest 15 5 30 2 2"
+echo "GomoTest 15 5 30 2 2" >> log.txt
+java GomoTest 15 5 30 2 2 >> log.txt
+echo "Completed GomoTest 15 5 30 2 2"
 make clean

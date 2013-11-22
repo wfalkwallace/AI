@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class GTree {
 
 	private static Random random = new Random();
-	private static final int DEPTH_LIMIT = 4;
+	private static final int DEPTH_LIMIT = 3;
 	private Hashtable<Integer, GState> explored = new Hashtable<Integer, GState>();
 	private GState current;
 	private double timeout;
@@ -29,19 +29,27 @@ public class GTree {
 	}
 
 	public char game(int p1, int p2) {
+		current.printState();
 		while(true) {
+			System.out.println();
 			start = System.nanoTime();
 			move(p1, start);
+			System.out.println("Move '" + current.getPlayer() + "': " + current.getMove()[0] + ", " + current.getMove()[1]);
+			System.out.println("Time Taken: " + (System.nanoTime() - start) / 1000000000.0 + "sec");
+			System.out.println("Resulting Board: ");
 			current.printState();
-			System.out.println((System.nanoTime() - start) / 1000000000.0);
 			if(current.isWin())
 				//TODO WIN
 				return current.getParent().getPlayer();
 			else if(current.isDraw())
 				//TODO DRAW
 				return '0';
+			System.out.println();
 			start = System.nanoTime();
 			move(p2, start);
+			System.out.println(current.getPlayer() + ": " + current.getMove()[0] + ", " + current.getMove()[1]);
+			System.out.println("Time Taken: " + (System.nanoTime() - start) / 1000000000.0 + "sec");
+			System.out.println("Resulting Board: ");
 			current.printState();
 			System.out.println((System.nanoTime() - start) / 1000000000.0);
 			if(current.isWin())
