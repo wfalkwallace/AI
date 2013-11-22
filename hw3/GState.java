@@ -74,22 +74,22 @@ public class GState {
 
 	//TODO priority queue
 	private void setActions(){
-		//		for(int i = 0; i < boardsize; i++) {
-		//			for(int j = 0; j < boardsize; j++) {
-		//				if(board[i][j] == '.') {
-		//					if( (j + 1  < boardsize && board[i][j+1] != '.') || 
-		//							(j - 1  > 0 && board[i][j-1] != '.') || 
-		//							(i + 1  < boardsize && board[i+1][j] != '.') || 
-		//							(i - 1  > 0 && board[i-1][j] != '.') || 
-		//							(i + 1  < boardsize && j + 1  < boardsize && board[i+1][j+1] != '.') || 
-		//							(i - 1  > 0 && j - 1  > 0 && board[i-1][j-1] != '.') || 
-		//							(i - 1  > 0 && j + 1  < boardsize && board[i-1][j+1] != '.') || 
-		//							(i + 1  < boardsize && j - 1  > 0 && board[i+1][j-1] != '.')) {
-		//						actions.add(new int[] {i, j});
+		//			for(int i = 0; i < boardsize; i++) {
+		//				for(int j = 0; j < boardsize; j++) {
+		//					if(board[i][j] == '.') {
+		//						if( (j + 1  < boardsize && board[i][j+1] != '.') || 
+		//								(j - 1  > 0 && board[i][j-1] != '.') || 
+		//								(i + 1  < boardsize && board[i+1][j] != '.') || 
+		//								(i - 1  > 0 && board[i-1][j] != '.') || 
+		//								(i + 1  < boardsize && j + 1  < boardsize && board[i+1][j+1] != '.') || 
+		//								(i - 1  > 0 && j - 1  > 0 && board[i-1][j-1] != '.') || 
+		//								(i - 1  > 0 && j + 1  < boardsize && board[i-1][j+1] != '.') || 
+		//								(i + 1  < boardsize && j - 1  > 0 && board[i+1][j-1] != '.')) {
+		//							actions.add(new int[] {i, j});
+		//						}
 		//					}
 		//				}
 		//			}
-		//		}
 		//		if(actions.size() == 0) {
 		//			if(board[boardsize/2][boardsize/2] == '.') {
 		//				actions.add(new int[] {boardsize/2, boardsize/2});

@@ -48,7 +48,7 @@ public class GTree {
 			System.out.println();
 			start = System.nanoTime();
 			move(p2, start);
-			System.out.println(current.getPlayer() + ": " + current.getMove()[0] + ", " + current.getMove()[1]);
+			System.out.println("Move '" + current.getPlayer() + "': " + current.getMove()[0] + ", " + current.getMove()[1]);
 			System.out.println("Time Taken: " + (System.nanoTime() - start) / 1000000000.0 + "sec");
 			System.out.println("Resulting Board: ");
 			current.printState();
@@ -66,10 +66,10 @@ public class GTree {
 	private void move (int mode, long start) {
 		switch(mode) {
 		case 0:
-			randomMove();
+			promptMove(start);
 			break;
 		case 1:
-			promptMove(start);
+			randomMove();
 			break;
 		case 2:
 			abSearch(start);
@@ -81,6 +81,7 @@ public class GTree {
 		ArrayList<int[]> moves = current.getActions();
 		int[] move = moves.get(random.nextInt(moves.size()));
 		current = current.getResult(move[0], move[1]);
+		explored.clear();
 	}
 
 	private void promptMove(long start) {
@@ -90,6 +91,7 @@ public class GTree {
 		System.out.println("Column:");
 		int col = input.nextInt();
 		current = current.getResult(row, col);
+		explored.clear();
 		//		}
 	}
 

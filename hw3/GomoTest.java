@@ -28,8 +28,8 @@ public class GomoTest {
 			System.out.println("Enter a turn time limit (in seconds):");
 			timeout = input.nextDouble();
 			System.out.println("Enter a player 1 type:");
-			System.out.println("0: Random");
-			System.out.println("1: Human");
+			System.out.println("0: Human");
+			System.out.println("1: Random");
 			System.out.println("2: Computer");
 			p1 = input.nextInt();
 			System.out.println("Enter a player 1 type:");
