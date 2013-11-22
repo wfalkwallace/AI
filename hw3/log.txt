@@ -8,7 +8,7 @@ GomoTest 5 3 10 2 2
  4   .  .  .  .  .
 
 Move 'o': 4, 4
-Time Taken: 0.101252sec
+Time Taken: 0.095966sec
 Resulting Board: 
      0  1  2  3  4
  0   .  .  .  .  .
@@ -17,8 +17,8 @@ Resulting Board:
  3   .  .  .  .  .
  4   .  .  .  .  x
 
-x: 4, 3
-Time Taken: 0.05352sec
+Move 'x': 4, 3
+Time Taken: 0.047864sec
 Resulting Board: 
      0  1  2  3  4
  0   .  .  .  .  .
@@ -26,10 +26,10 @@ Resulting Board:
  2   .  .  .  .  .
  3   .  .  .  .  .
  4   .  .  .  o  x
-0.054939
+0.048704
 
 Move 'o': 3, 4
-Time Taken: 0.124071sec
+Time Taken: 0.126132sec
 Resulting Board: 
      0  1  2  3  4
  0   .  .  .  .  .
@@ -38,8 +38,8 @@ Resulting Board:
  3   .  .  .  .  x
  4   .  .  .  o  x
 
-x: 4, 2
-Time Taken: 0.02691sec
+Move 'x': 4, 2
+Time Taken: 0.035329sec
 Resulting Board: 
      0  1  2  3  4
  0   .  .  .  .  .
@@ -47,70 +47,49 @@ Resulting Board:
  2   .  .  .  .  .
  3   .  .  .  .  x
  4   .  .  o  o  x
-0.028141
+0.036123
 
-Move 'o': 4, 1
-Time Taken: 0.013227sec
+Move 'o': 4, 0
+Time Taken: 0.01333sec
 Resulting Board: 
      0  1  2  3  4
  0   .  .  .  .  .
  1   .  .  .  .  .
  2   .  .  .  .  .
  3   .  .  .  .  x
- 4   .  x  o  o  x
+ 4   x  .  o  o  x
 
-x: 3, 2
-Time Taken: 0.021035sec
+Move 'x': 3, 3
+Time Taken: 0.026857sec
 Resulting Board: 
      0  1  2  3  4
  0   .  .  .  .  .
  1   .  .  .  .  .
  2   .  .  .  .  .
- 3   .  .  o  .  x
- 4   .  x  o  o  x
-0.022369
+ 3   .  .  .  o  x
+ 4   x  .  o  o  x
+0.02773
 
-Move 'o': 4, 0
-Time Taken: 0.024188sec
+Move 'o': 3, 2
+Time Taken: 0.002258sec
 Resulting Board: 
      0  1  2  3  4
  0   .  .  .  .  .
  1   .  .  .  .  .
  2   .  .  .  .  .
- 3   .  .  o  .  x
- 4   x  x  o  o  x
+ 3   .  .  x  o  x
+ 4   x  .  o  o  x
 
-x: 3, 3
-Time Taken: 0.004825sec
+Move 'x': 4, 1
+Time Taken: 0.002482sec
 Resulting Board: 
      0  1  2  3  4
  0   .  .  .  .  .
  1   .  .  .  .  .
  2   .  .  .  .  .
- 3   .  .  o  o  x
- 4   x  x  o  o  x
-0.006248
-
-Move 'o': 3, 0
-Time Taken: 0.004557sec
-Resulting Board: 
-     0  1  2  3  4
- 0   .  .  .  .  .
- 1   .  .  .  .  .
- 2   .  .  .  .  .
- 3   x  .  o  o  x
- 4   x  x  o  o  x
-
-x: 3, 1
-Time Taken: 0.003316sec
-Resulting Board: 
-     0  1  2  3  4
- 0   .  .  .  .  .
- 1   .  .  .  .  .
- 2   .  .  .  .  .
- 3   x  o  o  o  x
- 4   x  x  o  o  x
-0.00461
+ 3   .  .  x  o  x
+ 4   x  o  o  o  x
+0.00369
 Player o WINS!
 ================================================
 GomoTest 15 5 10 2 2
@@ -133,7 +112,7 @@ GomoTest 15 5 10 2 2
 14   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 
 Move 'o': 14, 14
-Time Taken: 2.175611sec
+Time Taken: 2.080366sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -152,8 +131,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  .  .  .  .  .  .  x
 
-x: 14, 13
-Time Taken: 1.709313sec
+Move 'x': 14, 13
+Time Taken: 1.567354sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -171,10 +150,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  .  .  .  .  .  o  x
-1.715454
+1.571047
 
 Move 'o': 14, 12
-Time Taken: 1.205627sec
+Time Taken: 1.203974sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -193,8 +172,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  .  .  .  .  x  o  x
 
-x: 14, 11
-Time Taken: 1.136677sec
+Move 'x': 14, 11
+Time Taken: 1.12731sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -212,10 +191,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  .  .  .  o  x  o  x
-1.142578
+1.130989
 
 Move 'o': 14, 10
-Time Taken: 1.973265sec
+Time Taken: 2.012362sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -234,8 +213,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  .  .  x  o  x  o  x
 
-x: 14, 9
-Time Taken: 1.107367sec
+Move 'x': 14, 9
+Time Taken: 1.101026sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -253,10 +232,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  .  o  x  o  x  o  x
-1.111802
+1.105651
 
 Move 'o': 14, 8
-Time Taken: 1.086816sec
+Time Taken: 1.098504sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -275,8 +254,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  x  o  x  o  x  o  x
 
-x: 14, 7
-Time Taken: 1.115771sec
+Move 'x': 14, 7
+Time Taken: 1.116544sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -294,10 +273,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  o  x  o  x  o  x  o  x
-1.121926
+1.120278
 
 Move 'o': 14, 6
-Time Taken: 1.091762sec
+Time Taken: 1.059744sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -316,8 +295,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  x  o  x  o  x  o  x  o  x
 
-x: 14, 5
-Time Taken: 1.094683sec
+Move 'x': 14, 5
+Time Taken: 1.093201sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -335,10 +314,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  o  x  o  x  o  x  o  x  o  x
-1.100933
+1.09639
 
 Move 'o': 14, 4
-Time Taken: 1.0717sec
+Time Taken: 1.089406sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -357,8 +336,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  x  o  x  o  x  o  x  o  x  o  x
 
-x: 14, 3
-Time Taken: 1.080353sec
+Move 'x': 14, 3
+Time Taken: 1.091592sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -376,10 +355,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  o  x  o  x  o  x  o  x  o  x  o  x
-1.084347
+1.094684
 
 Move 'o': 14, 2
-Time Taken: 1.091433sec
+Time Taken: 1.035055sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -398,8 +377,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 14, 1
-Time Taken: 1.090057sec
+Move 'x': 14, 1
+Time Taken: 1.077931sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -417,10 +396,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.09495
+1.080911
 
 Move 'o': 14, 0
-Time Taken: 1.035536sec
+Time Taken: 1.043914sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -439,8 +418,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 14
-Time Taken: 1.025962sec
+Move 'x': 13, 14
+Time Taken: 1.021346sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -458,10 +437,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.031057
+1.024485
 
 Move 'o': 13, 13
-Time Taken: 1.026169sec
+Time Taken: 0.99207sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -480,8 +459,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 12
-Time Taken: 1.030796sec
+Move 'x': 13, 12
+Time Taken: 0.968041sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -499,10 +478,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.034433
+0.971028
 
 Move 'o': 13, 11
-Time Taken: 1.81774sec
+Time Taken: 1.820696sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -521,8 +500,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 10
-Time Taken: 1.810668sec
+Move 'x': 13, 10
+Time Taken: 1.863804sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -540,10 +519,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.813954
+1.86672
 
 Move 'o': 0, 7
-Time Taken: 7.506915sec
+Time Taken: 7.508064sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -562,8 +541,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 9
-Time Taken: 0.963014sec
+Move 'x': 13, 9
+Time Taken: 0.948889sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -581,10 +560,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.967214
+0.952378
 
 Move 'o': 13, 8
-Time Taken: 2.449214sec
+Time Taken: 2.461901sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -603,8 +582,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 7
-Time Taken: 0.993354sec
+Move 'x': 13, 7
+Time Taken: 0.985427sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -622,10 +601,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.998093
+0.988241
 
 Move 'o': 13, 6
-Time Taken: 1.783143sec
+Time Taken: 1.757471sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -644,8 +623,8 @@ Resulting Board:
 13   .  .  .  .  .  .  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 5
-Time Taken: 1.66022sec
+Move 'x': 13, 5
+Time Taken: 1.70666sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -663,10 +642,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  o  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.66641
+1.710034
 
 Move 'o': 13, 4
-Time Taken: 0.92141sec
+Time Taken: 0.887998sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -685,8 +664,8 @@ Resulting Board:
 13   .  .  .  .  x  o  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 3
-Time Taken: 1.649917sec
+Move 'x': 13, 3
+Time Taken: 1.651561sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -704,10 +683,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  o  x  o  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.654792
+1.654246
 
 Move 'o': 13, 2
-Time Taken: 0.897553sec
+Time Taken: 0.941721sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -726,8 +705,8 @@ Resulting Board:
 13   .  .  x  o  x  o  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 1
-Time Taken: 1.685141sec
+Move 'x': 13, 1
+Time Taken: 1.643465sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -745,10 +724,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  o  x  o  x  o  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.689784
+1.646158
 
 Move 'o': 13, 0
-Time Taken: 0.901456sec
+Time Taken: 0.8705sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -767,8 +746,8 @@ Resulting Board:
 13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 12, 14
-Time Taken: 1.59054sec
+Move 'x': 12, 14
+Time Taken: 1.60938sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -786,10 +765,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  o
 13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.595498
+1.61212
 
-Move 'o': 12, 13
-Time Taken: 0.876177sec
+Move 'o': 12, 12
+Time Taken: 0.826537sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -804,12 +783,12 @@ Resulting Board:
  9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  .  .  .  .  .  x  o
+12   .  .  .  .  .  .  .  .  .  .  .  .  x  .  o
 13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 12, 12
-Time Taken: 1.605129sec
+Move 'x': 12, 13
+Time Taken: 1.530854sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -824,13 +803,13 @@ Resulting Board:
  9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  .  .  .  .  o  x  o
+12   .  .  .  .  .  .  .  .  .  .  .  .  x  o  o
 13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.60855
+1.533543
 
-Move 'o': 12, 11
-Time Taken: 0.850314sec
+Move 'o': 10, 14
+Time Taken: 3.52466sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -843,14 +822,14 @@ Resulting Board:
  7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  x
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  .  .  .  x  o  x  o
+12   .  .  .  .  .  .  .  .  .  .  .  .  x  o  o
 13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 12, 10
-Time Taken: 0.9045sec
+Move 'x': 12, 11
+Time Taken: 1.515754sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -863,15 +842,15 @@ Resulting Board:
  7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  x
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  .  .  o  x  o  x  o
+12   .  .  .  .  .  .  .  .  .  .  .  o  x  o  o
 13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.909357
+1.518507
 
-Move 'o': 12, 9
-Time Taken: 0.84774sec
+Move 'o': 11, 13
+Time Taken: 7.50663sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
@@ -884,361 +863,12 @@ Resulting Board:
  7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  .  x  o  x  o  x  o
+10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  x
+11   .  .  .  .  .  .  .  .  .  .  .  .  .  x  .
+12   .  .  .  .  .  .  .  .  .  .  .  o  x  o  o
 13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 12, 8
-Time Taken: 0.833014sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.837219
-
-Move 'o': 12, 7
-Time Taken: 1.580554sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 12, 6
-Time Taken: 0.843751sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.84902
-
-Move 'o': 12, 5
-Time Taken: 1.622414sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 12, 4
-Time Taken: 0.806855sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.811324
-
-Move 'o': 12, 3
-Time Taken: 0.832287sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  x  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 12, 2
-Time Taken: 0.764217sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  o  x  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.768479
-
-Move 'o': 12, 1
-Time Taken: 0.778784sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  x  o  x  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 12, 0
-Time Taken: 0.760833sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.764907
-
-Move 'o': 11, 14
-Time Taken: 0.738551sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  x
-12   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 11, 13
-Time Taken: 0.749381sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  o  x
-12   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.753439
-
-Move 'o': 11, 12
-Time Taken: 0.733332sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  x  o  x
-12   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 11, 11
-Time Taken: 1.446616sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  o  x  o  x
-12   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.451046
-
-Move 'o': 11, 10
-Time Taken: 1.396367sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  x  o  x  o  x
-12   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 9, 13
-Time Taken: 1.93381sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  o  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  x  o  x  o  x
-12   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.937306
-
-Move 'o': 11, 9
-Time Taken: 1.827985sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  o  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  x  x  o  x  o  x
-12   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 10, 12
-Time Taken: 7.503984sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  x  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  o  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  o  .  .
-11   .  .  .  .  .  .  .  .  .  x  x  o  x  o  x
-12   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-7.50568
-Player o WINS!
+Player x WINS!
 ================================================
 GomoTest 15 5 30 2 2
 ===================
@@ -1260,7 +890,7 @@ GomoTest 15 5 30 2 2
 14   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 
 Move 'o': 14, 14
-Time Taken: 2.084141sec
+Time Taken: 2.066437sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1279,8 +909,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  .  .  .  .  .  .  x
 
-x: 14, 13
-Time Taken: 1.571312sec
+Move 'x': 14, 13
+Time Taken: 1.524755sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1298,10 +928,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  .  .  .  .  .  o  x
-1.57706
+1.528305
 
 Move 'o': 14, 12
-Time Taken: 1.169932sec
+Time Taken: 1.115799sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1320,8 +950,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  .  .  .  .  x  o  x
 
-x: 14, 11
-Time Taken: 1.182115sec
+Move 'x': 14, 11
+Time Taken: 1.114084sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1339,10 +969,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  .  .  .  o  x  o  x
-1.188068
+1.11844
 
 Move 'o': 14, 10
-Time Taken: 2.022452sec
+Time Taken: 1.97667sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1361,8 +991,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  .  .  x  o  x  o  x
 
-x: 14, 9
-Time Taken: 1.119922sec
+Move 'x': 14, 9
+Time Taken: 1.075329sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1380,10 +1010,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  .  o  x  o  x  o  x
-1.124338
+1.078847
 
 Move 'o': 14, 8
-Time Taken: 1.176532sec
+Time Taken: 1.102547sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1402,8 +1032,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  .  x  o  x  o  x  o  x
 
-x: 14, 7
-Time Taken: 1.135687sec
+Move 'x': 14, 7
+Time Taken: 1.077588sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1421,10 +1051,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  .  o  x  o  x  o  x  o  x
-1.141995
+1.081261
 
 Move 'o': 14, 6
-Time Taken: 1.111361sec
+Time Taken: 1.069602sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1443,8 +1073,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  .  x  o  x  o  x  o  x  o  x
 
-x: 14, 5
-Time Taken: 1.107699sec
+Move 'x': 14, 5
+Time Taken: 1.117994sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1462,10 +1092,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  .  o  x  o  x  o  x  o  x  o  x
-1.11251
+1.121529
 
 Move 'o': 14, 4
-Time Taken: 1.075562sec
+Time Taken: 1.102993sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1484,8 +1114,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  .  x  o  x  o  x  o  x  o  x  o  x
 
-x: 14, 3
-Time Taken: 1.052182sec
+Move 'x': 14, 3
+Time Taken: 1.10565sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1503,10 +1133,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  .  o  x  o  x  o  x  o  x  o  x  o  x
-1.056639
+1.108679
 
 Move 'o': 14, 2
-Time Taken: 1.041888sec
+Time Taken: 1.138293sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1525,8 +1155,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  .  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 14, 1
-Time Taken: 1.047082sec
+Move 'x': 14, 1
+Time Taken: 0.978397sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1544,10 +1174,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   .  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.052189
+0.981365
 
 Move 'o': 14, 0
-Time Taken: 1.030455sec
+Time Taken: 0.991255sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1566,8 +1196,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 14
-Time Taken: 0.989235sec
+Move 'x': 13, 14
+Time Taken: 0.99521sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1585,10 +1215,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  .  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.994476
+0.998379
 
 Move 'o': 13, 13
-Time Taken: 0.999829sec
+Time Taken: 0.981226sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1607,8 +1237,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  .  .  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 12
-Time Taken: 1.002421sec
+Move 'x': 13, 12
+Time Taken: 0.972322sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1626,10 +1256,10 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  .  .  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.007827
+0.975701
 
 Move 'o': 13, 11
-Time Taken: 1.784232sec
+Time Taken: 1.754229sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1648,8 +1278,8 @@ Resulting Board:
 13   .  .  .  .  .  .  .  .  .  .  .  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 10
-Time Taken: 1.785341sec
+Move 'x': 13, 10
+Time Taken: 1.723577sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1667,14 +1297,14 @@ Resulting Board:
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 13   .  .  .  .  .  .  .  .  .  .  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.788946
+1.726417
 
-Move 'o': 1, 8
-Time Taken: 22.506516sec
+Move 'o': 13, 9
+Time Taken: 22.509343sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1686,15 +1316,15 @@ Resulting Board:
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-13   .  .  .  .  .  .  .  .  .  .  o  x  o  x  o
+13   .  .  .  .  .  .  .  .  .  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 9
-Time Taken: 0.994039sec
+Move 'x': 13, 8
+Time Taken: 0.965759sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1706,16 +1336,16 @@ Resulting Board:
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-13   .  .  .  .  .  .  .  .  .  o  o  x  o  x  o
+13   .  .  .  .  .  .  .  .  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.99849
+0.968741
 
-Move 'o': 13, 8
-Time Taken: 2.499967sec
+Move 'o': 13, 7
+Time Taken: 0.935207sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1727,15 +1357,15 @@ Resulting Board:
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-13   .  .  .  .  .  .  .  .  x  o  o  x  o  x  o
+13   .  .  .  .  .  .  .  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 7
-Time Taken: 0.939024sec
+Move 'x': 13, 6
+Time Taken: 0.917061sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1747,16 +1377,16 @@ Resulting Board:
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-13   .  .  .  .  .  .  .  o  x  o  o  x  o  x  o
+13   .  .  .  .  .  .  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.944063
+0.919813
 
-Move 'o': 13, 6
-Time Taken: 1.774684sec
+Move 'o': 13, 5
+Time Taken: 0.931489sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1768,15 +1398,15 @@ Resulting Board:
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-13   .  .  .  .  .  .  x  o  x  o  o  x  o  x  o
+13   .  .  .  .  .  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 5
-Time Taken: 1.757519sec
+Move 'x': 13, 4
+Time Taken: 0.905008sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1788,16 +1418,16 @@ Resulting Board:
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-13   .  .  .  .  .  o  x  o  x  o  o  x  o  x  o
+13   .  .  .  .  o  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.762565
+0.907719
 
-Move 'o': 13, 4
-Time Taken: 0.908483sec
+Move 'o': 13, 3
+Time Taken: 0.887339sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1809,15 +1439,15 @@ Resulting Board:
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-13   .  .  .  .  x  o  x  o  x  o  o  x  o  x  o
+13   .  .  .  x  o  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 3
-Time Taken: 1.650704sec
+Move 'x': 13, 2
+Time Taken: 0.894206sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1829,16 +1459,16 @@ Resulting Board:
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-13   .  .  .  o  x  o  x  o  x  o  o  x  o  x  o
+13   .  .  o  x  o  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.655683
+0.896956
 
-Move 'o': 13, 2
-Time Taken: 0.843427sec
+Move 'o': 13, 1
+Time Taken: 0.891012sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1850,15 +1480,15 @@ Resulting Board:
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-13   .  .  x  o  x  o  x  o  x  o  o  x  o  x  o
+13   .  x  o  x  o  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 13, 1
-Time Taken: 1.551989sec
+Move 'x': 13, 0
+Time Taken: 0.872033sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1870,16 +1500,16 @@ Resulting Board:
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-13   .  o  x  o  x  o  x  o  x  o  o  x  o  x  o
+13   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.556808
+0.874813
 
-Move 'o': 13, 0
-Time Taken: 0.863485sec
+Move 'o': 12, 14
+Time Taken: 0.861984sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1890,16 +1520,16 @@ Resulting Board:
  9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
+12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  x
+13   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 12, 14
-Time Taken: 1.555175sec
+Move 'x': 12, 13
+Time Taken: 0.867215sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1910,17 +1540,17 @@ Resulting Board:
  9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  .  .  .  .  .  .  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
+12   .  .  .  .  .  .  .  .  .  .  .  .  .  o  x
+13   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.560198
+0.870437
 
-Move 'o': 12, 13
-Time Taken: 0.846933sec
+Move 'o': 12, 12
+Time Taken: 0.833701sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1931,16 +1561,16 @@ Resulting Board:
  9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  .  .  .  .  .  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
+12   .  .  .  .  .  .  .  .  .  .  .  .  x  o  x
+13   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 12, 12
-Time Taken: 1.53866sec
+Move 'x': 12, 11
+Time Taken: 0.812673sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1951,17 +1581,17 @@ Resulting Board:
  9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  .  .  .  .  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
+12   .  .  .  .  .  .  .  .  .  .  .  o  x  o  x
+13   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.543563
+0.815868
 
-Move 'o': 12, 11
-Time Taken: 0.825373sec
+Move 'o': 10, 10
+Time Taken: 4.205847sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1970,18 +1600,18 @@ Resulting Board:
  7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+10   .  .  .  .  .  .  .  .  .  .  x  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  .  .  .  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
+12   .  .  .  .  .  .  .  .  .  .  .  o  x  o  x
+13   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 
-x: 12, 10
-Time Taken: 0.820184sec
+Move 'x': 10, 9
+Time Taken: 3.405633sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -1990,19 +1620,19 @@ Resulting Board:
  7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+10   .  .  .  .  .  .  .  .  .  o  x  .  .  .  .
 11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  .  .  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
+12   .  .  .  .  .  .  .  .  .  .  .  o  x  o  x
+13   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.825009
+3.408349
 
-Move 'o': 12, 9
-Time Taken: 0.813435sec
+Move 'o': 11, 11
+Time Taken: 22.50783sec
 Resulting Board: 
      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
  0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
+ 1   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
@@ -2011,255 +1641,9 @@ Resulting Board:
  7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
  9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  .  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 12, 8
-Time Taken: 0.80751sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.811413
-
-Move 'o': 11, 9
-Time Taken: 1.521348sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  x  .  .  .  .  .
-12   .  .  .  .  .  .  .  .  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 12, 6
-Time Taken: 0.787836sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  x  .  .  .  .  .
-12   .  .  .  .  .  .  o  .  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.792964
-
-Move 'o': 12, 7
-Time Taken: 1.448093sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  x  .  .  .  .  .
-12   .  .  .  .  .  .  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 12, 5
-Time Taken: 0.808869sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  x  .  .  .  .  .
-12   .  .  .  .  .  o  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-0.812749
-
-Move 'o': 12, 4
-Time Taken: 1.365463sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  x  .  .  .  .  .
-12   .  .  .  .  x  o  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 12, 3
-Time Taken: 1.924481sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  x  .  .  .  .  .
-12   .  .  .  o  x  o  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-1.928975
-
-Move 'o': 10, 4
-Time Taken: 2.51721sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  x  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  x  .  .  .  .  .
-12   .  .  .  o  x  o  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 12, 2
-Time Taken: 3.062375sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
- 2   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  x  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  x  .  .  .  .  .
-12   .  .  o  o  x  o  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-3.065642
-
-Move 'o': 2, 5
-Time Taken: 22.503576sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
- 2   .  .  .  .  .  x  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  x  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  x  .  .  .  .  .
-12   .  .  o  o  x  o  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-
-x: 12, 1
-Time Taken: 3.103815sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
- 2   .  .  .  .  .  x  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  x  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  .  .  .  .  .  x  .  .  .  .  .
-12   .  o  o  o  x  o  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
-14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
-3.106786
-
-Move 'o': 11, 4
-Time Taken: 22.503642sec
-Resulting Board: 
-     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
- 0   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 1   .  .  .  .  .  .  .  .  x  .  .  .  .  .  .
- 2   .  .  .  .  .  x  .  .  .  .  .  .  .  .  .
- 3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 4   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 5   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 6   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 8   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 9   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
-10   .  .  .  .  x  .  .  .  .  .  .  .  .  .  .
-11   .  .  .  .  x  .  .  .  .  x  .  .  .  .  .
-12   .  o  o  o  x  o  o  x  o  x  o  x  o  x  o
-13   x  o  x  o  x  o  x  o  x  o  o  x  o  x  o
+10   .  .  .  .  .  .  .  .  .  o  x  .  .  .  .
+11   .  .  .  .  .  .  .  .  .  .  .  x  .  .  .
+12   .  .  .  .  .  .  .  .  .  .  .  o  x  o  x
+13   o  x  o  x  o  x  o  x  o  x  o  x  o  x  o
 14   x  o  x  o  x  o  x  o  x  o  x  o  x  o  x
 Player x WINS!
