@@ -12,8 +12,13 @@ import java.util.Queue;
  */
 public class KB {
 
+	public KB () {
+		
+	}
 	
-	boolean fc (KB kb, String q) {
+	
+	
+	public boolean fc (KB kb, String q) {
 		Hashtable<String, Integer> count = new Hashtable<String, Integer>();
 		Hashtable<String, Boolean> inferred = new Hashtable<String, Boolean>();
 		Queue<String> agenda = new LinkedList<String>();
