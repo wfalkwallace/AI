@@ -15,39 +15,33 @@ public class Entail {
 
 
 
-		String levelpath;
-		int searchtype;
-		char stats;
+		int mode;
+		String kbpath;
+		String query;
 
 		if(args.length < 3){
 			//user input
 			Scanner input = new Scanner(System.in);
-			System.out.println("Enter a sokoban puzzle file [<filepath>]:");
-			levelpath = input.nextLine();
-			System.out.println("Specify which search to use [1-7]: ");
-			System.out.println("1) BFS");
-			System.out.println("2) DFS");
-			System.out.println("3) UCS");
-			System.out.println("4) Greedy Best First Search (with open goals heuristic)");
-			System.out.println("5) Greedy Best First Search (with Manhattan distance heuristic)");
-			System.out.println("6) A* Search (with open goals heuristic)");
-			System.out.println("7) A* Search (with Manhattan distance heuristic)");
-			searchtype = input.nextInt();
-			System.out.println("Statistics [y/n]:");
-			stats = input.next().charAt(0);
+			System.out.println("Enter a mode:");
+			System.out.println("1) Forward");
+			System.out.println("2) Backward");
+			mode = input.nextInt();
+			System.out.println("Enter a knowledge base file [<filepath>]:");
+			kbpath = input.nextLine();
+			System.out.println("Enter a query symbol to be entailed:");
+			query = input.nextLine();
 		}
 		else {
-			levelpath = args[0];
-			searchtype = Integer.parseInt(args[1]);
-			stats = args[2].charAt(0);
+			mode = Integer.parseInt(args[0]);
+			kbpath = args[1];
+			query = args[2];
 		}
 
-		//TREEPREP
-		File lvl_src = new File(levelpath);
-		LevelLoader ll = new LevelLoader(lvl_src);		
-		STree tree = new STree(ll.init());
-		//ENDTREEPREP
+		File kbfile = new File(kbpath);
+		KBLoader kbl = new KBLoader(kbfile);		
 
+		//=====
+		
 		//HEADER
 		String searchstring;
 		switch(searchtype) {
