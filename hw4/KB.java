@@ -17,49 +17,32 @@ import java.util.Queue;
  */
 public class KB {
 
-	private ArrayList<String> facts;
-	private Hashtable<String, String> clauses;
-	
-	Hashtable<Entry<String, String>, Integer> count;
+	private Hashtable<String, ArrayList<String>> clauses;
+
+	Hashtable<String, Integer> count;
 	Hashtable<String, Boolean> inferred;
 	Queue<String> agenda;
 
 	public KB (File kbfile) {
-		facts = new ArrayList<String>();
-		clauses = new Hashtable<String, String>();
-		
-		count = new Hashtable<Entry<String, String>, Integer>();
+		clauses = new Hashtable<String, ArrayList<String>>();
+
+		count = new Hashtable<String, Integer>();
 		inferred = new Hashtable<String, Boolean>();
 		agenda = new LinkedList<String>();
-		
+
 		loadKB(kbfile);
-	}
-
-	private void addFact(String f) {
-		facts.add(f);
-	}
-
-	public ArrayList<String> getFacts() {
-		return facts;
 	}
 
 	public void addStatement(String s) {
 		if ( s.contains("=>") ){
-			String sc[] = s.split("=>");
-			addClause(sc[0], sc[1]);
+			String c[] = s.split("=>");
+			if ( !clauses.containsKey(c[0]) )
+				clauses.put(c[0], new ArrayList<String>());
+			clauses.get(c[0]).add(c[1]);
 		}
 		else
-			addFact(s);
+			inferred.put(s, true);
 	}
-
-	private void addClause(String p, String c) {
-		clauses.put(p, c);
-	}
-
-	public Hashtable<String, String> getClauses() {
-		return clauses;
-	}
-
 
 	private void loadKB(File kbfile) {
 		Scanner input;
