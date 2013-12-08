@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.Map.Entry;
 import java.util.Queue;
 
 /**
@@ -17,16 +16,14 @@ import java.util.Queue;
  */
 public class KB {
 
-	private Hashtable<String, ArrayList<String>> clauses;
-
-	Hashtable<String, Integer> count;
-	Hashtable<String, Boolean> inferred;
+	private ArrayList<Clause> clauses;
+	private ArrayList<String> facts;
+	private Hashtable<String, Boolean> inferred;
 	Queue<String> agenda;
 
 	public KB (File kbfile) {
-		clauses = new Hashtable<String, ArrayList<String>>();
-
-		count = new Hashtable<String, Integer>();
+		clauses = new ArrayList<Clause>();
+		facts = new ArrayList<String>();
 		inferred = new Hashtable<String, Boolean>();
 		agenda = new LinkedList<String>();
 
@@ -34,19 +31,18 @@ public class KB {
 	}
 
 	public void addStatement(String s) {
+		//TODO check if valid horn clause/conjunction/negated/??
 		if ( s.contains("=>") ){
-			String c[] = s.split("=>");
-			if ( !clauses.containsKey(c[0]) )
-				clauses.put(c[0], new ArrayList<String>());
-			clauses.get(c[0]).add(c[1]);
+			clauses.add(new Clause(s));
 		}
 		else
-			inferred.put(s, true);
+			facts.add(s);
 	}
 
 	private void loadKB(File kbfile) {
 		Scanner input;
 		ArrayList<String> statements = new ArrayList<String>();
+
 		try {
 			input = new Scanner(kbfile);
 			while(input.hasNextLine())
@@ -57,25 +53,37 @@ public class KB {
 			e.printStackTrace();
 		}
 
+		//for each sentence, add to KB
 		for ( String s : statements ) {
-			//TODO check if valid horn clause
 			addStatement(s);
 		}
+
+		//add facts to agenda
+		for(String f : facts) {
+			agenda.add(f);
+		}
+
+
 	}
 
-
-	public boolean fc (KB kb, String q) {
+	public boolean fc (String q) {
 		while ( !agenda.isEmpty() ) {
 			String p = agenda.poll();
 			if ( p.equals(q) )
 				return true;
-			if ( inferred.get(p) ) {
+			if ( !inferred.get(p) ) {
 				inferred.put(p, true);
-				for ( Entry<String, String> c : kb.getClauses().entrySet() ) {
-					if( c.getKey().contains(p) ) {
-						count.put(c, count.get(c) - 1);
-						if ( count.get(c) == 0 )
-							agenda.add( c.getValue() );
+				//for each clause
+				for ( Clause c : clauses ) {
+					//for each premise symbol of each clause
+					for ( String cp : c.getPremise() ) {
+						//for each premise symbol of each clause, if that premise symbol 
+						//is p ('contains' to deal with whitespace, etc)
+						if( cp.contains(p) ) {
+							c.removeSym(p);
+							if ( c.getCount() == 0 )
+								agenda.add( c.getConclusion() );
+						}
 					}
 				}
 			}	
@@ -83,7 +91,10 @@ public class KB {
 		return false;
 	}
 
-
+	public boolean bc (String q) {
+		
+		return false;
+	}
 
 
 

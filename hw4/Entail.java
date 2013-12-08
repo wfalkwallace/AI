@@ -1,7 +1,4 @@
 import java.io.File;
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 
@@ -16,8 +13,6 @@ public class Entail {
 	 */
 	public static void main(String[] args) {
 
-
-
 		String mode;
 		String kbpath;
 		String query;
@@ -31,6 +26,7 @@ public class Entail {
 			kbpath = input.nextLine();
 			System.out.println("Enter a query symbol to be entailed:");
 			query = input.nextLine();
+			input.close();
 		}
 		else {
 			mode = args[0];
