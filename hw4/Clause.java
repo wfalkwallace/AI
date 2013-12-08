@@ -17,7 +17,7 @@ public class Clause {
 		String splitclause[] = s.split("=>");
 		conclusion = splitclause[1];
 
-		String splitpremise[] = s.split("^");
+		String splitpremise[] = s[0].split("^");
 
 		for ( String sym : splitpremise ){
 			premise.add(sym);
