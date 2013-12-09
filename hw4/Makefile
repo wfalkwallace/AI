@@ -3,7 +3,7 @@ JC = javac
 .SUFFIXES: .java .class
 .java.class:
 	$(JC) $*.java
-files = Entail.java KB.java KBLoader.java
+files = Entail.java KB.java Clause.java
 
 .PHONY: default
 default: $(files:.java=.class)
