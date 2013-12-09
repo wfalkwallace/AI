@@ -69,9 +69,9 @@ public class KB {
 	public boolean fc (String q) {
 		while ( !agenda.isEmpty() ) {
 			String p = agenda.poll();
-			if ( p.equals(q) )
+			if ( p.trim().equals(q) )
 				return true;
-			if ( !inferred.get(p) ) {
+			if ( !inferred.containsKey(p) ) {
 				inferred.put(p, true);
 				//for each clause
 				for ( Clause c : clauses ) {
@@ -80,7 +80,7 @@ public class KB {
 						//for each premise symbol of each clause, if that premise symbol 
 						//is p ('contains' to deal with whitespace, etc)
 						if( cp.contains(p) ) {
-							c.removeSym(p);
+							c.decrCount();
 							if ( c.getCount() == 0 )
 								agenda.add( c.getConclusion() );
 						}
@@ -96,6 +96,10 @@ public class KB {
 		return false;
 	}
 
+	public boolean res (String q) {
+		
+		return false;
+	}
 
 
 

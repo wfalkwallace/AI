@@ -12,22 +12,30 @@ public class Clause {
 
 	private ArrayList<String> premise;
 	private String conclusion;
+	private int count;
 
-	Clause(String s) {		
+	Clause(String s) {
+		premise = new ArrayList<String>();
 		String splitclause[] = s.split("=>");
-		conclusion = splitclause[1];
+		conclusion = splitclause[1].trim();
 
-		String splitpremise[] = s[0].split("^");
+		String splitpremise[] = splitclause[0].split("\\^");
 
 		for ( String sym : splitpremise ){
-			premise.add(sym);
+			premise.add(sym.trim());
 		}
+		
+		count = premise.size();
 	}
 
 	public int getCount() {
-		return premise.size();
+		return count;
 	}
-
+	
+	public void decrCount() {
+		count--;
+	}
+	
 	public ArrayList<String> getPremise() {
 		return premise;
 	}

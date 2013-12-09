@@ -38,7 +38,10 @@ public class Entail {
 		KB kb = new KB(kbfile);
 		
 		if ( mode.equals("forward") ) {
-			kb.fc(query);
+			if(kb.fc(query))
+				System.out.println("true");
+			else
+				System.out.println("false");
 		}
 		else if ( mode.equals("backward") ) {
 			kb.bc(query);
