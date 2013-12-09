@@ -39,9 +39,9 @@ public class Entail {
 		
 		if ( mode.equals("forward") ) {
 			if(kb.fc(query))
-				System.out.println("true");
+				System.out.println("--> true");
 			else
-				System.out.println("false");
+				System.out.println("--> false");
 		}
 		else if ( mode.equals("backward") ) {
 			kb.bc(query);

@@ -58,9 +58,10 @@ public class KB {
 			addStatement(s);
 		}
 
-		//add facts to agenda
+		//add facts to agenda and print first steps
 		for(String f : facts) {
-			agenda.add(f);
+			agenda.add(f.trim());
+			System.out.println(f.trim());
 		}
 
 
@@ -81,8 +82,10 @@ public class KB {
 						//is p ('contains' to deal with whitespace, etc)
 						if( cp.contains(p) ) {
 							c.decrCount();
-							if ( c.getCount() == 0 )
+							if ( c.getCount() == 0 ) {
 								agenda.add( c.getConclusion() );
+								System.out.println(c.print());
+							}
 						}
 					}
 				}

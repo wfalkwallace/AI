@@ -13,8 +13,10 @@ public class Clause {
 	private ArrayList<String> premise;
 	private String conclusion;
 	private int count;
+	private String sentence;
 
 	Clause(String s) {
+		sentence = s;
 		premise = new ArrayList<String>();
 		String splitclause[] = s.split("=>");
 		conclusion = splitclause[1].trim();
@@ -26,6 +28,10 @@ public class Clause {
 		}
 		
 		count = premise.size();
+	}
+	
+	public String print() {
+		return sentence;
 	}
 
 	public int getCount() {
