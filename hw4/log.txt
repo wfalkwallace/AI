@@ -1,0 +1,55 @@
+====================
+Query: Q 
+KB: 
+P => Q
+L ^ M => P
+B ^ L => M
+A ^ P => L
+A ^ B => L
+A
+B
+
+Forward Chaining:
+A
+B
+A ^ B => L
+B ^ L => M
+L ^ M => P
+P => Q
+A ^ P => L
+--> true
+====================
+Query: PIGN 
+KB: 
+EGG ^ ETO => PIGN
+ETON ^ LWN ^ TL ^ MWN => PTMP
+ETON ^ LWN ^ MW => PIGN
+ETON ^ LWN ^ TLN => PIGN
+ETON ^ LW => PSTM
+FT ^ FC => EGG
+FT
+FC
+TL
+MW
+ETO
+
+Forward Chaining:
+FT
+FC
+TL
+MW
+ETO
+FT ^ FC => EGG
+EGG ^ ETO => PIGN
+--> true
+====================
+Query: Q 
+KB: 
+P => Q
+P
+
+Forward Chaining:
+P
+P => Q
+--> true
+====================
