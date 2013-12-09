@@ -36,7 +36,7 @@ public class Entail {
 
 		File kbfile = new File(kbpath);
 		KB kb = new KB(kbfile);
-		
+
 		if ( mode.equals("forward") ) {
 			if(kb.fc(query))
 				System.out.println("--> true");
@@ -44,12 +44,19 @@ public class Entail {
 				System.out.println("--> false");
 		}
 		else if ( mode.equals("backward") ) {
-			kb.bc(query);
+			if(kb.bc(query))
+				System.out.println("--> true");
+			else
+				System.out.println("--> false");		
+		}
+		else if ( mode.equals("CNF") ) {
+			if(kb.res(query))
+				System.out.println("--> true");
+			else
+				System.out.println("--> false");		
 		}
 		else
 			System.out.println("That's not a valid mode.");
-
-
 	}
 
 }
