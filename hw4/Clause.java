@@ -18,18 +18,23 @@ public class Clause {
 	Clause(String s) {
 		sentence = s;
 		premise = new ArrayList<String>();
-		String splitclause[] = s.split("=>");
-		conclusion = splitclause[1].trim();
 
-		String splitpremise[] = splitclause[0].split("\\^");
+		if( s.contains("v") )
+			convert(s);
+		else {
+			String splitclause[] = sentence.split("=>");
+			conclusion = splitclause[1].trim();
 
-		for ( String sym : splitpremise ){
-			premise.add(sym.trim());
+			String splitpremise[] = splitclause[0].split("\\^");
+
+			for ( String sym : splitpremise ){
+				premise.add(sym.trim());
+			}
 		}
-		
+
 		count = premise.size();
 	}
-	
+
 	public String print() {
 		return sentence;
 	}
@@ -37,11 +42,11 @@ public class Clause {
 	public int getCount() {
 		return count;
 	}
-	
+
 	public void decrCount() {
 		count--;
 	}
-	
+
 	public ArrayList<String> getPremise() {
 		return premise;
 	}
@@ -49,14 +54,38 @@ public class Clause {
 	public String getConclusion() {
 		return conclusion;
 	}
-	
-	public void removeSym(String sym) {
-		for(String s : premise) {
-			if (s.contains(sym)) {
-				premise.remove(s);
-				return;
+
+	private void convert(String s) {
+		String splitclause[] = s.split("v");
+		for(int i = 0; i < splitclause.length; i++ ) {
+			if( i == splitclause.length && conclusion.length() == 0){
+				conclusion = splitclause[i];
+			}
+			else {
+				if ( splitclause[i].contains("~") ){
+					premise.add( splitclause[i].replace('~', ' ').trim() );
+				}
+				else {
+					conclusion = splitclause[i].trim();
+				}
 			}
 		}
+
+		sentence = "";
+		for (String sym : premise)
+			sentence += sym + " ";
+		sentence += "=> " + conclusion;
+
+		System.out.println(s + " ---> " + sentence);
 	}
-	
+
+	//	public void removeSym(String sym) {
+	//		for(String s : premise) {
+	//			if (s.contains(sym)) {
+	//				premise.remove(s);
+	//				return;
+	//			}
+	//		}
+	//	}
+
 }
