@@ -72,8 +72,10 @@ public class Clause {
 		}
 
 		sentence = "";
-		for (String sym : premise)
-			sentence += sym + " ";
+		for(int i = 0; i < premise.size() - 1; i++ )
+			sentence += premise.get(i) + " ^ ";
+		sentence += premise.get(premise.size() - 1) + " ";
+
 		sentence += "=> " + conclusion;
 
 		System.out.println(s + " ---> " + sentence);
