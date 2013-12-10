@@ -58,7 +58,7 @@ public class Clause {
 	private void convert(String s) {
 		String splitclause[] = s.split("v");
 		for(int i = 0; i < splitclause.length; i++ ) {
-			if( i == splitclause.length && conclusion.length() == 0){
+			if( i == splitclause.length - 1 && conclusion == null){
 				conclusion = splitclause[i];
 			}
 			else {
