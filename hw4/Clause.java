@@ -59,13 +59,14 @@ public class Clause {
 		String splitclause[] = s.split("v");
 		for(int i = 0; i < splitclause.length; i++ ) {
 			if( i == splitclause.length - 1 && conclusion == null){
-				conclusion = splitclause[i];
+				conclusion = splitclause[i].trim();
 			}
 			else {
 				if ( splitclause[i].contains("~") ){
 					premise.add( splitclause[i].replace('~', ' ').trim() );
 				}
 				else {
+					//TODO: if second positive lit
 					conclusion = splitclause[i].trim();
 				}
 			}

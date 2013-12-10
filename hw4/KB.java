@@ -52,13 +52,6 @@ public class KB {
 			addStatement(s);
 		}
 
-		//add facts to agenda and print first steps
-		for(String f : facts) {
-			agenda.add(f.trim());
-			System.out.println(f.trim());
-		}
-
-
 	}
 
 	private void addStatement(String s) {
@@ -67,10 +60,17 @@ public class KB {
 			clauses.add(new Clause(s));
 		}
 		else
-			facts.add(s);
+			facts.add(s.trim());
 	}
 
 	public boolean fc (String q) {
+
+		//add facts to agenda and print first steps
+		for(String f : facts) {
+			agenda.add(f);
+			System.out.println(f.trim());
+		}
+
 		while ( !agenda.isEmpty() ) {
 			String p = agenda.poll();
 			if ( p.trim().equals(q) )
@@ -98,8 +98,25 @@ public class KB {
 	}
 
 	public boolean bc (String q) {
-
+		agenda.add(q);
+		while ( !agenda.isEmpty() ) {			
+			String p = agenda.poll();
+			if ( !inferred.containsKey(p) ) {
+				inferred.put(p, true);
+				//for each clause
+				for ( Clause c : clauses ) {
+					//if that symbol's conclusion is p ('contains' to deal with whitespace, etc)
+					if( c.getConclusion().contains(p) ) {
+						agenda.addAll( c.getPremise() );
+						System.out.println(c.print());
+					}
+				}
+			}
+		}
+		if( inferred.keySet().containsAll(facts) )
+			return true;
 		return false;
+
 	}
 
 	//================================================================================
@@ -157,13 +174,12 @@ public class KB {
 				return false;
 			CNFclauses.addAll(CNFnew);
 		}
-		return false;
 	}
 
 	public ArrayList<String> resolve(String c1, String c2) {
 		ArrayList<String> resolvents;
-		
-		
+
+
 
 		return resolvents;
 	}
