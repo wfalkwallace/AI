@@ -32,7 +32,7 @@ public class KB {
 
 	public void addStatement(String s) {
 		//TODO check if valid horn clause/conjunction/negated/??
-		if ( s.contains("=>") ){
+		if ( s.contains("=>") || s.contains("v") ){
 			clauses.add(new Clause(s));
 		}
 		else
