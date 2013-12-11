@@ -50,9 +50,9 @@ public class Entail {
 				System.out.println("--> false");		
 		}
 		else if ( mode.equals("CNF") ) {
-			if(kb.resolution(query))
+//			if(kb.resolution(query))
 				System.out.println("--> true");
-			else
+//			else
 				System.out.println("--> false");		
 		}
 		else

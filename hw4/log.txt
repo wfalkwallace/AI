@@ -18,6 +18,9 @@ L ^ M => P
 P => Q
 A ^ P => L
 --> true
+
+
+Backward Chaining:
 ====================
 Query: PIGN 
 KB: 
@@ -42,6 +45,9 @@ ETO
 FT ^ FC => EGG
 EGG ^ ETO => PIGN
 --> true
+
+
+Backward Chaining:
 ====================
 Query: Q 
 KB: 
@@ -52,4 +58,7 @@ Forward Chaining:
 P
 P => Q
 --> true
+
+
+Backward Chaining:
 ====================
