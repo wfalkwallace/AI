@@ -1,0 +1,7 @@
+~a v ~b v ~c v ~d
+~d => e
+f ^ g => h
+~d
+c
+b
+a

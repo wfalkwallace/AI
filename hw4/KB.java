@@ -83,7 +83,7 @@ public class KB {
 					for ( String cp : c.getPremise() ) {
 						//for each premise symbol of each clause, if that premise symbol 
 						//is p ('contains' to deal with whitespace, etc)
-						if( cp.contains(p) ) {
+						if( cp.trim().contains(p) ) {
 							c.decrCount();
 							if ( c.getCount() == 0 ) {
 								agenda.add( c.getConclusion() );
@@ -97,40 +97,40 @@ public class KB {
 		return false;
 	}
 
-	public boolean bc0 (String q) {
-		if ( facts.contains(q) )
-			return true;
-
-		agenda.add(q);
-
-		while ( !agenda.isEmpty() ) {			
-			String p = agenda.poll();
-			if ( facts.contains(p) ) { 
-				System.out.println(p);
-				facts.remove(p);
-			}
-			if ( !inferred.containsKey(p) ) {
-				inferred.put(p, true);
-				//for each clause
-				for ( Clause c : clauses ) {
-					//if that symbol's conclusion is p ('contains' to deal with whitespace, etc)
-					if( c.getConclusion().contains(p) ) {
-						agenda.addAll( c.getPremise() );
-						System.out.println(c.print());
-					}
-				}
-			}
-		}
-		if( agenda.size() == 0 )
-			return true;
-		return false;
-
-	}
+	//	public boolean bc0 (String q) {
+	//		if ( facts.contains(q) )
+	//			return true;
+	//
+	//		agenda.add(q);
+	//
+	//		while ( !agenda.isEmpty() ) {			
+	//			String p = agenda.poll();
+	//			if ( facts.contains(p) ) { 
+	//				System.out.println(p);
+	//				facts.remove(p);
+	//			}
+	//			if ( !inferred.containsKey(p) ) {
+	//				inferred.put(p, true);
+	//				//for each clause
+	//				for ( Clause c : clauses ) {
+	//					//if that symbol's conclusion is p ('contains' to deal with whitespace, etc)
+	//					if( c.getConclusion().contains(p) ) {
+	//						agenda.addAll( c.getPremise() );
+	//						System.out.println(c.print());
+	//					}
+	//				}
+	//			}
+	//		}
+	//		if( agenda.size() == 0 )
+	//			return true;
+	//		return false;
+	//
+	//	}
 
 
 	public boolean bc (String q) {
 
-		boolean bail = false;
+		//		boolean bail = false;
 
 		//if H matches an assertion in working memory then true
 		if( facts.contains(q) ){
@@ -138,26 +138,25 @@ public class KB {
 			return true;
 		}
 
-		//for every rule R with a consequent that matches H do
+		//for every rule R with a consequent that matches H
 		for( Clause c : clauses ){
 			if( c.getConclusion().equals(q) ){
-				bail = true;
-				//if for all antecedents A of rule R, 
+				//for each of its premises
 				for( String p : c.getPremise() ){
-					inferred.put(p, true);
-					//we have Backward-Chaining(A) = true then true
-					if ( !inferred.containsKey(p) && bc(p) ) {
-						System.out.println(c.print());
-						bail = false;
+					//dont check twice
+					if( !inferred.containsKey(p) ) {
+						inferred.put(p, true);
+						if ( bc(p) )
+							System.out.println(c.print());
 					}
 				}
-				if(!bail)
+				if( inferred.keySet().containsAll(c.getPremise()) )
 					return true;
 			}
 		}
 		return false;
 	}
-	
+
 
 	//================================================================================
 	//            v CNF STUFF v            ||             ^ HORN STUFF ^          
@@ -197,31 +196,31 @@ public class KB {
 	}
 
 
-//	public boolean resolution (String q) {
-//		CNFclauses.add("~"+q);
-//		ArrayList<String> resolvents;
-//		while(true) {
-//			for( String c1 : CNFclauses ) {
-//				for( String c2 : CNFclauses ) {
-//					resolvents = resolve(c1, c2);
-//					for( String c : resolvents ) 
-//						if( c.length() == 0 )
-//							return true;
-//					CNFnew.addAll(resolvents);
-//				}
-//			}
-//			if( CNFclauses.containsAll(CNFnew) )
-//				return false;
-//			CNFclauses.addAll(CNFnew);
-//		}
-//	}
-//
-//	public ArrayList<String> resolve(String c1, String c2) {
-//		ArrayList<String> resolvents;
-//
-//
-//
-//		return resolvents;
-//	}
+	public boolean resolution (String q) {
+		CNFclauses.add("~"+q);
+		ArrayList<String> resolvents;
+		while(true) {
+			for( String c1 : CNFclauses ) {
+				for( String c2 : CNFclauses ) {
+					resolvents = resolve(c1, c2);
+					for( String c : resolvents ) 
+						if( c.length() == 0 )
+							return true;
+					CNFnew.addAll(resolvents);
+				}
+			}
+			if( CNFclauses.containsAll(CNFnew) )
+				return false;
+			CNFclauses.addAll(CNFnew);
+		}
+	}
+
+	public ArrayList<String> resolve(String c1, String c2) {
+		ArrayList<String> resolvents = new ArrayList<String>();
+
+
+
+		return resolvents;
+	}
 
 }
