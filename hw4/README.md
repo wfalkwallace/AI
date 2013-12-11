@@ -1,12 +1,12 @@
 COMSW4701: Artificial Intelligence
 ----------------------------------
-Assignment 3
+Assignment 4
 ------------
 William Falk-Wallace (wgf2104)
 
 ---
 
-The submitted zip folder contains my submission for AI Assignment 3. It has a command line prompt which requests board size, winning chain length, and turn time limit. Those parameters may also be specified as command line arguments. The main class is named `GomoTest`, rather than `player-account`, to fit with Java Specifications (which do not allow hyphens in classnames) and Conventions.
+The submitted zip folder contains my submission for AI Assignment 4. It has a command line prompt which requests which algorith to use, Knowledge Base File, and Query. Those parameters may also be specified as command line arguments. The main class is named `Entail`.
 
 #How To Run:
 1. make sure `runtests.sh` is executable: `chmod a+x runtests.sh`
@@ -15,37 +15,24 @@ The submitted zip folder contains my submission for AI Assignment 3. It has a co
 Alternatively,
 	
 1. run `make`
-2. run `java GomoTest n m s p1 p2` 
+2. run `./entail a kb q` 
 	
 	Where
-	- `n` is an integer corresponding to the board size (n x n)
-	- `m` is an integer corresponding to the winning chain length
-	- `s` is an integer corresponding to the turn time limit (in seconds)
-	- `p1` is an integer corresponding to the player 1 mode (0 - Random; 1 - Human; 2 - &alpha;-&beta;)	
-	- `p1` is an integer corresponding to the player 2 mode (0 - Random; 1 - Human; 2 - &alpha;-&beta;)		
-	(ex. `make; java GomoTest 10 5 30 2 2`)
+	- `a` is an algorithm to use (forward/backward)
+	- `kb` is the path to a file with horn-form knowledge base as specified in the assignment specifications
+	- `q` is a symbolic query
+	(ex. `make; ./entail forward kb.txt Q`)
 		
 Or, for a Command Line Prompt,
 
 1. run `make`
-2. run `java GomoTest` 
+2. run `java Entail` 
 
-#Notes:
-The &alpha;-&beta; Search function is coded in _GTree.java_, which calls a heuristic funtion `getUtility` in _GState.java_.
+#####Tests
+All tests can be (make'd and) run by executing the runtests.sh script. these output to the file log.txt.
 
-#####Heuristic Analysis:
-My heuristic evaluation function computes the longest consecutive chain of each player's tokens (ie. longest string of x's or o's) less than the chainlength. The resulting heuristic value is the difference between the two (maximize own chainlength, minimize opponent's). This is effective first, since any chain longer than the winning chainlength is not valuable to the player. It also balances the simultaneous (zero-sum) goals of diminishing an opponents chances of winning while optimizing its own. The algorithm uses a depth limit of 4 during its execution to widen the breadth of its search given time constraints. 
-
-Attempts to further limit the set of searched actions following a given state to enable further depth of search diminished accuracy for this heuristic and did not see worthwhile gains. The current design consistently wins against a random player, both when moving first (as x) as well as second (as y).
-
-My algorithm runs in polynomial time. A better Actions function could reduce this significantly in the same way a more directed start position for the evaluation function would: given the time cutoff, a more directed start of the search would result in significantly better performance and an ability to increase depth without losing accuracy.
-
-#####Test Analysis
-
-Playing against my player 5 times resulted in quick wins by me. My heuristic doesn't effectively measure threat-space fully; as a result, it is easy to set up multiple-win-move states without being blocked by the computer opponent. With more time and depth, my computer was able to block a few of my open-sided attempts to force a win, but still eventually lost.
-
-Pinning my heuristic player against a random player consistently results in the heuristic agent winning. it takes a few moves longer when playing second, but has not lost yet. 
-
-When the &alpha;-&beta; player plays against another &alpha;-&beta; player, the result is generally a win for whichever moves first (as x), but has resulted in a few o-player wins.
-
-The results of several games with Random _v._ &alpha;-&beta; and &alpha;-&beta; _v._ &alpha;-&beta; are attached in the file `log.txt` which is produced from the tests listed in the `runtests.sh` file. 
+My test kbs:
+1. kbs/GWH.txt - this is the scene in the movie Good Will Hunting where Clark challenges Chuckie, and Will steps in before getting Skylar's number and asking clark "how do you like them apples"
+1. kbs/MM.txt - when sarah (my girlfriend) and I want lunch, we order milano. when it's snowing (like monday 10/10) they're late. if they're late, we get very hungry and therefore angry, and we devour our H17 sandwiches.
+1. kbs/NEWPC.txt - This summer, Sarah and I worked in SF, made some money and bought a new PC so we could have mapping and CAD software which makes us happy. when we're both happy, we have fun.
+1. kbs/PIERNIKI.txt - Sarah's family has a trdition every holidays (between xmas and thanksgiving) where they bake THOUSANDS of polish cookies called pierniki. we drink and bake and eat a lot of them and are fat as a result.

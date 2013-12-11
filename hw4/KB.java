@@ -217,8 +217,26 @@ public class KB {
 
 	public ArrayList<String> resolve(String c1, String c2) {
 		ArrayList<String> resolvents = new ArrayList<String>();
+		ArrayList<String> similars = new ArrayList<String>();
+		String c1syms[] = c1.split("v");
+		String c2syms[] = c2.split("v");
 
-
+		for ( String c1sym : c1syms ) {
+			for ( String c2sym : c2syms ) {
+				if ( c1sym.replace('~', ' ').trim().equals( c2sym.replace('~', ' ').trim() ) ) {
+					similars.add(c1sym.trim());
+					similars.add(c2sym.trim());
+				}
+			}
+		}
+		for ( String c1sym : c1syms ) {
+			if(similars.contains(c1sym.trim()))
+				resolvents.add(c1sym.trim());
+		}
+		for ( String c2sym : c2syms ) {
+			if(similars.contains(c2sym.trim()))
+				resolvents.add(c2sym.trim());
+		}
 
 		return resolvents;
 	}

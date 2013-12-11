@@ -4,3 +4,5 @@
 - 3.txt - d
 - GWH.txt - SUCCESS
 - MM.txt - DEVOUR
+- NEWPC.txt - FUN
+- PIERNIKI.txt - FAT
